@@ -1,8 +1,10 @@
 //Default imports
 import {Route, Routes} from "react-router-dom";
 
-//CSS imports
+//Styling imports
 import './App.css'
+
+//Components imports
 
 //Pages imports
 import Home from "./pages/home/Home.jsx";
@@ -15,7 +17,7 @@ import About from "./pages/about/About.jsx";
 import NotFound from "./pages/notfound/NotFound.jsx";
 
 function App() {
-    const isLoggedin = true;
+    const isLoggedIn = true; //later ombouwen
     //some state
     //useEffect
     //(async) functions
@@ -28,7 +30,7 @@ function App() {
             <Route path={"/catalog"} element={<Catalog/>}/>
             <Route path={"/product/:id"} element={<Product/>}/>
             <Route path={"/login"} element={<Login/>}/>
-            <Route path={"/account"} element={isLoggedin === true ? <Account/> : <Login/>}/>
+            <Route path={"/account"} element={isLoggedIn === true ? <Account/> : <Login/>}/>
             <Route path={"/randomizer"} element={<Randomizer/>}/>
             <Route path={"/about"} element={<About/>}/>
             <Route path={"*"} element={<NotFound/>}/>
