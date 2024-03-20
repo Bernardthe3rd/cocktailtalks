@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+
 /*Global styling*/
 * {
   margin: 0;
@@ -10,12 +14,18 @@
 }
 
 body {
-/*font-family*/
-/* fontweight*/
+  font-family: "Montserrat" , sans-serif;
+  font-weight: 600;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 img {
-  /*max-width: 100%;*/
+  max-width: 100%;
+}
+
+ul {
+  list-style-type: none;
 }
 
 a {
@@ -27,9 +37,15 @@ button, input, select, textarea {
 
 /*Typography*/
 h1 {
-
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 96px;
 }
 
 h2, h3, h4, h5, h6 {
-
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 48px;
 }

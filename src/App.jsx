@@ -25,6 +25,7 @@ function App() {
   return (
     <>
         {/*navigatiecompontent*/}
+        <div className={"page-container"}>
         <Routes>
             <Route path={"/"} element={<Home/>}/>
             <Route path={"/catalog"} element={<Catalog/>}/>
@@ -35,6 +36,7 @@ function App() {
             <Route path={"/about"} element={<About/>}/>
             <Route path={"*"} element={<NotFound/>}/>
         </Routes>
+        </div>
         {/*footercomponent*/}
     </>
   )
