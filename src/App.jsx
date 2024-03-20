@@ -1,33 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+//Default imports
+import {Route, Routes} from "react-router-dom";
+
+//Styling imports
 import './App.css'
 
+//Components imports
+
+//Pages imports
+import Home from "./pages/home/Home.jsx";
+import Catalog from "./pages/catalog/Catalog.jsx";
+import Product from "./pages/product/Product.jsx";
+import Login from "./pages/login/Login.jsx";
+import Account from "./pages/account/Account.jsx";
+import Randomizer from "./pages/randomizer/Randomizer.jsx";
+import About from "./pages/about/About.jsx";
+import NotFound from "./pages/notfound/NotFound.jsx";
+
 function App() {
-  const [count, setCount] = useState(0)
+    const isLoggedIn = true; //later ombouwen
+    //some state
+    //useEffect
+    //(async) functions
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        {/*navigatiecompontent*/}
+        <Routes>
+            <Route path={"/"} element={<Home/>}/>
+            <Route path={"/catalog"} element={<Catalog/>}/>
+            <Route path={"/product/:id"} element={<Product/>}/>
+            <Route path={"/login"} element={<Login/>}/>
+            <Route path={"/account"} element={isLoggedIn === true ? <Account/> : <Login/>}/>
+            <Route path={"/randomizer"} element={<Randomizer/>}/>
+            <Route path={"/about"} element={<About/>}/>
+            <Route path={"*"} element={<NotFound/>}/>
+        </Routes>
+        {/*footercomponent*/}
     </>
   )
 }
