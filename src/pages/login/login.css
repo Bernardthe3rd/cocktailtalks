@@ -1,0 +1,23 @@
+.form-container {
+    /*border: 1px dashed darkred;*/
+    padding-block: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+}
+
+.login--div__button {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

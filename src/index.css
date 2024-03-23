@@ -39,7 +39,12 @@ ul {
 }
 
 a {
+  color: var(--tekst-clr);
+  text-align: end;
+}
 
+a:hover {
+  color: var(--white);
 }
 
 button, input, select, textarea {

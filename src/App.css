@@ -27,6 +27,7 @@ en voor de main en header*/
 
 .button-function {
     border: 1px solid black;
+    width: 250px;
     text-decoration: none;
     color: var(--tekst-clr);
     border-radius: 20px;
@@ -49,7 +50,7 @@ en voor de main en header*/
 
 .navbar-container {
     background-color: var(--background-clr-secondary);
-    height: 150px;
+    height: 200px;
 
     display: flex;
     flex-direction: row;
@@ -58,7 +59,7 @@ en voor de main en header*/
 }
 
 .img-wrapper-logo {
-    width: 75px;
+    width: 100px;
     display: flex;
 }
 
