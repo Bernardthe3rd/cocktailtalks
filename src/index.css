@@ -11,10 +11,18 @@
 
 :root {
   /*diverse kleuren variabelen*/
+  --background-clr-first: #CDC7FF;
+  --background-clr-secondary: #FFFEEC;
+  --btn-clr-first: #EDB5F7;
+  --btn-clr-secondary: #FFB985;
+  --tekst-clr: #19134B;
+  --white: #FFFFFF;
+  --font-first: "Montserrat", sans-serif;
+  --font-secondary: "Bebas Neue", sans-serif;
 }
 
 body {
-  font-family: "Montserrat" , sans-serif;
+  font-family: var(--font-first);
   font-weight: 600;
   font-optical-sizing: auto;
   font-style: normal;
@@ -37,14 +45,14 @@ button, input, select, textarea {
 
 /*Typography*/
 h1 {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: var(--font-secondary);
   font-weight: 400;
   font-style: normal;
   font-size: 96px;
 }
 
 h2, h3, h4, h5, h6 {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: var(--font-secondary);
   font-weight: 400;
   font-style: normal;
   font-size: 48px;

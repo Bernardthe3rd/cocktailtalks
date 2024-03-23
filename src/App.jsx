@@ -1,8 +1,9 @@
 //Default imports
-import {Route, Routes} from "react-router-dom";
+import {NavLink, Route, Routes} from "react-router-dom";
 
 //Styling imports
 import './App.css'
+import logo from "/src/assets/Logo.png";
 
 //Components imports
 
@@ -23,20 +24,34 @@ function App() {
     //(async) functions
 
   return (
-    <>
-        {/*navigatiecompontent*/}
-        <Routes>
-            <Route path={"/"} element={<Home/>}/>
-            <Route path={"/catalog"} element={<Catalog/>}/>
-            <Route path={"/product/:id"} element={<Product/>}/>
-            <Route path={"/login"} element={<Login/>}/>
-            <Route path={"/account"} element={isLoggedIn === true ? <Account/> : <Login/>}/>
-            <Route path={"/randomizer"} element={<Randomizer/>}/>
-            <Route path={"/about"} element={<About/>}/>
-            <Route path={"*"} element={<NotFound/>}/>
-        </Routes>
-        {/*footercomponent*/}
-    </>
+      <>
+          <header>
+              <nav className="container">
+                  <ul className="navbar-container">
+                      <li><NavLink to="/catalog" className="button-link-nav">catalog</NavLink></li>
+                      <li><NavLink to="/about" className="button-link-nav">about</NavLink></li>
+                      <li>
+                            <span className="img-wrapper-logo">
+                                <img src={logo} alt="logo cocktailtalks"/>
+                            </span>
+                      </li>
+                      <li><NavLink to="/randomizer" className="button-link-nav">randomizer</NavLink></li>
+                      <li><NavLink to="/login" className="button-link-nav">account</NavLink></li>
+                  </ul>
+              </nav>
+          </header>
+          <Routes>
+              <Route path={"/"} element={<Home/>}/>
+              <Route path={"/catalog"} element={<Catalog/>}/>
+              <Route path={"/product/:id"} element={<Product/>}/>
+              <Route path={"/login"} element={<Login/>}/>
+              <Route path={"/account"} element={isLoggedIn === true ? <Account/> : <Login/>}/>
+              <Route path={"/randomizer"} element={<Randomizer/>}/>
+              <Route path={"/about"} element={<About/>}/>
+              <Route path={"*"} element={<NotFound/>}/>
+          </Routes>
+          {/*footercomponent*/}
+      </>
   )
 }
 

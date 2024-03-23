@@ -7,10 +7,38 @@ en voor de main en header*/
     padding-inline: 2rem;
 }
 
-.button-link {
-    border: 1px solid black;
+.button-link-nav {
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0, rgba(27, 31, 35, 0.15) 0 0 0 1px;
+    padding: 15px 45px;
+    background-color: var(--btn-clr-first);
+}
+
+.button-link-main {
+    text-decoration: none;
+    color: var(--tekst-clr);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0, rgba(27, 31, 35, 0.15) 0 0 0 1px;
+    padding: 15px 45px;
+    background-color: var(--btn-clr-secondary);
 }
 
 .button-function {
     border: 1px solid black;
+}
+
+.navbar-container {
+    background-color: var(--background-clr-secondary);
+    height: 150px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.img-wrapper-logo {
+    width: 75px;
+    display: flex;
 }
