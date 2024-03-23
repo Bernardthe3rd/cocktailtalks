@@ -1,5 +1,5 @@
 import "./login.css"
-import {Link} from "react-router-dom";
+
 const Login = () => {
     return (
         <>
@@ -8,11 +8,11 @@ const Login = () => {
                     <h2>Welcome (back)!</h2>
                     <h3>Ready to explore some cocktails?</h3>
                     <form className="form-container">
-                        <label htmlFor="field-email">
+                        <label htmlFor="field-email" className="label-style-login">
                             Email:
                             <input type="text" id="field-email" name="email" className="input-text-field"/>
                         </label>
-                        <label htmlFor="field-password">
+                        <label htmlFor="field-password" className="label-style-login">
                             Password:
                             <input type="text" id="field-password" name="password" className="input-text-field"/>
                             <a href="mailto:benjaminmeijer1@gmail.com">Forgot password?</a>

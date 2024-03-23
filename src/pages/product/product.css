@@ -26,12 +26,12 @@
     border: 1px solid darkred;
 }
 
-.text-box {
+.text-box-product {
     background-color: var(--background-clr-secondary);
     border: none;
     resize: none;
 }
 
-.label-style {
+.label-style-product {
     text-decoration: underline;
 }

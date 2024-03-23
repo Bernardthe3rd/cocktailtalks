@@ -36,7 +36,7 @@ function App() {
                             </span>
                       </li>
                       <li><NavLink to="/randomizer" className="button-link-nav">randomizer</NavLink></li>
-                      <li><NavLink to="/login" className="button-link-nav">account</NavLink></li>
+                      <li><NavLink to={isLoggedIn ? "/account" : "/login"} className="button-link-nav">account</NavLink></li>
                   </ul>
               </nav>
           </header>
