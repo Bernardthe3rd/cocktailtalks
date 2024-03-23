@@ -26,6 +26,7 @@ body {
   font-weight: 600;
   font-optical-sizing: auto;
   font-style: normal;
+  font-size: 24px;
 }
 
 img {
@@ -41,7 +42,8 @@ a {
 
 }
 button, input, select, textarea {
-  /*font-family: inherit;*/
+  font-family: inherit;
+  font-size: inherit;
 }
 
 /*Typography*/
@@ -53,7 +55,15 @@ h1 {
   line-height: 0.9em;
 }
 
-h2, h3, h4, h5, h6 {
+h2 {
+  font-family: var(--font-first);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 48px;
+  line-height: 1.2em;
+}
+
+h3, h4, h5, h6 {
   font-family: var(--font-first);
   font-weight: 400;
   font-style: normal;

@@ -7,7 +7,7 @@ const Home = () => {
     return (
         <>
             <main className="container">
-                <article className="home--article__container">
+                <article className="home--article__container-upper">
                     <div className="home--content__container">
                         <h1>PHENOMENAL COCKTAIL. PHENOMENAL COMMUNITY.</h1>
                         <h3>From anywhere in the world, <br/> For all cocktail fans here at CocktailTalks</h3>
@@ -17,6 +17,11 @@ const Home = () => {
                     <span className="img-wrapper-homeimg">
                         <img src={homeimg} alt="cocktail glasses"/>
                     </span>
+                </article>
+                <article className="home--article__container-bottom">
+                    <h2>Want to be notified about the latest updates?</h2>
+                    <input type="text" placeholder="Email" className="input-text-field"/>
+                    <button type="button" className="button-link-main">subscribe</button>
                 </article>
             </main>
 

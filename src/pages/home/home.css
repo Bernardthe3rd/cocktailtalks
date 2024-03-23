@@ -1,4 +1,4 @@
-.home--article__container {
+.home--article__container-upper {
     border: 2px solid black;
     padding: 150px 100px;
     background-color: var(--background-clr-first);
@@ -20,4 +20,16 @@
 .img-wrapper-homeimg {
     width: 750px;
     display: flex;
+}
+
+.home--article__container-bottom {
+    text-align: center;
+    padding: 150px 300px;
+    background-color: var(--btn-clr-first);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
 }
