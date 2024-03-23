@@ -29,6 +29,10 @@ en voor de main en header*/
     border: 1px solid black;
 }
 
+.link-main {
+    color: var(--btn-clr-first);
+}
+
 .input-text-field {
     border: none;
     border-radius: 20px;
@@ -50,4 +54,15 @@ en voor de main en header*/
 .img-wrapper-logo {
     width: 75px;
     display: flex;
+}
+
+.footer-container {
+    background-color: var(--tekst-clr);
+    color: var(--btn-clr-first);
+    height: 150px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }

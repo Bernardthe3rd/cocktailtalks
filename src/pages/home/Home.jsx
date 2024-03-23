@@ -24,7 +24,6 @@ const Home = () => {
                     <button type="button" className="button-link-main">subscribe</button>
                 </article>
             </main>
-
         </>
     );
 }

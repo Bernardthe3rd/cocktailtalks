@@ -1,5 +1,5 @@
 //Default imports
-import {NavLink, Route, Routes} from "react-router-dom";
+import {Link, NavLink, Route, Routes} from "react-router-dom";
 
 //Styling imports
 import './App.css'
@@ -50,7 +50,12 @@ function App() {
               <Route path={"/about"} element={<About/>}/>
               <Route path={"*"} element={<NotFound/>}/>
           </Routes>
-          {/*footercomponent*/}
+          <footer className="container">
+              <div className="footer-container">
+                <p> Made by Berny</p>
+                <Link to="/about" className="link-main">contact us</Link>
+              </div>
+          </footer>
       </>
   )
 }
