@@ -1,0 +1,35 @@
+.img-wrapper-logo {
+    width: 50px;
+    display: flex;
+}
+
+.img-wrapper-homeimg {
+    width: 750px;
+    display: flex;
+}
+
+.navbar-container {
+    border: 1px dashed red;
+    height: 150px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.home--article__container {
+    border: 2px solid black;
+    padding-inline: 20px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.home--content__container {
+    border: 1px solid blue;
+
+
+}
