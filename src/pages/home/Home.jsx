@@ -8,10 +8,10 @@ const Home = () => {
         <>
             <main className="container">
                 <article className="home--article__container">
-                    <div>
+                    <div className="home--content__container">
                         <h1>PHENOMENAL COCKTAIL. PHENOMENAL COMMUNITY.</h1>
-                        <h3>From anywhere in the world,</h3>
-                        <h3>For all cocktail fans here at CocktailTalks</h3>
+                        <h3>From anywhere in the world, <br/> For all cocktail fans here at CocktailTalks</h3>
+                        {/*<h3>For all cocktail fans here at CocktailTalks</h3>*/}
                         <Link to="/about" className="button-link-main">about</Link>
                     </div>
                     <span className="img-wrapper-homeimg">
