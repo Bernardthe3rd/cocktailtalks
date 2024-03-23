@@ -43,7 +43,8 @@ function App() {
           <Routes>
               <Route path={"/"} element={<Home/>}/>
               <Route path={"/catalog"} element={<Catalog/>}/>
-              <Route path={"/product/:id"} element={<Product/>}/>
+              <Route path={"/product"} element={<Product/>}/>
+              {/*later hierboven /:id achter toevoegen na implementatie API*/}
               <Route path={"/login"} element={<Login/>}/>
               <Route path={"/account"} element={isLoggedIn === true ? <Account/> : <Login/>}/>
               <Route path={"/randomizer"} element={<Randomizer/>}/>

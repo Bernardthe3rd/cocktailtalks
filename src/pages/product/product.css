@@ -1,0 +1,37 @@
+.star-product {
+    position: relative;
+    top: -175px;
+    left: 0;
+}
+
+.card-product {
+    border: 1px solid black;
+    padding-inline: 40px;
+    background-color: var(--background-clr-secondary);
+    width: 1200px;
+    height: 500px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.wrapper-product-img {
+    width: 300px;
+    height: 400px;
+
+    display: flex;
+    border: 1px solid darkred;
+}
+
+.text-box {
+    background-color: var(--background-clr-secondary);
+    border: none;
+    resize: none;
+}
+
+.label-style {
+    text-decoration: underline;
+}
