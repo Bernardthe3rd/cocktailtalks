@@ -21,7 +21,7 @@ const Home = () => {
                 <article className="home--article__container-bottom">
                     <h2>Want to be notified about the latest updates?</h2>
                     <input type="text" placeholder="Email" className="input-text-field"/>
-                    <button type="button" className="button-link-main">subscribe</button>
+                    <button type="button" className="button-function">subscribe</button>
                 </article>
             </main>
         </>
