@@ -27,7 +27,7 @@ const Account = () => {
                         </form>
                         <div className="account--div__btnstar">
                             <Star size={50} color="#FFB985" alt="Star icon" weight="fill" className="star-review"/>
-                            <Link to="/product" className="button-link-main">edit</Link>
+                            <button type="button" className="button-function">edit</button>
                         </div>
                     </article>
                     <article className="card-review">
@@ -48,7 +48,7 @@ const Account = () => {
                         </form>
                         <div className="account--div__btnstar">
                             <Star size={50} color="#FFB985" alt="Star icon" weight="fill" className="star-review"/>
-                            <Link to="/product" className="button-link-main">edit</Link>
+                            <button type="button" className="button-function">edit</button>
                         </div>
                     </article>
                 </div>
