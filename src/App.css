@@ -19,14 +19,6 @@ en voor de main en header*/
 }
 
 
-.input-text-field {
-    border: none;
-    border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0, rgba(27, 31, 35, 0.15) 0 0 0 1px;
-    padding: 25px 25px;
-    min-width: 800px;
-}
-
 /*CSS for product vcard*/
 .wrapper-product-img {
     width: 300px;
