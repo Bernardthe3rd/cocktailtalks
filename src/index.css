@@ -40,7 +40,6 @@ ul {
 
 a {
   color: var(--tekst-clr);
-  text-align: end;
 }
 
 a:hover {

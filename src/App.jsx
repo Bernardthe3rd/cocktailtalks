@@ -6,6 +6,7 @@ import "./App.css"
 
 //Components imports
 import Navbar from "./components/navbar/Navbar.jsx";
+import Footer from "./components/footer/Footer.jsx";
 
 //Pages imports
 import Home from "./pages/home/Home.jsx";
@@ -25,9 +26,7 @@ function App() {
 
   return (
       <>
-          <header>
-            <Navbar validateLogin={isLoggedIn}/>
-          </header>
+          <Navbar validateLogin={isLoggedIn}/>
           <Routes>
               <Route path={"/"} element={<Home/>}/>
               <Route path={"/catalog"} element={<Catalog/>}/>
@@ -39,12 +38,7 @@ function App() {
               <Route path={"/about"} element={<About/>}/>
               <Route path={"*"} element={<NotFound/>}/>
           </Routes>
-          <footer className="container">
-              <div className="footer-container">
-                <p> Made by Berny</p>
-                <Link to="/about" className="link-main">contact us</Link>
-              </div>
-          </footer>
+          <Footer/>
       </>
   )
 }
