@@ -63,20 +63,9 @@ en voor de main en header*/
     min-width: 800px;
 }
 
-.navbar-container {
-    background-color: var(--background-clr-secondary);
-    height: 200px;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
 
-.img-wrapper-logo {
-    width: 100px;
-    display: flex;
-}
+
 
 .footer-container {
     background-color: var(--tekst-clr);
