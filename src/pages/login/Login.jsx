@@ -14,12 +14,12 @@ const Login = () => {
                         </label>
                         <label htmlFor="field-password" className="label-style-login">
                             Password:
-                            <input type="text" id="field-password" name="password" className="input-text-field"/>
+                            <input type="password" id="field-password" name="password" className="input-text-field"/>
                             <a href="mailto:benjaminmeijer1@gmail.com">Forgot password?</a>
                         </label>
                         <div className="login--div__button">
-                            <button type="button" className="button-function">log in</button>
-                            <button type="button" className="button-function">register</button>
+                            <button type="submit" className="button-function">log in</button>
+                            <button type="submit" className="button-function">register</button>
                         </div>
                     </form>
                 </div>

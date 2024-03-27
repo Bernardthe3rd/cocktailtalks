@@ -10,7 +10,6 @@ en voor de main en header*/
 .main--container__outer {
     padding-block: 50px;
     background-color: var(--background-clr-first);
-    border: 1px solid green;
 
     display: flex;
     flex-direction: column;

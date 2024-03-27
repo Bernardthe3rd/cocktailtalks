@@ -20,7 +20,7 @@ const Account = () => {
                                        disabled={true}/>
                             </label>
                             <label htmlFor="feedback-are" className="label-style-account">
-                                Feedback:
+                                Feedback for ...:
                                 <textarea name="feedback" id="feedback-area" cols="50" rows="10" disabled={true}
                                           placeholder="Write your feedback here" className="text-box-review"/>
                             </label>
@@ -41,7 +41,7 @@ const Account = () => {
                                        disabled={false}/>
                             </label>
                             <label htmlFor="feedback-are" className="label-style-account">
-                                Feedback:
+                                Feedback for enter cocktail name here:
                                 <textarea name="feedback" id="feedback-area" cols="50" rows="10" disabled={false}
                                           placeholder="Write your feedback here" className="text-box-review"/>
                             </label>
