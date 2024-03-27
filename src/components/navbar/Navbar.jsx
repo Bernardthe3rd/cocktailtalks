@@ -15,7 +15,7 @@ const Navbar = ({validateLogin}) => {
                     <img src={logo} alt="logo cocktailtalks"/>
                 </NavLink>
                 <ButtonNav path="/randomizer" text="randomizer"/>
-                <ButtonNav path={validateLogin ? "/account" : "/login"} text="catalog"/>
+                <ButtonNav path={validateLogin ? "/account" : "/login"} text="account"/>
             </ul>
         </nav>
     );
