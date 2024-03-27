@@ -1,0 +1,71 @@
+.star-review {
+    position: relative;
+    top: 0;
+    left: 25px;
+}
+
+.reviews {
+    padding-block: 25px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    column-gap: 50px;
+}
+
+.card-review {
+    border-radius: 20px;
+    background-color: var(--background-clr-secondary);
+    width: 1200px;
+    height: 400px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper-review-img {
+    width: 225px;
+    height: 100%;
+    display: flex;
+    margin-inline: 20px;
+    padding-block: 20px;
+}
+.account--div__btnstar {
+    height: 100%;
+    padding: 20px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-grade-field {
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0, rgba(27, 31, 35, 0.15) 0 0 0 1px;
+    border-radius: 10px;
+    padding-block: 10px;
+    margin: 5px 10px;
+    text-align: center;
+    background-color: var(--background-clr-secondary);
+    width: 50px;
+}
+
+.text-box-review {
+    background-color: var(--background-clr-secondary);
+    border: none;
+    resize: none;
+}
+
+.label-style-account {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-feedback {
+    display: flex;
+    flex-direction: column;
+}

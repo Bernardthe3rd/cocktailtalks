@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+
 /*Global styling*/
 * {
   margin: 0;
@@ -6,30 +10,79 @@
 }
 
 :root {
-/*diverse kleuren variabelen*/
+  /*diverse kleuren variabelen*/
+  --background-clr-first: #CDC7FF;
+  --background-clr-secondary: #FFFEEC;
+  --btn-clr-first: #EDB5F7;
+  --btn-clr-secondary: #FFB985;
+  --tekst-clr: #19134B;
+  --white: #FFFFFF;
+  --font-first: "Montserrat", sans-serif;
+  --font-secondary: "Bebas Neue", sans-serif;
 }
 
 body {
-/*font-family*/
-/* fontweight*/
+  font-family: var(--font-first);
+  font-weight: 600;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 24px;
 }
 
 img {
-  /*max-width: 100%;*/
+  max-width: 100%;
+  mix-blend-mode: multiply;
+}
+
+ul {
+  list-style-type: none;
 }
 
 a {
-
+  color: var(--tekst-clr);
+  text-align: end;
 }
+
+a:hover {
+  color: var(--white);
+}
+
 button, input, select, textarea {
-  /*font-family: inherit;*/
+  font-family: inherit;
+  font-size: inherit;
 }
 
 /*Typography*/
 h1 {
-
+  font-family: var(--font-secondary);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 96px;
+  line-height: 0.9em;
 }
 
-h2, h3, h4, h5, h6 {
+h2 {
+  font-family: var(--font-first);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 48px;
+  line-height: 1.2em;
+  text-align: center;
+}
 
+h3 {
+  font-family: var(--font-first);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 36px;
+  line-height: 1.2em;
+  text-align: center;
+}
+
+h4, h5, h6 {
+  font-family: var(--font-first);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1.2em;
 }
