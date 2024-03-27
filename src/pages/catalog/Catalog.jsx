@@ -2,6 +2,7 @@ import {Star} from "@phosphor-icons/react";
 import reactlogo from "/src/assets/react.svg";
 import "./catalog.css"
 import ButtonLink from "../../components/button-link/ButtonLink.jsx";
+import ButtonFunction from "../../components/button-function/ButtonFunction.jsx";
 
 const Catalog = () => {
     return (
@@ -53,7 +54,7 @@ const Catalog = () => {
                             <ButtonLink path="/product" text="get to know me"/>
                         </li>
                     </ul>
-                    <button type="button" className="button-function">load more</button>
+                    <ButtonFunction type="button" text="load more"/>
                 </div>
             </main>
 

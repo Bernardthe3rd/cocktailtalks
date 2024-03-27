@@ -1,6 +1,7 @@
 import homeimg from "/src/assets/imgHomepage.jpg";
 import "./home.css"
 import ButtonLink from "../../components/button-link/ButtonLink.jsx";
+import ButtonFunction from "../../components/button-function/ButtonFunction.jsx";
 
 
 const Home = () => {
@@ -21,7 +22,7 @@ const Home = () => {
                 <article className="home--article__container-bottom">
                     <h2>Want to be notified about the latest updates?</h2>
                     <input type="text" placeholder="Email" className="input-text-field"/>
-                    <button type="button" className="button-function">subscribe</button>
+                    <ButtonFunction type="button" text="subscribe"/>
                 </article>
             </main>
         </>

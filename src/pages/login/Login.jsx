@@ -1,4 +1,5 @@
 import "./login.css"
+import ButtonFunction from "../../components/button-function/ButtonFunction.jsx";
 
 const Login = () => {
     return (
@@ -18,8 +19,8 @@ const Login = () => {
                             <a href="mailto:benjaminmeijer1@gmail.com">Forgot password?</a>
                         </label>
                         <div className="login--div__button">
-                            <button type="submit" className="button-function">log in</button>
-                            <button type="submit" className="button-function">register</button>
+                            <ButtonFunction type="submit" text="log in"/>
+                            <ButtonFunction type="submit" text="register"/>
                         </div>
                     </form>
                 </div>

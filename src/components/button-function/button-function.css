@@ -1,0 +1,30 @@
+.button-function {
+    border: 1px solid black;
+    text-decoration: none;
+    color: var(--tekst-clr);
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0, rgba(27, 31, 35, 0.15) 0 0 0 1px;
+    padding: 15px 45px;
+    background-color: var(--btn-clr-secondary);
+}
+
+.button-function:hover {
+    cursor: pointer;
+    color: var(--white);
+}
+
+.button-push {
+    background-color: var(--btn-clr-first);
+    color: var(--tekst-clr);
+    border: 5px solid var(--white);
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0, rgba(27, 31, 35, 0.15) 0 0 0 1px;;
+    height: 200px;
+    width: 200px;
+    margin-block: 20px;
+}
+
+.button-push:hover {
+    cursor: pointer;
+    color: var(--white);
+}

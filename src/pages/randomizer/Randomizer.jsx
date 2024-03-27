@@ -1,6 +1,7 @@
 import reactlogo from "../../assets/react.svg";
 import {Star} from "@phosphor-icons/react";
 import "./randomizer.css"
+import ButtonFunction from "../../components/button-function/ButtonFunction.jsx";
 
 const Randomizer = () => {
     return (
@@ -8,7 +9,7 @@ const Randomizer = () => {
             <main className="container">
                 <div className="main--container__outer">
                     <h2>Push to get inspired!</h2>
-                    <button type="button" className="button-push">PUSH</button>
+                    <ButtonFunction type="button" text="PUSH"/>
                     <article className="card-product">
                         <span className="wrapper-product-img">
                             <img src={reactlogo} alt="tijdelijke logo react"/>
