@@ -1,27 +1,23 @@
 import {NavLink} from "react-router-dom";
 import logo from "../../assets/Logo.png";
 import "./navbar.css"
+import ButtonNav from "../button-nav/ButtonNav.jsx";
 
 
 const Navbar = ({validateLogin}) => {
 
     return (
-        <>
-            <nav className="container">
-                <ul className="navbar-container">
-                    <li><NavLink to="/catalog" className="button-link-nav">catalog</NavLink></li>
-                    <li><NavLink to="/about" className="button-link-nav">about</NavLink></li>
-                    <li>
-                        <span className="img-wrapper-logo">
-                            <NavLink to="/"><img src={logo} alt="logo cocktailtalks"/></NavLink>
-                        </span>
-                    </li>
-                    <li><NavLink to="/randomizer" className="button-link-nav">randomizer</NavLink></li>
-                    <li><NavLink to={validateLogin ? "/account" : "/login"} className="button-link-nav">account</NavLink>
-                    </li>
-                </ul>
-            </nav>
-        </>
+        <nav className="container">
+            <ul className="navbar-container">
+                <ButtonNav path="/catalog" text="catalog"/>
+                <ButtonNav path="/about" text="about"/>
+                <NavLink to="/" className="img-wrapper-logo">
+                    <img src={logo} alt="logo cocktailtalks"/>
+                </NavLink>
+                <ButtonNav path="/randomizer" text="randomizer"/>
+                <ButtonNav path={validateLogin ? "/account" : "/login"} text="catalog"/>
+            </ul>
+        </nav>
     );
 };
 
