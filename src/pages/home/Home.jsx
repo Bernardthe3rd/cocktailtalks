@@ -3,7 +3,7 @@ import "./home.css"
 import ButtonLink from "../../components/button-link/ButtonLink.jsx";
 import ButtonFunction from "../../components/button-function/ButtonFunction.jsx";
 import InputField from "../../components/input-field/InputField.jsx";
-import {useEffect, useState} from "react";
+import { useState} from "react";
 
 
 const Home = () => {
