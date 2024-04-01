@@ -1,8 +1,10 @@
-import {Star} from "@phosphor-icons/react";
 import "./product-card-review.css"
 import ButtonFunction from "../button-function/ButtonFunction.jsx";
+import StarIcon from "../star-icon/StarIcon.jsx";
+import {useState} from "react";
 
 const ProductCardReview = ({source, alt, disable, nameProduct, clicked}) => {
+
     return (
         <article className="card-review">
             <span className="wrapper-review-img">
@@ -21,7 +23,7 @@ const ProductCardReview = ({source, alt, disable, nameProduct, clicked}) => {
                 </label>
             </form>
             <div className="account--div__btnstar">
-                <Star size={50} color="#FFB985" alt="Star icon" weight="fill" className="star-review"/>
+                <StarIcon size={50} weight="fill" style="star-review"/>
                 <ButtonFunction type="submit" text="edit" onClick={clicked}/>
             </div>
         </article>

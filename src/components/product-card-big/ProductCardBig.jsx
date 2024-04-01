@@ -1,5 +1,6 @@
 import "./product-card-big.css"
 import {Star} from "@phosphor-icons/react";
+import StarIcon from "../star-icon/StarIcon.jsx";
 
 const ProductCardBig = ({source, alt, description}) => {
 
@@ -14,7 +15,7 @@ const ProductCardBig = ({source, alt, description}) => {
                 {description}
                 </textarea>
             </fieldset>
-            <Star size={125} color="#FFB985" alt="Star icon" weight="regular" className="star-product"/>
+            <StarIcon size={125} weight="regular" style="star-product"/>
         </article>
     );
 };
