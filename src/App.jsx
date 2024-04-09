@@ -1,11 +1,12 @@
 //Default imports
-import {Link, NavLink, Route, Routes} from "react-router-dom";
+import {Link, Route, Routes} from "react-router-dom";
 
 //Styling imports
-import './App.css'
-import logo from "/src/assets/Logo.png";
+import "./App.css"
 
 //Components imports
+import Navbar from "./components/navbar/Navbar.jsx";
+import Footer from "./components/footer/Footer.jsx";
 
 //Pages imports
 import Home from "./pages/home/Home.jsx";
@@ -25,21 +26,7 @@ function App() {
 
   return (
       <>
-          <header>
-              <nav className="container">
-                  <ul className="navbar-container">
-                      <li><NavLink to="/catalog" className="button-link-nav">catalog</NavLink></li>
-                      <li><NavLink to="/about" className="button-link-nav">about</NavLink></li>
-                      <li>
-                            <span className="img-wrapper-logo">
-                                <img src={logo} alt="logo cocktailtalks"/>
-                            </span>
-                      </li>
-                      <li><NavLink to="/randomizer" className="button-link-nav">randomizer</NavLink></li>
-                      <li><NavLink to={isLoggedIn ? "/account" : "/login"} className="button-link-nav">account</NavLink></li>
-                  </ul>
-              </nav>
-          </header>
+          <Navbar validateLogin={isLoggedIn}/>
           <Routes>
               <Route path={"/"} element={<Home/>}/>
               <Route path={"/catalog"} element={<Catalog/>}/>
@@ -51,12 +38,7 @@ function App() {
               <Route path={"/about"} element={<About/>}/>
               <Route path={"*"} element={<NotFound/>}/>
           </Routes>
-          <footer className="container">
-              <div className="footer-container">
-                <p> Made by Berny</p>
-                <Link to="/about" className="link-main">contact us</Link>
-              </div>
-          </footer>
+          <Footer/>
       </>
   )
 }
