@@ -3,7 +3,7 @@ import ButtonFunction from "../../components/button-function/ButtonFunction.jsx"
 import ProductCardSmall from "../../components/product-card-small/ProductCardSmall.jsx";
 import axios from "axios";
 import {useEffect, useState} from "react";
-// import {cocktailCalculator} from "../../helpers/cocktailCalculator.js";
+// import {checkValue} from "../../helpers/checkValue.js";
 
 const Catalog = () => {
     const [cocktails, setCocktails] = useState([]);
