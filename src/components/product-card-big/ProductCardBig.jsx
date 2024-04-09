@@ -1,5 +1,4 @@
 import "./product-card-big.css"
-import {Star} from "@phosphor-icons/react";
 import StarIcon from "../star-icon/StarIcon.jsx";
 
 const ProductCardBig = ({source, alt, description}) => {
