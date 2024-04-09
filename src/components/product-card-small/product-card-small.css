@@ -1,8 +1,10 @@
 .card-products {
     border: 1px solid black;
+    border-radius: 10px;
     background-color: var(--background-clr-secondary);
     width: 400px;
     height: 600px;
+    text-align: center;
 
     display: flex;
     flex-direction: column;
@@ -12,10 +14,9 @@
 
 .wrapper-catalog-product-img {
     width: 225px;
-    height: 400px;
+    height: 350px;
 
     display: flex;
-    border: 1px solid darkred;
     flex-grow: 0;
     flex-shrink: 0;
 }
