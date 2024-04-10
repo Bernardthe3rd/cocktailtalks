@@ -7,23 +7,31 @@ import {checkValue} from "../../helpers/checkValue.js";
 
 const Randomizer = () => {
     const [randomDrink, setRandomDrink] = useState([]);
+    const [loading, toggleLoading] = useState(false);
+    const [error, toggleError] = useState(false);
 
     async function fetchRandomCocktail () {
+        toggleLoading(true);
         try {
-            const response = await axios.get("https://www.thecocktaildb.com/api/json/v1/1/random.php")
-            setRandomDrink(response.data.drinks)
-            console.log(response.data.drinks)
+            toggleError(false);
+            const response = await axios.get("https://www.thecocktaildb.com/api/json/v1/1/random.php");
+            setRandomDrink(response.data.drinks);
+            console.log(response.data.drinks);
         } catch (e) {
-            console.error(e)
+            console.error(e);
+            toggleError(true);
         }
+        toggleLoading(false);
     }
 
     return (
         <>
             <main className="container">
+                {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
                 <div className="main--container__outer">
                     <h2>Push to get inspired!</h2>
                     <ButtonFunction type="button" text="PUSH" onClick={fetchRandomCocktail}/>
+                    {loading && <p className="loading">Loading...</p>}
                     {randomDrink.map((drink) => {
                         return <article key={drink.idDrink} className="card-product-randomizer">
                             <span className="wrapper-img-randomizer">
@@ -56,6 +64,7 @@ const Randomizer = () => {
                         </article>
                     })}
                 </div>
+                }
             </main>
 
         </>
