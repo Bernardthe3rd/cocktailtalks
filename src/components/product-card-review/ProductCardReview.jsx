@@ -1,9 +1,24 @@
 import "./product-card-review.css"
 import ButtonFunction from "../button-function/ButtonFunction.jsx";
 import StarIcon from "../star-icon/StarIcon.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const ProductCardReview = ({source, alt, disable, nameProduct, clicked}) => {
+    const [textBtn, toggleTextBtn] = useState("")
+    const [fillingStar, setFillingStar] = useState("fill");
+
+    useEffect(() => {
+        if (disable === true) {
+            toggleTextBtn("edit")
+        } else {
+            toggleTextBtn("save")
+        }
+    }, [disable]);
+
+    function deleteFavorite () {
+        setFillingStar("regular");
+        //delete request dat card van account verwijderd wordt.
+    }
 
     return (
         <article className="card-review">
@@ -23,8 +38,8 @@ const ProductCardReview = ({source, alt, disable, nameProduct, clicked}) => {
                 </label>
             </form>
             <div className="account--div__btnstar">
-                <StarIcon size={50} weight="fill" style="star-review"/>
-                <ButtonFunction type="submit" text="edit" onClick={clicked}/>
+                <StarIcon size={50} weight={fillingStar} style="star-review" favorite={deleteFavorite}/>
+                <ButtonFunction type="submit" text={textBtn} onClick={clicked}/>
             </div>
         </article>
     );

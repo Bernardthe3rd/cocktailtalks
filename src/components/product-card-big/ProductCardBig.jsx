@@ -10,7 +10,7 @@ const ProductCardBig = ({source, alt, description}) => {
             </span>
             <fieldset id="information=product" className="fieldset-style">
                 <legend>How to prepare</legend>
-                <textarea name="product info" id="information-product" cols="50" rows="13" className="text-box-product" disabled={true}>
+                <textarea name="product info" id="information-product" cols="50" rows="13" className="text-box-product" disabled={true} value={description}>
                 {description}
                 </textarea>
             </fieldset>

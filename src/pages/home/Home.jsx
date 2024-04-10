@@ -7,7 +7,7 @@ import { useState} from "react";
 
 
 const Home = () => {
-    const [formState, setFormState] = useState("")
+    const [formState, setFormState] = useState({})
 
     function handleEmailChange (f) {
         setFormState({
@@ -20,6 +20,7 @@ const Home = () => {
         console.log(
             formState
         )
+        // setFormState("")
     }
 
 
