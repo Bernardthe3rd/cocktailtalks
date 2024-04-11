@@ -8,6 +8,9 @@ const Catalog = () => {
     const [cocktails, setCocktails] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
+    const [endingCocktail, setEndingCocktail] = useState(6);
+
+    const firstCocktails = cocktails.slice(0,endingCocktail);
 
     useEffect(() => {
         async function fetchCocktails () {
@@ -26,12 +29,10 @@ const Catalog = () => {
         void fetchCocktails();
     }, []);
 
-    // const firstCocktails = cocktails.slice(0,6);
-    // const moreCocktails = cocktails.slice(7,13);
 
-    //useEffect om eerste 6 cocktails op te halen
-    //handleClick om meer cocktails te laden
-    //error en loading state
+    function showMoreCocktails () {
+        setEndingCocktail(endingCocktail+6)
+    }
 
     return (
         <>
@@ -41,15 +42,11 @@ const Catalog = () => {
                 <div className="main--container__outer">
                     <h2>All the cocktails in the world</h2>
                     <ul className="products">
-                        {cocktails.map((cocktail) => {
+                        {firstCocktails.map((cocktail) => {
                             return <ProductCardSmall key={cocktail.idDrink} name={cocktail.strDrink} source={cocktail.strDrinkThumb} alt="thumbnail cocktail" id={cocktail.idDrink}/>
                         })}
-                        {/*later mappen over de async axios request GET cocktails*/}
-                        {/*{moreCocktails.map((cocktail) => {*/}
-                        {/*    return <ProductCardSmall name={cocktail.strDrink} source={cocktail.strDrinkThumb} alt="thumbnail cocktail" id={cocktail.idDrink}/>*/}
-                        {/*})}*/}
                     </ul>
-                    <ButtonFunction type="button" text="load more"/>
+                    <ButtonFunction type="button" text="load more" onClick={showMoreCocktails}/>
                 </div>
                 }
             </main>
