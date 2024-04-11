@@ -2,18 +2,20 @@ import "./product-card-review.css"
 import ButtonFunction from "../button-function/ButtonFunction.jsx";
 import StarIcon from "../star-icon/StarIcon.jsx";
 import {useEffect, useState} from "react";
+import {checkGrade} from "../../helpers/checkGrade.js";
 
-const ProductCardReview = ({source, alt, disable, nameProduct, clicked}) => {
+const ProductCardReview = ({source, alt, disable, nameProduct, clicked}) => { //hier kan nog een key/id ontvangen en gebruikt worden
     const [textBtn, toggleTextBtn] = useState("")
     const [fillingStar, setFillingStar] = useState("fill");
+    const [grade, setGrade] = useState("");
 
     useEffect(() => {
-        if (disable === true) {
+        if (disable === true && checkGrade(grade)) {
             toggleTextBtn("edit")
         } else {
             toggleTextBtn("save")
         }
-    }, [disable]);
+    }, [disable, grade]);
 
     function deleteFavorite () {
         setFillingStar("regular");
@@ -28,9 +30,10 @@ const ProductCardReview = ({source, alt, disable, nameProduct, clicked}) => {
             <form className="form-feedback">
                 <label htmlFor="input-grade">
                     Grade:
-                    <input type="text" id="input-grade" name="grade" className="input-grade-field"
+                    <input type="text" id="input-grade" name="grade" className="input-grade-field" onChange={(e) => {setGrade(e.target.value)}}
                            disabled={disable}/>
                 </label>
+                {!checkGrade(grade) && <p>Vul aub een getal in tussen de 0 en 10</p>}
                 <label htmlFor="feedback-are" className="label-style-account">
                     Feedback for {nameProduct}:
                     <textarea name="feedback" id="feedback-area" cols="50" rows="10" disabled={disable}

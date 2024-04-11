@@ -42,7 +42,7 @@ const Catalog = () => {
                     <h2>All the cocktails in the world</h2>
                     <ul className="products">
                         {cocktails.map((cocktail) => {
-                            return <ProductCardSmall name={cocktail.strDrink} source={cocktail.strDrinkThumb} alt="thumbnail cocktail" id={cocktail.idDrink}/>
+                            return <ProductCardSmall key={cocktail.idDrink} name={cocktail.strDrink} source={cocktail.strDrinkThumb} alt="thumbnail cocktail" id={cocktail.idDrink}/>
                         })}
                         {/*later mappen over de async axios request GET cocktails*/}
                         {/*{moreCocktails.map((cocktail) => {*/}

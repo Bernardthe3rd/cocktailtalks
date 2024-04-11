@@ -29,7 +29,7 @@ const Account = () => {
                 <div className="main--container__outer">
                     <h2>Your favorites</h2>
                     {cocktailInfo.map((cocktail) => {
-                        return <ProductCardReview source={cocktail.strDrinkThumb} alt="thumbnail cocktail" nameProduct={cocktail.strDrink} disable={disable} clicked={handleClick}/>
+                        return <ProductCardReview key={cocktail.idDrink} source={cocktail.strDrinkThumb} alt="thumbnail cocktail" nameProduct={cocktail.strDrink} disable={disable} clicked={handleClick}/>
 
                     })}
                     <ProductCardReview source={reactlogo} alt="picture cocktail" nameProduct="naam vd cocktail 2" disable={disable} clicked={fetchFavoriteCocktails}/>
