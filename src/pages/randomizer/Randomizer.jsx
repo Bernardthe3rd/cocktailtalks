@@ -1,14 +1,15 @@
-import {Star} from "@phosphor-icons/react";
 import "./randomizer.css"
 import ButtonFunction from "../../components/button-function/ButtonFunction.jsx";
 import axios from "axios";
 import {useState} from "react";
-import {checkValue} from "../../helpers/checkValue.js";
+
+import ProductCardBig from "../../components/product-card-big/ProductCardBig.jsx";
 
 const Randomizer = () => {
     const [randomDrink, setRandomDrink] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
+    const [ingredientsArray, setIngredientsArray] = useState([]);
 
     async function fetchRandomCocktail () {
         toggleLoading(true);
@@ -17,6 +18,22 @@ const Randomizer = () => {
             const response = await axios.get("https://www.thecocktaildb.com/api/json/v1/1/random.php");
             setRandomDrink(response.data.drinks);
             console.log(response.data.drinks);
+            setIngredientsArray (
+                [response.data.drinks[0].strIngredient1
+                    ,response.data.drinks[0].strIngredient2
+                    ,response.data.drinks[0].strIngredient3
+                    ,response.data.drinks[0].strIngredient4
+                    ,response.data.drinks[0].strIngredient5
+                    ,response.data.drinks[0].strIngredient6
+                    ,response.data.drinks[0].strIngredient7
+                    ,response.data.drinks[0].strIngredient8
+                    ,response.data.drinks[0].strIngredient9
+                    ,response.data.drinks[0].strIngredient10
+                    ,response.data.drinks[0].strIngredient11
+                    ,response.data.drinks[0].strIngredient12
+                    ,response.data.drinks[0].strIngredient13
+                    ,response.data.drinks[0].strIngredient14
+                    ,response.data.drinks[0].strIngredient15])
         } catch (e) {
             console.error(e);
             toggleError(true);
@@ -33,35 +50,15 @@ const Randomizer = () => {
                     <ButtonFunction type="button" text="PUSH" onClick={fetchRandomCocktail}/>
                     {loading && <p className="loading">Loading...</p>}
                     {randomDrink.map((drink) => {
-                        return <article key={drink.idDrink} className="card-product-randomizer">
-                            <span className="wrapper-img-randomizer">
-                                <img src={drink.strDrinkThumb} alt="Thumbnail random drink"/>
-                            </span>
-                            <div className="text-product-randomizer">
-                                <h3>{drink.strDrink}</h3>
-                                <p>Things you need:</p>
-                                <ul>
-                                    <li>{drink.strGlass}</li>
-                                    {checkValue(drink.strIngredient1) !== "" && <li>{checkValue(drink.strIngredient1)}</li>}
-                                    {checkValue(drink.strIngredient2) !== "" && <li>{checkValue(drink.strIngredient2)}</li>}
-                                    {checkValue(drink.strIngredient3) !== "" && <li>{checkValue(drink.strIngredient3)}</li>}
-                                    {checkValue(drink.strIngredient4) !== "" && <li>{checkValue(drink.strIngredient4)}</li>}
-                                    {checkValue(drink.strIngredient5) !== "" && <li>{checkValue(drink.strIngredient5)}</li>}
-                                    {checkValue(drink.strIngredient6) !== "" && <li>{checkValue(drink.strIngredient6)}</li>}
-                                    {checkValue(drink.strIngredient7) !== "" && <li>{checkValue(drink.strIngredient7)}</li>}
-                                    {checkValue(drink.strIngredient8) !== "" && <li>{checkValue(drink.strIngredient8)}</li>}
-                                    {checkValue(drink.strIngredient9) !== "" && <li>{checkValue(drink.strIngredient9)}</li>}
-                                    {checkValue(drink.strIngredient10) !== "" && <li>{checkValue(drink.strIngredient10)}</li>}
-                                    {checkValue(drink.strIngredient11) !== "" && <li>{checkValue(drink.strIngredient11)}</li>}
-                                    {checkValue(drink.strIngredient12) !== "" && <li>{checkValue(drink.strIngredient12)}</li>}
-                                    {checkValue(drink.strIngredient13) !== "" && <li>{checkValue(drink.strIngredient13)}</li>}
-                                    {checkValue(drink.strIngredient14) !== "" && <li>{checkValue(drink.strIngredient14)}</li>}
-                                    {checkValue(drink.strIngredient15) !== "" && <li>{checkValue(drink.strIngredient15)}</li>}
-                                </ul>
-                                <p>{drink.strInstructions}</p>
-                            </div>
-                            <Star size={100} color="#FFB985" alt="StarIcon icon" weight="regular" className="star-product"/>
-                        </article>
+                        return <ProductCardBig
+                            key={drink.idDrink}
+                            source={drink.strDrinkThumb}
+                            alt="thumbnail cocktail"
+                            description={drink.strDrink}
+                            glass={drink.strGlass}
+                            preparing={drink.strInstructions}
+                            ingredients={ingredientsArray}
+                        />
                     })}
                 </div>
                 }

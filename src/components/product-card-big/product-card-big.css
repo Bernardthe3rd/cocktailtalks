@@ -36,7 +36,10 @@
 
 .fieldset-style {
     border: 2px solid var(--btn-clr-secondary);
-    border-radius: 5px;
+    border-radius: 10px;
+}
+
+.fieldset-style > legend {
     text-align: center;
 }
 
