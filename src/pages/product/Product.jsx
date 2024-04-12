@@ -9,6 +9,7 @@ const Product = () => {
     const [cocktailInfo, setCocktailInfo] = useState([])
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
+    const [ingredientsArray, setIngredientsArray] = useState([]);
 
     useEffect(() => {
         async function fetchCocktails () {
@@ -18,6 +19,22 @@ const Product = () => {
                 const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
                 console.log(response);
                 setCocktailInfo(response.data.drinks);
+                setIngredientsArray (
+                    [response.data.drinks[0].strIngredient1
+                        ,response.data.drinks[0].strIngredient2
+                        ,response.data.drinks[0].strIngredient3
+                        ,response.data.drinks[0].strIngredient4
+                        ,response.data.drinks[0].strIngredient5
+                        ,response.data.drinks[0].strIngredient6
+                        ,response.data.drinks[0].strIngredient7
+                        ,response.data.drinks[0].strIngredient8
+                        ,response.data.drinks[0].strIngredient9
+                        ,response.data.drinks[0].strIngredient10
+                        ,response.data.drinks[0].strIngredient11
+                        ,response.data.drinks[0].strIngredient12
+                        ,response.data.drinks[0].strIngredient13
+                        ,response.data.drinks[0].strIngredient14
+                        ,response.data.drinks[0].strIngredient15])
             } catch (e) {
                 console.error(e)
                 toggleError(true);
@@ -35,7 +52,13 @@ const Product = () => {
                     {cocktailInfo.map((cocktail) => {
                         return <div key={cocktail.idDrink} className="main--container__outer">
                             <h2>{cocktail.strDrink}</h2>
-                            <ProductCardBig source={cocktail.strDrinkThumb} alt="plaatje cocktail" description={cocktail.strInstructions}/>
+                            <ProductCardBig
+                                source={cocktail.strDrinkThumb}
+                                alt="plaatje cocktail"
+                                glass={cocktail.strGlass}
+                                preparing={cocktail.strInstructions}
+                                ingredients={ingredientsArray}
+                            />
                         </div>
                     })}
             </main>

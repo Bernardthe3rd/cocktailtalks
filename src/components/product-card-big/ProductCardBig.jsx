@@ -3,14 +3,14 @@ import StarIcon from "../star-icon/StarIcon.jsx";
 import {checkValue} from "../../helpers/checkValue.js";
 
 const ProductCardBig = ({source, alt, description, glass, preparing, ingredients}) => {
-    console.log(ingredients)
+
     return (
         <article className="card-product">
             <span className="wrapper-product-img">
                 <img src={source} alt={alt}/>
             </span>
             <fieldset id="information=product" className="fieldset-style">
-                <legend>How to prepare</legend>
+                <legend>Instructions</legend>
                 <div className="text-product-randomizer">
                     <h3>{description}</h3>
                     <p>Things you need:</p>
