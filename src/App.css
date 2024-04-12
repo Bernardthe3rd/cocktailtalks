@@ -2,8 +2,8 @@
 eventueel voor de img erbij
 en voor de main en header*/
 .container {
-    min-width: 1440px;
-    margin-block: auto;
+    max-width: 1440px;
+    margin-inline: auto;
     padding-inline: 2rem;
 }
 

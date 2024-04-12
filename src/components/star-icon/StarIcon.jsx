@@ -4,7 +4,7 @@ const StarIcon = ({size, weight, style, favorite}) => {
 
     return (
         <>
-            <Star size={size} weight={weight} className={style} color="#FFB985" alt="star icon" onClick={favorite}/>
+            <Star size={size} weight={weight} className={style} color="#FFB986" alt="star icon" onClick={favorite}/>
         </>
     );
 };

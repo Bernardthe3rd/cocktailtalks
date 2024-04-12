@@ -8,23 +8,23 @@ const ProductCardBig = ({source, alt, description, glass, preparing, ingredients
         <article className="card-product">
             <span className="wrapper-product-img">
                 <img src={source} alt={alt}/>
+                <StarIcon size={75} weight="regular" style="star-product"/>
             </span>
             <fieldset id="information=product" className="fieldset-style">
                 <legend>Instructions</legend>
-                <div className="text-product-randomizer">
+                <div className="product-textbox">
                     <h3>{description}</h3>
-                    <p>Things you need:</p>
+                    <h4>Things you need:</h4>
                     <ul>
                         <li>{glass}</li>
                         {ingredients.map((ingredient) => {
                             return checkValue(ingredient) !== "" && <li key={ingredient}>{checkValue(ingredient)}</li>
                         })}
                     </ul>
-                    <p>How to prepare:</p>
+                    <h4>How to prepare:</h4>
                     <p>{preparing}</p>
                 </div>
             </fieldset>
-            <StarIcon size={150} weight="regular" style="star-product"/>
         </article>
     );
 };

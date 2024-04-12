@@ -12,3 +12,39 @@
     width: 100px;
     display: flex;
 }
+
+.menu-icon {
+    display: none;
+    height: 200px;
+    margin-inline: auto;
+}
+
+.menu-icon:hover {
+    cursor: pointer;
+}
+
+.navbar-small {
+    background-color: var(--background-clr-secondary);
+    height: 200px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media screen and (max-width: 1000px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .navbar-container {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .navbar-small {
+        display: none;
+    }
+}

@@ -6,9 +6,9 @@ const ProductCardSmall = ({source, alt, id, name}) => {
     return (
         <li key={id} className="card-products">
             <p>{name}</p>
-            <StarIcon size={50} weight="regular" style="star-catalog"/>
             <span className="wrapper-catalog-product-img">
                 <img src={source} alt={alt}/>
+                <StarIcon size={50} weight="regular" style="star-catalog"/>
             </span>
             <ButtonLink path={`/product/${id}`} text="get to know me"/>
         </li>

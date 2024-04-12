@@ -22,7 +22,5 @@
 }
 
 .star-catalog {
-    position: relative;
-    top: 0;
-    left: 150px;
+    position: absolute;
 }
