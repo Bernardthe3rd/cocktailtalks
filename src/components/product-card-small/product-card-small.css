@@ -1,4 +1,4 @@
-.card-products {
+.product-small__card {
     border: 1px solid black;
     border-radius: 10px;
     background-color: var(--background-clr-secondary);
@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.wrapper-catalog-product-img {
+.product-small__img-wrapper {
     width: 225px;
     height: 350px;
 
@@ -21,6 +21,6 @@
     flex-shrink: 0;
 }
 
-.star-catalog {
+.product-small__star {
     position: absolute;
 }

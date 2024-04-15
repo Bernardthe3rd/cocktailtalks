@@ -1,4 +1,4 @@
-.card-review {
+.product-review__card {
     border-radius: 20px;
     background-color: var(--background-clr-secondary);
     width: 1200px;
@@ -10,15 +10,14 @@
     align-items: center;
 }
 
-.wrapper-review-img {
+.product-review__img-wrapper {
     width: 225px;
-    height: 100%;
     display: flex;
     margin-inline: 20px;
     padding-block: 20px;
 }
 
-.account--div__btnstar {
+.product-review__div {
     height: 100%;
     padding: 20px 20px;
 
@@ -28,34 +27,34 @@
     align-items: center;
 }
 
-.star-review {
-    position: relative;
-    top: 0;
-    left: 25px;
-}
+/*.product-review__star {*/
+/*    position: relative;*/
+/*    top: 0;*/
+/*    left: 25px;*/
+/*}*/
 
-.star-review:hover {
+.product-review__star:hover {
     cursor: pointer;
 }
 
-/*Styling regarding grade and text field*/
-.form-feedback {
+/*-----------Styling form-----------*/
+.product-review__form {
     display: flex;
     flex-direction: column;
 }
 
-.text-box-review {
+.product-review__textarea {
     background-color: var(--background-clr-secondary);
     border: none;
     resize: none;
 }
 
-.label-style-account {
+.product-review__label {
     display: flex;
     flex-direction: column;
 }
 
-.input-grade-field {
+.product-review__input {
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0, rgba(27, 31, 35, 0.15) 0 0 0 1px;
     border-radius: 10px;
     padding-block: 10px;
@@ -63,4 +62,24 @@
     text-align: center;
     background-color: var(--background-clr-secondary);
     width: 50px;
+}
+
+@media screen and (max-width: 1200px) {
+    .product-review__card {
+        width: 992px;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .product-review__div {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .product-review__card {
+        width: 750px;
+    }
 }

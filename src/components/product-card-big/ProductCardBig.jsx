@@ -5,14 +5,14 @@ import {checkValue} from "../../helpers/checkValue.js";
 const ProductCardBig = ({source, alt, description, glass, preparing, ingredients}) => {
 
     return (
-        <article className="card-product">
-            <span className="wrapper-product-img">
+        <article className="product-big__card">
+            <span className="product-big__img-wrapper">
                 <img src={source} alt={alt}/>
-                <StarIcon size={75} weight="regular" style="star-product"/>
+                <StarIcon size={75} weight="regular" style="product-big__star"/>
             </span>
-            <fieldset id="information=product" className="fieldset-style">
+            <fieldset id="information=product" className="product-big__fieldset">
                 <legend>Instructions</legend>
-                <div className="product-textbox">
+                <div className="product-big__textbox">
                     <h3>{description}</h3>
                     <h4>Things you need:</h4>
                     <ul>

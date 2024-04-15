@@ -45,7 +45,7 @@ const Randomizer = () => {
         <>
             <main className="container">
                 {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
-                <div className="main--container__outer">
+                <div className="container__div">
                     <h2>Push to get inspired!</h2>
                     <ButtonFunction type="button" text="PUSH" onClick={fetchRandomCocktail}/>
                     {loading && <p className="loading">Loading...</p>}

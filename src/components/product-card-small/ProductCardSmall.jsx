@@ -4,11 +4,11 @@ import StarIcon from "../star-icon/StarIcon.jsx";
 
 const ProductCardSmall = ({source, alt, id, name}) => {
     return (
-        <li key={id} className="card-products">
+        <li key={id} className="product-small__card">
             <p>{name}</p>
-            <span className="wrapper-catalog-product-img">
+            <span className="product-small__img-wrapper">
                 <img src={source} alt={alt}/>
-                <StarIcon size={50} weight="regular" style="star-catalog"/>
+                <StarIcon size={50} weight="regular" style="product-small__star"/>
             </span>
             <ButtonLink path={`/product/${id}`} text="get to know me"/>
         </li>

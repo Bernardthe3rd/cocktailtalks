@@ -8,7 +8,8 @@
     background-color: var(--btn-clr-secondary);
 }
 
-.button-function:hover {
+.button-function:hover,
+.button-push:hover {
     cursor: pointer;
     color: var(--white);
 }
@@ -22,9 +23,4 @@
     height: 200px;
     width: 200px;
     margin-block: 20px;
-}
-
-.button-push:hover {
-    cursor: pointer;
-    color: var(--white);
 }

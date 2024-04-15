@@ -1,4 +1,4 @@
-.about--container__outer {
+.about__div-container {
     padding: 50px;
     background-color: var(--background-clr-first);
     border: 1px solid green;
@@ -11,7 +11,7 @@
 
 }
 
-.about--div__box {
+.about__div-box {
     max-width: 800px;
 
     display: flex;
@@ -20,7 +20,7 @@
     align-items: center;
 }
 
-.about--article__box {
+.about__article {
     border-radius: 20px;
     background-color: var(--background-clr-secondary);
     padding: 20px;
@@ -32,18 +32,18 @@
     row-gap: 100px;
 }
 
-.img--wrapper__about {
+.about__img-wrapper {
     max-width: 500px;
     display: flex;
     flex-direction: column;
 }
 
 @media screen and (max-width: 1200px) {
-    .about--container__outer {
+    .about--div__container {
         flex-direction: column;
     }
 
-    .img--wrapper__about {
+    .about--imgwrapper {
         max-width: 400px;
         flex-direction: row;
         justify-content: center;

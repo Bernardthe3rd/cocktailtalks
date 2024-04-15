@@ -47,14 +47,14 @@ const Login = () => {
     return (
         <>
             <main className="container">
-                <div className="main--container__outer">
+                <div className="container__div">
                     <h2>Welcome!</h2>
                     <h3>Ready to explore some cocktails?</h3>
-                    <form className="form-container">
+                    <form className="login__form">
                         <InputField label="Email:" id="field-email" name="email" type="text" handleChange={handleFormChange}/>
                         <InputField label="Password:" id="field-password" name="password" type="password" handleChange={handleFormChange}/>
                         <a href="mailto:benjaminmeijer1@gmail.com">Forgot password?</a>
-                        <div className="login--div__button">
+                        <div className="login__div">
                             <ButtonFunction type="submit" text="log in" onClick={handleSubmitInlog}/>
                             <ButtonFunction type="submit" text="register" onClick={handleSubmitRegister}/>
                         </div>

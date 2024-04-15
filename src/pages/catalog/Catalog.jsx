@@ -39,7 +39,7 @@ const Catalog = () => {
             <main className="container">
                 {loading && <p className="loading">Loading...</p>}
                 {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
-                <div className="main--container__outer">
+                <div className="container__div">
                     <h2>All the cocktails in the world</h2>
                     <ul className="products">
                         {firstCocktails.map((cocktail) => {

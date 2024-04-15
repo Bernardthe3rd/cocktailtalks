@@ -17,7 +17,7 @@ const Product = () => {
             try {
                 toggleError(false);
                 const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
-                console.log(response);
+                console.log(response.data.drinks);
                 setCocktailInfo(response.data.drinks);
                 setIngredientsArray (
                     [response.data.drinks[0].strIngredient1
@@ -50,7 +50,7 @@ const Product = () => {
             {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
             <main className="container">
                     {cocktailInfo.map((cocktail) => {
-                        return <div key={cocktail.idDrink} className="main--container__outer">
+                        return <div key={cocktail.idDrink} className="container__div">
                             <h2>{cocktail.strDrink}</h2>
                             <ProductCardBig
                                 source={cocktail.strDrinkThumb}

@@ -1,5 +1,5 @@
 //Default imports
-import {Link, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 
 //Styling imports
 import "./App.css"

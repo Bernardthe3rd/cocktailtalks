@@ -1,4 +1,4 @@
-.navbar-container {
+.nav__big {
     background-color: var(--background-clr-secondary);
     height: 200px;
 
@@ -8,22 +8,22 @@
     align-items: center;
 }
 
-.img-wrapper-logo {
+.nav__logo-wrapper {
     width: 100px;
     display: flex;
 }
 
-.menu-icon {
+.nav__icon {
     display: none;
     height: 200px;
     margin-inline: auto;
 }
 
-.menu-icon:hover {
+.nav__icon:hover {
     cursor: pointer;
 }
 
-.navbar-small {
+.nav__small {
     background-color: var(--background-clr-secondary);
     height: 200px;
 
@@ -34,17 +34,17 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .menu-icon {
+    .nav__icon {
         display: block;
     }
 
-    .navbar-container {
+    .nav__big {
         display: none;
     }
 }
 
 @media screen and (min-width: 1000px) {
-    .navbar-small {
+    .nav__small {
         display: none;
     }
 }

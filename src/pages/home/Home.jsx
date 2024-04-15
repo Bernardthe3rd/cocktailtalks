@@ -27,18 +27,18 @@ const Home = () => {
     return (
         <>
             <main className="container">
-                <article className="home--article__container-upper">
-                    <div className="home--content__container">
+                <article className="home__article-upper">
+                    <div className="home__div-content">
                         <h1>PHENOMENAL COCKTAIL. PHENOMENAL COMMUNITY.</h1>
                         <h3>From anywhere in the world, <br/> For all cocktail fans here at CocktailTalks</h3>
                         {/*<h3>For all cocktail fans here at CocktailTalks</h3>*/}
                         <ButtonLink path="/about" text="about"/>
                     </div>
-                    <span className="img-wrapper-homeimg">
+                    <span className="home__img-wrapper">
                         <img src={homeimg} alt="cocktail glasses"/>
                     </span>
                 </article>
-                <article className="home--article__container-bottom">
+                <article className="home__article-bottom">
                     <h2>Want to be notified about the latest updates?</h2>
                     <InputField name="email newsletter" type="text" placeholder="Email" handleChange={handleEmailChange}/>
                     <ButtonFunction type="button" text="subscribe" onClick={handleSubmit}/>

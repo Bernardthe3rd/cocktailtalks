@@ -1,13 +1,10 @@
-/*soort page container waardoor lay out elke pagina zelfde is
-eventueel voor de img erbij
-en voor de main en header*/
 .container {
     max-width: 1440px;
     margin-inline: auto;
     padding-inline: 2rem;
 }
 
-.main--container__outer {
+.container__div {
     padding-block: 50px;
     background-color: var(--background-clr-first);
 
@@ -41,4 +38,16 @@ en voor de main en header*/
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+        min-width: 768px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        min-width: 576px;
+    }
 }

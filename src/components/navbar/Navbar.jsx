@@ -15,19 +15,19 @@ const Navbar = ({validateLogin}) => {
 
     return (
         <nav className="container">
-            <Martini size={75} className="menu-icon" onClick={handleClickMenu}/>
+            <Martini size={75} className="nav__icon" onClick={handleClickMenu}/>
             {styleChange &&
-                <ul className="navbar-small">
+                <ul className="nav__small">
                     <ButtonNav path="/catalog" text="catalog"/>
                     <ButtonNav path="/about" text="about"/>
                     <ButtonNav path="/randomizer" text="randomizer"/>
                     <ButtonNav path={validateLogin ? "/account" : "/login"} text="account"/>
                 </ul>
             }
-            <ul className="navbar-container">
+            <ul className="nav__big">
                 <ButtonNav path="/catalog" text="catalog"/>
                 <ButtonNav path="/about" text="about"/>
-                <NavLink to="/" className="img-wrapper-logo">
+                <NavLink to="/" className="nav__logo-wrapper">
                     <img src={logo} alt="logo cocktailtalks"/>
                 </NavLink>
                 <ButtonNav path="/randomizer" text="randomizer"/>

@@ -23,25 +23,25 @@ const ProductCardReview = ({source, alt, disable, nameProduct, clicked}) => { //
     }
 
     return (
-        <article className="card-review">
-            <span className="wrapper-review-img">
+        <article className="product-review__card">
+            <span className="product-review__img-wrapper">
                 <img src={source} alt={alt}/>
             </span>
-            <form className="form-feedback">
+            <form className="product-review__form">
                 <label htmlFor="input-grade">
                     Grade:
-                    <input type="text" id="input-grade" name="grade" className="input-grade-field" onChange={(e) => {setGrade(e.target.value)}}
+                    <input type="text" id="input-grade" name="grade" className="product-review__input" onChange={(e) => {setGrade(e.target.value)}}
                            disabled={disable}/>
                 </label>
                 {!checkGrade(grade) && <p>Vul aub een getal in tussen de 0 en 10</p>}
-                <label htmlFor="feedback-are" className="label-style-account">
+                <label htmlFor="feedback-are" className="product-review__label">
                     Feedback for {nameProduct}:
                     <textarea name="feedback" id="feedback-area" cols="50" rows="10" disabled={disable}
-                              placeholder="Write your feedback here" className="text-box-review"/>
+                              placeholder="Write your feedback here" className="product-review__textarea"/>
                 </label>
             </form>
-            <div className="account--div__btnstar">
-                <StarIcon size={50} weight={fillingStar} style="star-review" favorite={deleteFavorite}/>
+            <div className="product-review__div">
+                <StarIcon size={50} weight={fillingStar} style="product-review__star" favorite={deleteFavorite}/>
                 <ButtonFunction type="submit" text={textBtn} onClick={clicked}/>
             </div>
         </article>
