@@ -1,29 +1,67 @@
-import reactlogo from "../../assets/react.svg";
-import {Star} from "@phosphor-icons/react";
 import "./randomizer.css"
 import ButtonFunction from "../../components/button-function/ButtonFunction.jsx";
+import axios from "axios";
+import {useState} from "react";
+
+import ProductCardBig from "../../components/product-card-big/ProductCardBig.jsx";
 
 const Randomizer = () => {
+    const [randomDrink, setRandomDrink] = useState([]);
+    const [loading, toggleLoading] = useState(false);
+    const [error, toggleError] = useState(false);
+    const [ingredientsArray, setIngredientsArray] = useState([]);
+
+    async function fetchRandomCocktail () {
+        toggleLoading(true);
+        try {
+            toggleError(false);
+            const response = await axios.get("https://www.thecocktaildb.com/api/json/v1/1/random.php");
+            setRandomDrink(response.data.drinks);
+            console.log(response.data.drinks);
+            setIngredientsArray (
+                [response.data.drinks[0].strIngredient1
+                    ,response.data.drinks[0].strIngredient2
+                    ,response.data.drinks[0].strIngredient3
+                    ,response.data.drinks[0].strIngredient4
+                    ,response.data.drinks[0].strIngredient5
+                    ,response.data.drinks[0].strIngredient6
+                    ,response.data.drinks[0].strIngredient7
+                    ,response.data.drinks[0].strIngredient8
+                    ,response.data.drinks[0].strIngredient9
+                    ,response.data.drinks[0].strIngredient10
+                    ,response.data.drinks[0].strIngredient11
+                    ,response.data.drinks[0].strIngredient12
+                    ,response.data.drinks[0].strIngredient13
+                    ,response.data.drinks[0].strIngredient14
+                    ,response.data.drinks[0].strIngredient15])
+        } catch (e) {
+            console.error(e);
+            toggleError(true);
+        }
+        toggleLoading(false);
+    }
+
     return (
         <>
             <main className="container">
-                <div className="main--container__outer">
+                {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
+                <div className="container__div">
                     <h2>Push to get inspired!</h2>
-                    <ButtonFunction type="button" text="PUSH"/>
-                    <article className="card-product">
-                        <span className="wrapper-product-img">
-                            <img src={reactlogo} alt="tijdelijke logo react"/>
-                        </span>
-                            <label htmlFor="information-product" className="label-style-product">
-                            Name of product here
-                                <textarea name="product info" id="information-product" cols="50" rows="13"
-                                      className="text-box-product">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium mollitia quaerat unde. Accusantium alias amet animi assumenda at blanditiis consectetur consequatur cupiditate dicta dolorem eius, enim excepturi, explicabo facere fugit illo illum incidunt inventore laborum mollitia nesciunt numquam obcaecati perferendis perspiciatis quae ratione sapiente, sequi sint sunt ullam? Commodi, dolore molestias? Consequuntur corporis eius eligendi, excepturi fugit inventore ipsa minus molestias, provident quo totam veritatis voluptates? Accusantium aliquid ducimus harum iure nemo optio possimus quod similique ullam voluptatum? Aperiam architecto blanditiis cupiditate distinctio error, nostrum provident quos. Ab accusantium alias asperiores atque delectus deserunt dignissimos dolor dolores eius, est eum excepturi expedita fuga illo inventore minus nostrum odit officiis omnis pariatur quis quisquam repellat sequi tempora ullam vel veniam voluptas? A at, cumque doloremque eius error exercitationem ipsum laboriosam laborum maxime placeat totam voluptates? Aliquam architecto beatae, consectetur dicta dignissimos doloribus est excepturi exercitationem, explicabo ipsa quo repellat voluptates. Ab, aliquam aspernatur dolorem ducimus eaque odit quidem recusandae tempora voluptatem! Architecto aspernatur autem blanditiis culpa, delectus dolor dolore eos esse explicabo facilis fuga illo impedit incidunt labore laboriosam molestiae nam neque non optio pariatur quaerat quam quas quisquam tenetur totam ut voluptate! Accusamus architecto, asperiores beatae doloribus porro sunt tenetur?
-                            </textarea>
-                            </label>
-                        <Star size={100} color="#FFB985" alt="StarIcon icon" weight="regular" className="star-product"/>
-                    </article>
+                    <ButtonFunction type="button" text="PUSH" onClick={fetchRandomCocktail}/>
+                    {loading && <p className="loading">Loading...</p>}
+                    {randomDrink.map((drink) => {
+                        return <ProductCardBig
+                            key={drink.idDrink}
+                            source={drink.strDrinkThumb}
+                            alt="thumbnail cocktail"
+                            description={drink.strDrink}
+                            glass={drink.strGlass}
+                            preparing={drink.strInstructions}
+                            ingredients={ingredientsArray}
+                        />
+                    })}
                 </div>
+                }
             </main>
 
         </>

@@ -1,16 +1,16 @@
 import "./product-card-small.css"
-import {Star} from "@phosphor-icons/react";
 import ButtonLink from "../button-link/ButtonLink.jsx";
 import StarIcon from "../star-icon/StarIcon.jsx";
 
-const ProductCardSmall = ({source, alt, id}) => {
+const ProductCardSmall = ({source, alt, id, name}) => {
     return (
-        <li className="card-products">
-            <StarIcon size={50} weight="regular" style="star-catalog"/>
-            <span className="wrapper-catalog-product-img">
+        <li key={id} className="product-small__card">
+            <p>{name}</p>
+            <span className="product-small__img-wrapper">
                 <img src={source} alt={alt}/>
+                <StarIcon size={50} weight="regular" style="product-small__star"/>
             </span>
-            <ButtonLink path={`/product${id}`} text="get to know me"/>
+            <ButtonLink path={`/product/${id}`} text="get to know me"/>
         </li>
     );
 };

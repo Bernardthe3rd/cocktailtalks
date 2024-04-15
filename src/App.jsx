@@ -1,5 +1,5 @@
 //Default imports
-import {Link, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 
 //Styling imports
 import "./App.css"
@@ -30,8 +30,7 @@ function App() {
           <Routes>
               <Route path={"/"} element={<Home/>}/>
               <Route path={"/catalog"} element={<Catalog/>}/>
-              <Route path={"/product"} element={<Product/>}/>
-              {/*later hierboven /:id achter toevoegen na implementatie API*/}
+              <Route path={"/product/:id"} element={<Product/>}/>
               <Route path={"/login"} element={<Login/>}/>
               <Route path={"/account"} element={isLoggedIn === true ? <Account/> : <Login/>}/>
               <Route path={"/randomizer"} element={<Randomizer/>}/>

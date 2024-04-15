@@ -1,4 +1,4 @@
-.footer-container {
+.footer__div {
     background-color: var(--tekst-clr);
     color: var(--btn-clr-first);
     height: 150px;
@@ -9,6 +9,6 @@
     align-items: center;
 }
 
-.link-main {
+.footer__link {
     color: var(--btn-clr-first);
 }

@@ -1,4 +1,4 @@
-.navbar-container {
+.nav__big {
     background-color: var(--background-clr-secondary);
     height: 200px;
 
@@ -8,7 +8,43 @@
     align-items: center;
 }
 
-.img-wrapper-logo {
+.nav__logo-wrapper {
     width: 100px;
     display: flex;
+}
+
+.nav__icon {
+    display: none;
+    height: 200px;
+    margin-inline: auto;
+}
+
+.nav__icon:hover {
+    cursor: pointer;
+}
+
+.nav__small {
+    background-color: var(--background-clr-secondary);
+    height: 200px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media screen and (max-width: 1000px) {
+    .nav__icon {
+        display: block;
+    }
+
+    .nav__big {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .nav__small {
+        display: none;
+    }
 }
