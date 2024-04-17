@@ -18,25 +18,9 @@ const Account = () => {
         //opslaan van cijfer en feedback text in account
     }
 
-    async function getInfo () {
-        const token = localStorage.getItem("token");
-        try {
-            const result = await axios.get(`https://api.datavortex.nl/cocktailtalks/users/${user.username}/info`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                }
-            })
-            console.log(result)
-        } catch (e) {
-            console.error(e)
-        }
-    }
-    getInfo()
-
-    useEffect(() => {
-        const userCocktails = [15346, 14029, 178318]; //hier komt de array met cocktail ids van de gebruiker
+    useEffect(() => {//hier komt de array met cocktail ids van de gebruiker
         const controller = new AbortController();
+        let userCocktails = [15346, 16943]
 
         async function fetchFavoriteCocktails () {
             toggleLoading(true);

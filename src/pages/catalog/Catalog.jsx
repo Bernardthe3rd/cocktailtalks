@@ -12,7 +12,7 @@ const Catalog = () => {
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
     const [endingCocktail, setEndingCocktail] = useState(6);
-    const [userInfo, setUserInfo] = useState({})
+    const [userInfo, setUserInfo] = useState([])
 
     const firstCocktails = cocktails.slice(0,endingCocktail);
 
@@ -38,23 +38,6 @@ const Catalog = () => {
         setEndingCocktail(endingCocktail+6)
     }
 
-    useEffect(() => {
-        async function getInfo () {
-            const token = localStorage.getItem("token");
-            try {
-                const result = await axios.get(`https://api.datavortex.nl/cocktailtalks/users/${user.username}/info`, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    }
-                })
-                setUserInfo(result.data)
-            } catch (e) {
-                console.error(e)
-            }
-        }
-        void getInfo()
-    }, []);
 
     return (
         <>
@@ -72,6 +55,7 @@ const Catalog = () => {
                                 alt="thumbnail cocktail"
                                 id={cocktail.idDrink}
                                 userInfo={userInfo}
+                                setUserInfo={setUserInfo}
                             />
                         })}
                     </ul>
