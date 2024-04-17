@@ -6,7 +6,6 @@ import {checkGrade} from "../../helpers/checkGrade.js";
 
 const ProductCardReview = ({source, alt, disable, nameProduct, clicked}) => { //hier kan nog een key/id ontvangen en gebruikt worden
     const [textBtn, toggleTextBtn] = useState("")
-    const [fillingStar, setFillingStar] = useState("fill");
     const [grade, setGrade] = useState("");
 
     useEffect(() => {
@@ -17,10 +16,6 @@ const ProductCardReview = ({source, alt, disable, nameProduct, clicked}) => { //
         }
     }, [disable, grade]);
 
-    function deleteFavorite () {
-        setFillingStar("regular");
-        //delete request dat card van account verwijderd wordt.
-    }
 
     return (
         <article className="product-review__card">
@@ -41,7 +36,7 @@ const ProductCardReview = ({source, alt, disable, nameProduct, clicked}) => { //
                 </label>
             </form>
             <div className="product-review__div">
-                <StarIcon size={50} weight={fillingStar} style="product-review__star" favorite={deleteFavorite}/>
+                <StarIcon size={50} style="product-review__star" favorite={deleteFavorite}/>
                 <ButtonFunction type="submit" text={textBtn} onClick={clicked}/>
             </div>
         </article>

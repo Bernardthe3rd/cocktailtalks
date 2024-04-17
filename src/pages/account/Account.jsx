@@ -6,11 +6,13 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 
 const Account = () => {
     const { user } = useContext(AuthContext);
+    const token = localStorage.getItem("token");
 
     const [disable, toggleDisable] = useState(false);
     const [cocktailInfo, setCocktailInfo] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
+    const [userCocktails, setUserCocktails] = useState([]);
 
     function handleClick () {
         toggleDisable(!disable);
@@ -20,15 +22,37 @@ const Account = () => {
 
     useEffect(() => {//hier komt de array met cocktail ids van de gebruiker
         const controller = new AbortController();
-        let userCocktails = [15346, 16943]
+
+        async function fetchUserCocktails () {
+            try {
+                toggleError(false)
+                const result = await axios.get(`https://api.datavortex.nl/cocktailtalks/users/${user.username}/info`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+                setUserCocktails(result.data)
+            } catch (e) {
+                console.error(e);
+                toggleError(true);
+            }
+        }
+        void fetchUserCocktails();
+
+        console.log(userCocktails)
+        const userCocktailsArray = userCocktails.map((gek) => {
+            return gek.id
+        })
+        console.log(userCocktailsArray)
 
         async function fetchFavoriteCocktails () {
             toggleLoading(true);
             let newArray = []
-            for (let i = 0; i < userCocktails.length; i++) {
+            for (let i = 0; i < userCocktailsArray.length; i++) {
                 try {
                     toggleError(false);
-                    const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${userCocktails[i]}`, {//nummer vervangen door ID of naam drink uit userinfo
+                    const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${userCocktailsArray[i]}`, {//nummer vervangen door ID of naam drink uit userinfo
                         signal: controller.signal,
                     })
                     newArray.push(response.data.drinks)
@@ -51,7 +75,6 @@ const Account = () => {
     const control = cocktailInfo.map((item) => {
         return item[0]
     })
-    console.log(control)
 
     return (
         <>
