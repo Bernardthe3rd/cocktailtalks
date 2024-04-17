@@ -2,13 +2,17 @@ import "./catalog.css"
 import ButtonFunction from "../../components/button-function/ButtonFunction.jsx";
 import ProductCardSmall from "../../components/product-card-small/ProductCardSmall.jsx";
 import axios from "axios";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 const Catalog = () => {
+    const { user } = useContext(AuthContext);
+
     const [cocktails, setCocktails] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
     const [endingCocktail, setEndingCocktail] = useState(6);
+    const [userInfo, setUserInfo] = useState({})
 
     const firstCocktails = cocktails.slice(0,endingCocktail);
 
@@ -34,6 +38,24 @@ const Catalog = () => {
         setEndingCocktail(endingCocktail+6)
     }
 
+    useEffect(() => {
+        async function getInfo () {
+            const token = localStorage.getItem("token");
+            try {
+                const result = await axios.get(`https://api.datavortex.nl/cocktailtalks/users/${user.username}/info`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+                setUserInfo(result.data)
+            } catch (e) {
+                console.error(e)
+            }
+        }
+        void getInfo()
+    }, []);
+
     return (
         <>
             <main className="container">
@@ -43,7 +65,14 @@ const Catalog = () => {
                     <h2>All the cocktails in the world</h2>
                     <ul className="products">
                         {firstCocktails.map((cocktail) => {
-                            return <ProductCardSmall key={cocktail.idDrink} name={cocktail.strDrink} source={cocktail.strDrinkThumb} alt="thumbnail cocktail" id={cocktail.idDrink}/>
+                            return <ProductCardSmall
+                                key={cocktail.idDrink}
+                                name={cocktail.strDrink}
+                                source={cocktail.strDrinkThumb}
+                                alt="thumbnail cocktail"
+                                id={cocktail.idDrink}
+                                userInfo={userInfo}
+                            />
                         })}
                     </ul>
                     <ButtonFunction type="button" text="load more" onClick={showMoreCocktails}/>

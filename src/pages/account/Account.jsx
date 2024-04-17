@@ -1,10 +1,12 @@
 import "./account.css"
-import reactlogo from "/src/assets/react.svg";
 import ProductCardReview from "../../components/product-card-review/ProductCardReview.jsx";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 const Account = () => {
+    const { user } = useContext(AuthContext);
+
     const [disable, toggleDisable] = useState(false);
     const [cocktailInfo, setCocktailInfo] = useState([]);
     const [loading, toggleLoading] = useState(false);
@@ -16,6 +18,21 @@ const Account = () => {
         //opslaan van cijfer en feedback text in account
     }
 
+    async function getInfo () {
+        const token = localStorage.getItem("token");
+        try {
+            const result = await axios.get(`https://api.datavortex.nl/cocktailtalks/users/${user.username}/info`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            console.log(result)
+        } catch (e) {
+            console.error(e)
+        }
+    }
+    getInfo()
 
     useEffect(() => {
         const userCocktails = [15346, 14029, 178318]; //hier komt de array met cocktail ids van de gebruiker
@@ -70,7 +87,6 @@ const Account = () => {
                         />
 
                     })}
-                    <ProductCardReview source={reactlogo} alt="picture cocktail" nameProduct="naam vd cocktail 2" disable={disable} clicked={handleClick}/>
                 </div>
                 }
             </main>
