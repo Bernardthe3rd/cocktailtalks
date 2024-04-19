@@ -6,13 +6,13 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 
 const Account = () => {
     const { user } = useContext(AuthContext);
-    const token = localStorage.getItem("token");
+    let userCocktails = JSON.parse(user.info)
 
     const [disable, toggleDisable] = useState(false);
     const [cocktailInfo, setCocktailInfo] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
-    const [userCocktails, setUserCocktails] = useState([]);
+
 
     function handleClick () {
         toggleDisable(!disable);
@@ -20,30 +20,12 @@ const Account = () => {
         //opslaan van cijfer en feedback text in account
     }
 
+    console.log(JSON.parse(user.info))
+
     useEffect(() => {//hier komt de array met cocktail ids van de gebruiker
         const controller = new AbortController();
 
-        async function fetchUserCocktails () {
-            try {
-                toggleError(false)
-                const result = await axios.get(`https://api.datavortex.nl/cocktailtalks/users/${user.username}/info`, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    }
-                });
-                setUserCocktails(result.data)
-            } catch (e) {
-                console.error(e);
-                toggleError(true);
-            }
-        }
-        void fetchUserCocktails();
-
-        console.log(userCocktails)
-        const userCocktailsArray = userCocktails.map((gek) => {
-            return gek.id
-        })
+        const userCocktailsArray = userCocktails.map(cocktail => cocktail.id)
         console.log(userCocktailsArray)
 
         async function fetchFavoriteCocktails () {
@@ -72,9 +54,10 @@ const Account = () => {
 
     }, []);
 
-    const control = cocktailInfo.map((item) => {
-        return item[0]
+    const cocktailInfoForUser = cocktailInfo.map((cocktail) => {
+        return cocktail[0]
     })
+
 
     return (
         <>
@@ -83,9 +66,10 @@ const Account = () => {
                 {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
                 <div className="container__div">
                     <h2>Your favorites</h2>
-                    {control.map((cocktail) => {
+                    {cocktailInfoForUser.map((cocktail) => {
                         return <ProductCardReview
                             key={cocktail.idDrink}
+                            id={cocktail.idDrink}
                             source={cocktail.strDrinkThumb}
                             alt="thumbnail cocktail"
                             nameProduct={cocktail.strDrink}

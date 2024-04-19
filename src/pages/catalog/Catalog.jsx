@@ -12,7 +12,7 @@ const Catalog = () => {
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
     const [endingCocktail, setEndingCocktail] = useState(6);
-    const [userInfo, setUserInfo] = useState([])
+    // const [userInfo, setUserInfo] = useState([])
 
     const firstCocktails = cocktails.slice(0,endingCocktail);
 
@@ -54,8 +54,6 @@ const Catalog = () => {
                                 source={cocktail.strDrinkThumb}
                                 alt="thumbnail cocktail"
                                 id={cocktail.idDrink}
-                                userInfo={userInfo}
-                                setUserInfo={setUserInfo}
                             />
                         })}
                     </ul>

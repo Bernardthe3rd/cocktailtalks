@@ -3,43 +3,22 @@ import axios from "axios";
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
 
-const StarIcon = ({size, style, idCocktail, userInfo, setUserInfo}) => {
+const StarIcon = ({size, style, idCocktail}) => {
     const { user, isAuth } = useContext(AuthContext)
     const [fillStar, toggleFillStar] = useState("fill");
     const token = localStorage.getItem("token");
+    const [userInfo, setUserInfo] = useState(JSON.parse(user.info))
 
     useEffect(() => {
-        async function fetchData() {
-            try {
-                const result = await axios.get(`https://api.datavortex.nl/cocktailtalks/users/${user.username}/info`, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    }
-                });
-                setUserInfo(result.data)
-                console.log(result.data)
-            } catch (e) {
-                console.error(e);
-            }
+        let actie = userInfo.find((id) => {
+            return id.id === idCocktail
+        })
+        if (actie) {
+            toggleFillStar("fill")
+        } else {
+            toggleFillStar("regular")
         }
-        void fetchData();
     }, []);
-
-    //find out how to get the weight of the star filled when an item
-    // const starFill = userInfo.map((item) => {
-    //     return item
-    // })
-    //
-    // console.log(starFill)
-
-    // useEffect(() => {
-    //     if (starFill[0] === idCocktail) {
-    //         toggleFillStar("fill")
-    //     } else {
-    //         toggleFillStar("regular")
-    //     }
-    // },[])
 
     async function favoriteCocktail(idCocktail) {
         const newItem = { id: idCocktail };
@@ -49,10 +28,8 @@ const StarIcon = ({size, style, idCocktail, userInfo, setUserInfo}) => {
         const foundItem = userInfo.find((item) => {
             return item.id === newItem.id;
         })
-        console.log(foundItem)
 
         if (foundItem === undefined) {
-            console.log(newItem)
             try {
                 // Wait for the state update to complete
                 await new Promise(resolve => setTimeout(resolve, 0));
@@ -74,9 +51,7 @@ const StarIcon = ({size, style, idCocktail, userInfo, setUserInfo}) => {
                 console.error(e);
             }
         } else {
-            console.log(userInfo)
             const updatedArray = userInfo.filter(item => item.id !== foundItem.id)
-            console.log(updatedArray)
             try {
                 // Wait for the state update to complete
                 await new Promise(resolve => setTimeout(resolve, 0));
@@ -98,8 +73,6 @@ const StarIcon = ({size, style, idCocktail, userInfo, setUserInfo}) => {
                 console.error(e);
             }
         }
-
-
     }
 
     return (

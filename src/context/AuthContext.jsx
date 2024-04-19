@@ -32,6 +32,7 @@ function AuthContextProvider({ children }) {
                     "Authorization": `Bearer ${jwtToken}`
                 }
             });
+            console.log(response)
             setAuth({
                 ...auth,
                 isAuth: true,
@@ -39,7 +40,8 @@ function AuthContextProvider({ children }) {
                     username: response.data.username,
                     email: response.data.email,
                     password: response.data.password,
-                    authority: response.data.authorities[0].authority
+                    authority: response.data.authorities[0].authority,
+                    info: response.data.info,
                 },
                 status: "done"
             })

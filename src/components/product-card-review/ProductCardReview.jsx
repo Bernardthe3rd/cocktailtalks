@@ -4,7 +4,7 @@ import StarIcon from "../star-icon/StarIcon.jsx";
 import {useEffect, useState} from "react";
 import {checkGrade} from "../../helpers/checkGrade.js";
 
-const ProductCardReview = ({source, alt, disable, nameProduct, clicked}) => { //hier kan nog een key/id ontvangen en gebruikt worden
+const ProductCardReview = ({source, alt, id, disable, nameProduct, clicked}) => { //hier kan nog een key/id ontvangen en gebruikt worden
     const [textBtn, toggleTextBtn] = useState("")
     const [grade, setGrade] = useState("");
 
@@ -36,7 +36,7 @@ const ProductCardReview = ({source, alt, disable, nameProduct, clicked}) => { //
                 </label>
             </form>
             <div className="product-review__div">
-                <StarIcon size={50} style="product-review__star" favorite={deleteFavorite}/>
+                <StarIcon size={50} style="product-review__star" idCocktail={id}/>
                 <ButtonFunction type="submit" text={textBtn} onClick={clicked}/>
             </div>
         </article>
