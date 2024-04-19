@@ -53,6 +53,7 @@ const Product = () => {
                         return <div key={cocktail.idDrink} className="container__div">
                             <h2>{cocktail.strDrink}</h2>
                             <ProductCardBig
+                                id={cocktail.idDrink}
                                 source={cocktail.strDrinkThumb}
                                 alt="plaatje cocktail"
                                 glass={cocktail.strGlass}

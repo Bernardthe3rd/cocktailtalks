@@ -2,11 +2,9 @@ import "./catalog.css"
 import ButtonFunction from "../../components/button-function/ButtonFunction.jsx";
 import ProductCardSmall from "../../components/product-card-small/ProductCardSmall.jsx";
 import axios from "axios";
-import {useContext, useEffect, useState} from "react";
-import {AuthContext} from "../../context/AuthContext.jsx";
+import {useEffect, useState} from "react";
 
 const Catalog = () => {
-    const { user } = useContext(AuthContext);
 
     const [cocktails, setCocktails] = useState([]);
     const [loading, toggleLoading] = useState(false);

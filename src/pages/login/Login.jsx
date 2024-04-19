@@ -1,17 +1,19 @@
 import "./login.css"
 import ButtonFunction from "../../components/button-function/ButtonFunction.jsx";
 import InputField from "../../components/input-field/InputField.jsx";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
+import {validateEmail} from "../../helpers/validateEmail.js";
 
 //test username & email = benjaminmeijer1@gmail.com
 //test password = BenjaminMeijer
 
 const Login = () => {
     const { login } = useContext(AuthContext);
-    // const [error, setError] = useState({});
+    const [errorEmail, setErrorEmail] = useState(false);
+    const [errorPassword, setErrorPassword] = useState(false);
     // const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -35,32 +37,53 @@ const Login = () => {
         }
     }
 
+    useEffect(() => {
+        if (!validateEmail(email)) {
+            setErrorEmail(true)
+            console.error("verkeerde email")
+        } else {
+            setErrorEmail(false)
+            console.error("juiste email")
+        }
+
+        if (password.length < 8) {
+            setErrorPassword(true)
+            console.log("ww te kort")
+        } else  {
+            setErrorPassword(false)
+            console.log("prima ww")
+        }
+    }, [email,password]);
+
+
     //Handle Registration
     async function handleRegister (e) {
         e.preventDefault()
-        try {
-            const response = await axios.post("https://api.datavortex.nl/cocktailtalks/users", {
-                username: email,
-                email: email,
-                password: password,
-                info: "",
-                authorities: [
-                    {
-                        authority: "USER"
+        if (!errorEmail && !errorPassword) {
+            try {
+                const response = await axios.post("https://api.datavortex.nl/cocktailtalks/users", {
+                    username: email,
+                    email: email,
+                    password: password,
+                    info: "",
+                    authorities: [
+                        {
+                            authority: "USER"
+                        }
+                    ]
+                }, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-Api-Key":apiKey,
                     }
-                ]
-            }, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-Api-Key":apiKey,
-                }
-            })
-            console.log(response)
-            console.log("Gebruiker is succesvol geregistreerd")
-        } catch (e) {
-            console.error(e)
+                })
+                console.log(response)
+                console.log("Gebruiker is succesvol geregistreerd")
+            } catch (e) {
+                console.error(e)
+            }
+            navigate("/");
         }
-        navigate("/");
     }
     //navigate to een voor login en register
 
@@ -72,7 +95,9 @@ const Login = () => {
                 <h3>Ready to explore some cocktails?</h3>
                 <form className="login__form">
                     <InputField label="Email:" id="field-email" name="email" type="text" handleChange={(e) => setEmail(e.target.value)}/>
+                    {errorEmail && <p>Fill in a valid email address.</p>}
                     <InputField label="Password:" id="field-password" name="password" type="password" handleChange={(e) => setPassword(e.target.value)}/>
+                    {errorPassword && <p>Your password was to short, must be over 8 characters.</p>}
                     <a href="mailto:benjaminmeijer1@gmail.com">Forgot password?</a>
                     <div className="login__div">
                         <ButtonFunction type="submit" text="log in" onClick={handleLogin}/>

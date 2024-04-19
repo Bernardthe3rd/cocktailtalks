@@ -8,17 +8,9 @@ const Account = () => {
     const { user } = useContext(AuthContext);
     let userCocktails = JSON.parse(user.info)
 
-    const [disable, toggleDisable] = useState(false);
     const [cocktailInfo, setCocktailInfo] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
-
-
-    function handleClick () {
-        toggleDisable(!disable);
-        //post request met account meesturen
-        //opslaan van cijfer en feedback text in account
-    }
 
     console.log(JSON.parse(user.info))
 
@@ -73,8 +65,6 @@ const Account = () => {
                             source={cocktail.strDrinkThumb}
                             alt="thumbnail cocktail"
                             nameProduct={cocktail.strDrink}
-                            disable={disable}
-                            clicked={handleClick}
                         />
 
                     })}
