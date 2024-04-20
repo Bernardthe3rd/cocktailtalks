@@ -1,7 +1,6 @@
 .about__div-container {
     padding: 50px;
     background-color: var(--background-clr-first);
-    border: 1px solid green;
 
     display: flex;
     flex-direction: row;
@@ -29,7 +28,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    row-gap: 100px;
+    row-gap: 30px;
+}
+
+.about__article > ul {
+    list-style-type: square;
+    padding-inline: 40px;
 }
 
 .about__img-wrapper {
