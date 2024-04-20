@@ -23,7 +23,6 @@ const Account = () => {
         }
 
         const userCocktailsArray = userCocktails.map(cocktail => cocktail.id)
-        console.log(userCocktailsArray)
 
         async function fetchFavoriteCocktails () {
             toggleLoading(true);

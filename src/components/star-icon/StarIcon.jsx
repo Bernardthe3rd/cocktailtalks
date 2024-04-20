@@ -27,7 +27,7 @@ const StarIcon = ({size, style, idCocktail}) => {
     }, []);
 
     async function favoriteCocktail(idCocktail) {
-        const newItem = { id: idCocktail };
+        const newItem = { id: idCocktail, feedback: { grade: "" , text: ""} };
         // Update state using functional form of setState
         setUserInfo(prevArray => [...prevArray, newItem]);
 
