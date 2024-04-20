@@ -8,7 +8,10 @@ const ProductCardSmall = ({source, alt, id, name}) => {
             <p>{name}</p>
             <span className="product-small__img-wrapper">
                 <img src={source} alt={alt}/>
-                <StarIcon size={50} weight="regular" style="product-small__star"/>
+                <StarIcon size={50}
+                          style="product-small__star"
+                          idCocktail={id}
+                />
             </span>
             <ButtonLink path={`/product/${id}`} text="get to know me"/>
         </li>

@@ -52,6 +52,7 @@ const Randomizer = () => {
                     {randomDrink.map((drink) => {
                         return <ProductCardBig
                             key={drink.idDrink}
+                            id={drink.idDrink}
                             source={drink.strDrinkThumb}
                             alt="thumbnail cocktail"
                             description={drink.strDrink}

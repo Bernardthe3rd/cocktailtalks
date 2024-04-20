@@ -1,33 +1,36 @@
 import "./account.css"
-import reactlogo from "/src/assets/react.svg";
 import ProductCardReview from "../../components/product-card-review/ProductCardReview.jsx";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 const Account = () => {
-    const [disable, toggleDisable] = useState(false);
+    const { user } = useContext(AuthContext);
+
+    const [userCocktails, setUserCocktails] = useState(JSON.parse(user.info));
     const [cocktailInfo, setCocktailInfo] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
 
-    function handleClick () {
-        toggleDisable(!disable);
-        //post request met account meesturen
-        //opslaan van cijfer en feedback text in account
-    }
 
-
-    useEffect(() => {
-        const userCocktails = [15346, 14029, 178318]; //hier komt de array met cocktail ids van de gebruiker
+    useEffect(() => {//hier komt de array met cocktail ids van de gebruiker
         const controller = new AbortController();
+
+        if (JSON.parse(user.info).length > 0) {
+            setUserCocktails(JSON.parse(user.info))
+        } else {
+            setUserCocktails(userCocktails)
+        }
+
+        const userCocktailsArray = userCocktails.map(cocktail => cocktail.id)
 
         async function fetchFavoriteCocktails () {
             toggleLoading(true);
             let newArray = []
-            for (let i = 0; i < userCocktails.length; i++) {
+            for (let i = 0; i < userCocktailsArray.length; i++) {
                 try {
                     toggleError(false);
-                    const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${userCocktails[i]}`, {//nummer vervangen door ID of naam drink uit userinfo
+                    const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${userCocktailsArray[i]}`, {//nummer vervangen door ID of naam drink uit userinfo
                         signal: controller.signal,
                     })
                     newArray.push(response.data.drinks)
@@ -47,10 +50,10 @@ const Account = () => {
 
     }, []);
 
-    const control = cocktailInfo.map((item) => {
-        return item[0]
+    const cocktailInfoForUser = cocktailInfo.map((cocktail) => {
+        return cocktail[0]
     })
-    console.log(control)
+
 
     return (
         <>
@@ -59,18 +62,16 @@ const Account = () => {
                 {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
                 <div className="container__div">
                     <h2>Your favorites</h2>
-                    {control.map((cocktail) => {
+                    {cocktailInfoForUser.map((cocktail) => {
                         return <ProductCardReview
                             key={cocktail.idDrink}
+                            id={cocktail.idDrink}
                             source={cocktail.strDrinkThumb}
                             alt="thumbnail cocktail"
                             nameProduct={cocktail.strDrink}
-                            disable={disable}
-                            clicked={handleClick}
                         />
 
                     })}
-                    <ProductCardReview source={reactlogo} alt="picture cocktail" nameProduct="naam vd cocktail 2" disable={disable} clicked={handleClick}/>
                 </div>
                 }
             </main>

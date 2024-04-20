@@ -5,10 +5,12 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 
 const Catalog = () => {
+
     const [cocktails, setCocktails] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
     const [endingCocktail, setEndingCocktail] = useState(6);
+    // const [userInfo, setUserInfo] = useState([])
 
     const firstCocktails = cocktails.slice(0,endingCocktail);
 
@@ -34,6 +36,7 @@ const Catalog = () => {
         setEndingCocktail(endingCocktail+6)
     }
 
+
     return (
         <>
             <main className="container">
@@ -43,7 +46,13 @@ const Catalog = () => {
                     <h2>All the cocktails in the world</h2>
                     <ul className="products">
                         {firstCocktails.map((cocktail) => {
-                            return <ProductCardSmall key={cocktail.idDrink} name={cocktail.strDrink} source={cocktail.strDrinkThumb} alt="thumbnail cocktail" id={cocktail.idDrink}/>
+                            return <ProductCardSmall
+                                key={cocktail.idDrink}
+                                name={cocktail.strDrink}
+                                source={cocktail.strDrinkThumb}
+                                alt="thumbnail cocktail"
+                                id={cocktail.idDrink}
+                            />
                         })}
                     </ul>
                     <ButtonFunction type="button" text="load more" onClick={showMoreCocktails}/>

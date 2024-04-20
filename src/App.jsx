@@ -1,5 +1,7 @@
 //Default imports
 import {Route, Routes} from "react-router-dom";
+import {useContext} from "react";
+import {AuthContext} from "./context/AuthContext.jsx";
 
 //Styling imports
 import "./App.css"
@@ -19,20 +21,20 @@ import About from "./pages/about/About.jsx";
 import NotFound from "./pages/notfound/NotFound.jsx";
 
 function App() {
-    const isLoggedIn = true; //later ombouwen
+    const { isAuth } = useContext(AuthContext)
     //some state
     //useEffect
     //(async) functions
 
   return (
       <>
-          <Navbar validateLogin={isLoggedIn}/>
+          <Navbar validateLogin={isAuth}/>
           <Routes>
               <Route path={"/"} element={<Home/>}/>
               <Route path={"/catalog"} element={<Catalog/>}/>
               <Route path={"/product/:id"} element={<Product/>}/>
               <Route path={"/login"} element={<Login/>}/>
-              <Route path={"/account"} element={isLoggedIn === true ? <Account/> : <Login/>}/>
+              <Route path={"/account"} element={isAuth === true ? <Account/> : <Login/>}/>
               <Route path={"/randomizer"} element={<Randomizer/>}/>
               <Route path={"/about"} element={<About/>}/>
               <Route path={"*"} element={<NotFound/>}/>

@@ -23,4 +23,5 @@
 
 .product-small__star {
     position: absolute;
+    cursor: pointer;
 }
