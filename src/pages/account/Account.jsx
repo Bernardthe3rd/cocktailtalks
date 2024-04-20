@@ -17,12 +17,12 @@ const Account = () => {
         const controller = new AbortController();
 
         if (JSON.parse(user.info).length > 0) {
-            setUserCocktails(JSON.parse(user.info))
+            setUserCocktails(JSON.parse(user.info));
         } else {
-            setUserCocktails(userCocktails)
+            setUserCocktails(userCocktails);
         }
 
-        const userCocktailsArray = userCocktails.map(cocktail => cocktail.id)
+        const userCocktailsArray = userCocktails.map(cocktail => cocktail.id);
 
         async function fetchFavoriteCocktails () {
             toggleLoading(true);
@@ -35,7 +35,7 @@ const Account = () => {
                     })
                     newArray.push(response.data.drinks)
                 } catch (e) {
-                    console.error(e)
+                    console.error(e.message)
                     toggleError(true);
                 }
                 setCocktailInfo(newArray);
@@ -51,7 +51,7 @@ const Account = () => {
     }, []);
 
     const cocktailInfoForUser = cocktailInfo.map((cocktail) => {
-        return cocktail[0]
+        return cocktail[0];
     })
 
 

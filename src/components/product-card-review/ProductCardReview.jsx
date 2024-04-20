@@ -1,17 +1,18 @@
 import "./product-card-review.css"
 import ButtonFunction from "../button-function/ButtonFunction.jsx";
-import StarIcon from "../star-icon/StarIcon.jsx";
-import {useContext, useEffect, useState} from "react";
-import {checkGrade} from "../../helpers/checkGrade.js";
-import axios from "axios";
-import {AuthContext} from "../../context/AuthContext.jsx";
 import InputField from "../input-field/InputField.jsx";
+import StarIcon from "../star-icon/StarIcon.jsx";
+import {checkGrade} from "../../helpers/checkGrade.js";
+
+import {AuthContext} from "../../context/AuthContext.jsx";
+import {useContext, useEffect, useState} from "react";
+import axios from "axios";
 
 const ProductCardReview = ({source, alt, id, nameProduct}) => {
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
     const token = localStorage.getItem("token");
 
-    const [textBtn, toggleTextBtn] = useState("")
+    const [textBtn, toggleTextBtn] = useState("");
     const [grade, setGrade] = useState("");
     const [feedback, setFeedback] = useState("");
     const [disable, toggleDisable] = useState(false);
@@ -20,21 +21,21 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
 
     useEffect(() => {
         if (disable === true && checkGrade(grade)) {
-            toggleTextBtn("edit")
+            toggleTextBtn("edit");
         } else {
-            toggleTextBtn("save")
+            toggleTextBtn("save");
         }
         console.log(userFeedback)
         const getGrade = userFeedback.map((cocktailfeed) => {
             if (cocktailfeed.id === id) {
                 return cocktailfeed.feedback.grade;
             } else {
-                return null
+                return null;
             }
         })
 
         const rightGrade = getGrade.find((grade) =>{
-            return grade !== null
+            return grade !== null;
         })
         setGrade(rightGrade)
 
@@ -42,14 +43,14 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
             if (cocktailText.id === id) {
                 return cocktailText.feedback.text;
             } else {
-                return null
+                return null;
             }
         })
 
         const rightText = getFeedback.find((text) =>{
-            return text !== null
+            return text !== null;
         })
-        setFeedback(rightText)
+        setFeedback(rightText);
 
 
     }, [disable]);
@@ -67,12 +68,12 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
 
         let find = userFeedback.map((idCocktail) =>{
             if (idCocktail.id === id) {
-                return dataToUpdate
+                return dataToUpdate;
             } else {
-                return idCocktail
+                return idCocktail;
             }
         })
-        setUserFeedback(find)
+        setUserFeedback(find);
 
         try {
             // Wait for the state update to complete
@@ -102,17 +103,38 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
                 <img src={source} alt={alt}/>
             </span>
             <form className="product-review__form">
-                <InputField label="Grade" type="text" id="input-grade" name="grade" value={grade} handleChange={(e) => {setGrade(e.target.value)}} style="product-review__input" disabled={disable} />
+                <InputField label="Grade"
+                            type="text"
+                            id="input-grade"
+                            name="grade"
+                            style="product-review__input"
+                            disabled={disable}
+                            value={grade}
+                            handleChange={(e) => {setGrade(e.target.value)}}
+                />
                 {!checkGrade(grade) && <p>Vul aub een getal in tussen de 0 en 10</p>}
                 <label htmlFor="feedback-are" className="product-review__label">
                     Feedback for {nameProduct}:
-                    <textarea name="feedback" id="feedback-area" cols="50" rows="10" disabled={disable}
-                              placeholder="Write your feedback here" className="product-review__textarea" value={feedback} onChange={(e) => {setFeedback(e.target.value)}}/>
+                    <textarea name="feedback"
+                              id="feedback-area"
+                              cols="50" rows="10"
+                              placeholder="Write your feedback here"
+                              className="product-review__textarea"
+                              disabled={disable}
+                              value={feedback}
+                              onChange={(e) => {setFeedback(e.target.value)}}
+                    />
                 </label>
             </form>
             <div className="product-review__div">
-                <StarIcon size={50} style="product-review__star" idCocktail={id}/>
-                <ButtonFunction type="submit" text={textBtn} onClick={handleClick}/>
+                <StarIcon size={50}
+                          style="product-review__star"
+                          idCocktail={id}
+                />
+                <ButtonFunction type="submit"
+                                text={textBtn}
+                                onClick={handleClick}
+                />
             </div>
         </article>
     );

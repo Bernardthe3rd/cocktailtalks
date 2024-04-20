@@ -3,6 +3,7 @@ import ButtonLink from "../button-link/ButtonLink.jsx";
 import StarIcon from "../star-icon/StarIcon.jsx";
 
 const ProductCardSmall = ({source, alt, id, name}) => {
+
     return (
         <li key={id} className="product-small__card">
             <p>{name}</p>
@@ -13,7 +14,9 @@ const ProductCardSmall = ({source, alt, id, name}) => {
                           idCocktail={id}
                 />
             </span>
-            <ButtonLink path={`/product/${id}`} text="get to know me"/>
+            <ButtonLink path={`/product/${id}`}
+                        text="get to know me"
+            />
         </li>
     );
 };

@@ -27,12 +27,6 @@
     align-items: center;
 }
 
-/*.product-review__star {*/
-/*    position: relative;*/
-/*    top: 0;*/
-/*    left: 25px;*/
-/*}*/
-
 .product-review__star:hover {
     cursor: pointer;
 }
@@ -63,6 +57,7 @@
     background-color: var(--background-clr-secondary);
     width: 50px;
 }
+/*-----------Ending Styling form-----------*/
 
 @media screen and (max-width: 1200px) {
     .product-review__card {

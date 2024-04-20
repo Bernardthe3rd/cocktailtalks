@@ -17,7 +17,12 @@ function AuthContextProvider({ children }) {
     useEffect(() => {
         const storedToken = localStorage.getItem("token");
         if (storedToken && checkTokenValidity(storedToken)) { //validatie token nog helper van maken?!
-            void login(storedToken);
+            const fetchUserDataOnInterval = setInterval(() =>{
+                void login(storedToken);
+            }, 10000)
+            return function cleanup() {
+                clearInterval(fetchUserDataOnInterval);
+            }
         } else {
             // void logout();
             setAuth({
@@ -26,7 +31,7 @@ function AuthContextProvider({ children }) {
             })
         }
     }, []);
-    
+
     const login = async (jwtToken) => {
         const decodedJwt = jwtDecode(jwtToken);
         localStorage.setItem("token", jwtToken);
@@ -50,9 +55,9 @@ function AuthContextProvider({ children }) {
                 status: "done"
             })
         } catch (e) {
-            console.error(e)
+            console.error(e);
         }
-        console.log(`Gebruiker is succesvol ingelogd!`)
+        console.log(`Gebruiker is succesvol ingelogd!`);
     }
 
     const logout = () => {
@@ -63,8 +68,8 @@ function AuthContextProvider({ children }) {
             status: "done"
         })
         localStorage.clear();
-        console.log("Gebruiker is uitgelogd!")
-        navigate("/")
+        console.log("Gebruiker is uitgelogd!");
+        navigate("/");
     }
 
     const data = {

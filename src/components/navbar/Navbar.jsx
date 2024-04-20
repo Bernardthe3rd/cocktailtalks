@@ -1,22 +1,22 @@
-import {NavLink} from "react-router-dom";
 import logo from "../../assets/Logo.png";
 import "./navbar.css"
 import ButtonNav from "../button-nav/ButtonNav.jsx";
 import {Martini} from "@phosphor-icons/react";
+import {NavLink} from "react-router-dom";
 import {useState} from "react";
 
 
 const Navbar = ({validateLogin}) => {
-    const [styleChange, toggleStyleChange] = useState(false);
+    const [smallNav, toggleSmallNav] = useState(false);
 
     function handleClickMenu () {
-        toggleStyleChange(!styleChange)
+        toggleSmallNav(!smallNav)
     }
 
     return (
         <nav className="container">
             <Martini size={75} className="nav__icon" onClick={handleClickMenu}/>
-            {styleChange &&
+            {smallNav &&
                 <ul className="nav__small">
                     <ButtonNav path="/catalog" text="catalog"/>
                     <ButtonNav path="/about" text="about"/>

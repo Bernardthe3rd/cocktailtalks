@@ -1,8 +1,13 @@
-# React + Vite
+# CocktailTalks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Gezien de applicatie voornamelijk in het Engels is, zal ik de ReadMe voor diegene die dit leest eerst in het Nederlands geschreven staan.
 
-Currently, two official plugins are available:
+De volgende NPM installaties heb je nodig. Controleer daarom of ze er al instaan en anders voor de volgende NPM install uit:
+1. NPM install
+2. NPM I axios
+3. NPM I react-router-dom
+4. NPM I @phosphor-icons/react
+5. NPM I jwt-decode
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Verder hieronder nog meer uitleg voor gebruik en installie van de app.
+API key staat in de AuthContext.

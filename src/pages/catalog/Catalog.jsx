@@ -15,25 +15,30 @@ const Catalog = () => {
     const firstCocktails = cocktails.slice(0,endingCocktail);
 
     useEffect(() => {
+        // const controller = new AbortController();
         async function fetchCocktails () {
             toggleLoading(true);
             try {
                 toggleError(false);
                 const response = await axios.get("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
-                console.log(response)
-                setCocktails(response.data.drinks)
+                console.log(response);
+                setCocktails(response.data.drinks);
             } catch (e) {
-                console.error(e)
+                console.error(e);
                 toggleError(true);
             }
             toggleLoading(false);
         }
         void fetchCocktails();
+
+        // return function cleanup() {
+        //     controller.abort();
+        // }
     }, []);
 
 
     function showMoreCocktails () {
-        setEndingCocktail(endingCocktail+6)
+        setEndingCocktail(endingCocktail+6);
     }
 
 
@@ -55,7 +60,10 @@ const Catalog = () => {
                             />
                         })}
                     </ul>
-                    <ButtonFunction type="button" text="load more" onClick={showMoreCocktails}/>
+                    <ButtonFunction type="button"
+                                    text="load more"
+                                    onClick={showMoreCocktails}
+                    />
                 </div>
                 }
             </main>

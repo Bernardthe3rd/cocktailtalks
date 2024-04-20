@@ -4,26 +4,26 @@ import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
 
 const StarIcon = ({size, style, idCocktail}) => {
-    const { user, isAuth } = useContext(AuthContext)
+    const { user, isAuth } = useContext(AuthContext);
     const [fillStar, toggleFillStar] = useState("fill");
     const token = localStorage.getItem("token");
-    const [userInfo, setUserInfo] = useState([])
+    const [userInfo, setUserInfo] = useState([]);
 
     useEffect(() => {
         if (user !== null) {
             if (JSON.parse(user.info).length > 0) {
-                setUserInfo(JSON.parse(user.info))
+                setUserInfo(JSON.parse(user.info));
             } else {
-                setUserInfo(userInfo)
+                setUserInfo(userInfo);
             }
 
             let actie = userInfo.find((id) => {
-                return id.id === idCocktail
+                return id.id === idCocktail;
             })
             if (actie) {
-                toggleFillStar("fill")
+                toggleFillStar("fill");
             } else {
-                toggleFillStar("regular")
+                toggleFillStar("regular");
             }
         }
     }, []);
@@ -77,7 +77,7 @@ const StarIcon = ({size, style, idCocktail}) => {
                     }
                 });
                 console.log(updateUserInfo);
-                toggleFillStar("regular")
+                toggleFillStar("regular");
             } catch (e) {
                 console.error(e);
             }
@@ -87,7 +87,13 @@ const StarIcon = ({size, style, idCocktail}) => {
     return (
         <>
             {isAuth &&
-            <Star size={size} weight={fillStar} className={style} color="#FFB986" alt="star icon" onClick={() => favoriteCocktail(idCocktail)}/>
+            <Star size={size}
+                  weight={fillStar}
+                  alt="star icon"
+                  color="#FFB986"
+                  className={style}
+                  onClick={() => favoriteCocktail(idCocktail)}
+            />
             }
         </>
     );

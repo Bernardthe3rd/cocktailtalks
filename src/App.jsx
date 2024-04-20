@@ -21,10 +21,7 @@ import About from "./pages/about/About.jsx";
 import NotFound from "./pages/notfound/NotFound.jsx";
 
 function App() {
-    const { isAuth } = useContext(AuthContext)
-    //some state
-    //useEffect
-    //(async) functions
+    const { isAuth } = useContext(AuthContext);
 
   return (
       <>
@@ -34,7 +31,10 @@ function App() {
               <Route path={"/catalog"} element={<Catalog/>}/>
               <Route path={"/product/:id"} element={<Product/>}/>
               <Route path={"/login"} element={<Login/>}/>
-              <Route path={"/account"} element={isAuth === true ? <Account/> : <Login/>}/>
+              <Route
+                  path={"/account"}
+                  element={isAuth === true ? <Account/> : <Login/>}
+              />
               <Route path={"/randomizer"} element={<Randomizer/>}/>
               <Route path={"/about"} element={<About/>}/>
               <Route path={"*"} element={<NotFound/>}/>

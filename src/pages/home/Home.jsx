@@ -17,13 +17,13 @@ const Home = ({registrationSucces}) => {
     function handleSubmit (e) {
         e.preventDefault();
         if (validateEmail(newsletterEmail)) {
-            console.log(newsletterEmail)
-            toggleErrorEmail(false)
-            setNewsletterEmail("")
+            console.log(newsletterEmail);
+            toggleErrorEmail(false);
+            setNewsletterEmail("");
         } else {
-            console.log(newsletterEmail)
-            toggleErrorEmail(true)
-            setNewsletterEmail("")
+            console.log(newsletterEmail);
+            toggleErrorEmail(true);
+            setNewsletterEmail("");
         }
     }
 
@@ -36,7 +36,9 @@ const Home = ({registrationSucces}) => {
                     <div className="home__div-content">
                         <h1>PHENOMENAL COCKTAIL. PHENOMENAL COMMUNITY.</h1>
                         <h3>From anywhere in the world, <br/> For all cocktail fans here at CocktailTalks</h3>
-                        <ButtonLink path="/about" text="about"/>
+                        <ButtonLink path="/about"
+                                    text="about"
+                        />
                     </div>
                     <span className="home__img-wrapper">
                         <img src={homeimg} alt="cocktail glasses"/>
@@ -44,9 +46,17 @@ const Home = ({registrationSucces}) => {
                 </article>
                 <article className="home__article-bottom">
                     <h2>Want to be notified about the latest updates?</h2>
-                    <InputField name="email newsletter" type="text" placeholder="Email" value={newsletterEmail} handleChange={(e) => setNewsletterEmail(e.target.value)}/>
+                    <InputField name="email newsletter"
+                                type="text"
+                                placeholder="Email"
+                                value={newsletterEmail}
+                                handleChange={(e) => setNewsletterEmail(e.target.value)}
+                    />
                     {errorEmail && <p>Unfortunately the subscribing went wrong. Please fill in a valid email-address and try again.</p>}
-                    <ButtonFunction type="button" text="subscribe" onClick={handleSubmit}/>
+                    <ButtonFunction type="button"
+                                    text="subscribe"
+                                    onClick={handleSubmit}
+                    />
                 </article>
             </main>
         </>

@@ -6,7 +6,8 @@ import axios from "axios";
 
 const Product = () => {
     let { id } = useParams();
-    const [cocktailInfo, setCocktailInfo] = useState([])
+
+    const [cocktailInfo, setCocktailInfo] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
     const [ingredientsArray, setIngredientsArray] = useState([]);
@@ -36,7 +37,7 @@ const Product = () => {
                         ,response.data.drinks[0].strIngredient14
                         ,response.data.drinks[0].strIngredient15])
             } catch (e) {
-                console.error(e)
+                console.error(e);
                 toggleError(true);
             }
             toggleLoading(false);
