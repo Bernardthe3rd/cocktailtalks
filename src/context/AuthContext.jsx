@@ -33,7 +33,6 @@ function AuthContextProvider({ children }) {
                     "Authorization": `Bearer ${jwtToken}`
                 }
             });
-            console.log(response)
             setAuth({
                 ...auth,
                 isAuth: true,
