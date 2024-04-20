@@ -6,16 +6,21 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 
 const Account = () => {
     const { user } = useContext(AuthContext);
-    let userCocktails = JSON.parse(user.info)
 
+    const [userCocktails, setUserCocktails] = useState(JSON.parse(user.info));
     const [cocktailInfo, setCocktailInfo] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
 
-    console.log(JSON.parse(user.info))
 
     useEffect(() => {//hier komt de array met cocktail ids van de gebruiker
         const controller = new AbortController();
+
+        if (JSON.parse(user.info).length > 0) {
+            setUserCocktails(JSON.parse(user.info))
+        } else {
+            setUserCocktails(userCocktails)
+        }
 
         const userCocktailsArray = userCocktails.map(cocktail => cocktail.id)
         console.log(userCocktailsArray)

@@ -21,6 +21,7 @@
 
 .product-big__star {
     position: absolute;
+    cursor: pointer;
 }
 
 .product-big__fieldset {

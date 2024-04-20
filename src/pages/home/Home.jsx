@@ -6,7 +6,7 @@ import InputField from "../../components/input-field/InputField.jsx";
 import { useState} from "react";
 
 
-const Home = () => {
+const Home = ({registrationSucces}) => {
     const [formState, setFormState] = useState({})
 
     function handleEmailChange (f) {
@@ -28,6 +28,7 @@ const Home = () => {
         <>
             <main className="container">
                 <article className="home__article-upper">
+                    {registrationSucces && <p>Your registration has been succesfull. You can now go back to login.</p>}
                     <div className="home__div-content">
                         <h1>PHENOMENAL COCKTAIL. PHENOMENAL COMMUNITY.</h1>
                         <h3>From anywhere in the world, <br/> For all cocktail fans here at CocktailTalks</h3>

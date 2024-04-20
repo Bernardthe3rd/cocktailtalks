@@ -10,6 +10,12 @@ const StarIcon = ({size, style, idCocktail}) => {
     const [userInfo, setUserInfo] = useState(JSON.parse(user.info))
 
     useEffect(() => {
+        if (JSON.parse(user.info).length > 0) {
+            setUserInfo(JSON.parse(user.info))
+        } else {
+            setUserInfo(userInfo)
+        }
+
         let actie = userInfo.find((id) => {
             return id.id === idCocktail
         })

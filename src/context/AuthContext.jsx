@@ -2,6 +2,7 @@ import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import {useNavigate} from "react-router-dom";
+import {checkTokenValidity} from "../helpers/checkTokenValidity.js";
 
 export const AuthContext = createContext(null);
 
@@ -15,7 +16,7 @@ function AuthContextProvider({ children }) {
 
     useEffect(() => {
         const storedToken = localStorage.getItem("token");
-        if (storedToken) {
+        if (storedToken && checkTokenValidity(storedToken)) { //validatie token nog helper van maken?!
             void login(storedToken);
         } else {
             void logout();
