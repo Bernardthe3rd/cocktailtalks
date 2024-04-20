@@ -19,10 +19,14 @@ function AuthContextProvider({ children }) {
         if (storedToken && checkTokenValidity(storedToken)) { //validatie token nog helper van maken?!
             void login(storedToken);
         } else {
-            void logout();
+            // void logout();
+            setAuth({
+                ...auth,
+                status: "done",
+            })
         }
     }, []);
-
+    
     const login = async (jwtToken) => {
         const decodedJwt = jwtDecode(jwtToken);
         localStorage.setItem("token", jwtToken);
