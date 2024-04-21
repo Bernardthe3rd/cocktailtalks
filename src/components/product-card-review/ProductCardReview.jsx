@@ -25,7 +25,7 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
         } else {
             toggleTextBtn("save");
         }
-        console.log(userFeedback)
+
         const getGrade = userFeedback.map((cocktailfeed) => {
             if (cocktailfeed.id === id) {
                 return cocktailfeed.feedback.grade;

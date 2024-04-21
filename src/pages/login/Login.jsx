@@ -19,26 +19,34 @@ const Login = () => {
     const { login } = useContext(AuthContext);
     const [errorEmail, setErrorEmail] = useState(false);
     const [errorPassword, setErrorPassword] = useState(false);
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
     const [registered, setRegistered] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [disableBtn, toggleDisableBtn] = useState(null);
     const navigate = useNavigate();
     const apiKey = "cocktailtalks:JmnVqzgJyhYDbqyQauOT"
 
     //Handle login
     async function handleLogin (e) {
         e.preventDefault();
+        toggleLoading(true)
         try {
+            toggleError(false)
             const response = await axios.post("https://api.datavortex.nl/cocktailtalks/users/authenticate", {
                 username: email,
                 password: password,
             })
             if (response.status === 200) {
+                toggleLoading(false)
                 login(response.data.jwt);
                 navigate("/account");
             }
         } catch (e) {
             console.error(e);
+            toggleError(true);
+            toggleLoading(false);
         }
     }
 
@@ -56,17 +64,28 @@ const Login = () => {
             console.error("ww te kort");
         } else  {
             setErrorPassword(false);
+            toggleDisableBtn(false);
             console.log("prima ww");
         }
     }, [email,password]);
+
+    useEffect(() => {
+        if (errorEmail || errorPassword) {
+            toggleDisableBtn(true);
+        } else {
+            toggleDisableBtn(false);
+        }
+    }, [errorEmail, errorPassword]);
 
 
     //Handle Registration
     async function handleRegister (e) {
         e.preventDefault()
         setRegistered(false);
+        toggleLoading(true);
         if (!errorEmail && !errorPassword && email.length !== 0 && password.length !== 0) {
             try {
+                toggleError(false);
                 const response = await axios.post("https://api.datavortex.nl/cocktailtalks/users", {
                     username: email,
                     email: email,
@@ -86,8 +105,11 @@ const Login = () => {
                 console.log(response);
                 console.log("Gebruiker is succesvol geregistreerd");
                 setRegistered(true);
+                toggleLoading(false);
             } catch (e) {
                 console.error(e);
+                toggleError(true);
+                toggleLoading(false);
             }
             navigate("/");
         }
@@ -97,6 +119,8 @@ const Login = () => {
     //later bij authenticatie validate email en password ism helpers
     return (
         <main className="container">
+            {loading && <p className="loading">Loading...</p>}
+            {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
             <div className="container__div">
                 <h2>Welcome!</h2>
                 <h3>Ready to explore some cocktails?</h3>
@@ -117,11 +141,20 @@ const Login = () => {
                     {errorPassword && <p>Your password was to short, must be over 8 characters.</p>}
                     <a href="mailto:benjaminmeijer1@gmail.com">Forgot password?</a>
                     <div className="login__div">
-                        <ButtonFunction type="submit" text="log in" onClick={handleLogin}/>
-                        <ButtonFunction type="submit" text="register" onClick={handleRegister}/>
+                        <ButtonFunction type="submit"
+                                        text="log in"
+                                        disable={disableBtn}
+                                        onClick={handleLogin}
+                        />
+                        <ButtonFunction type="submit"
+                                        text="register"
+                                        disable={disableBtn}
+                                        onClick={handleRegister}
+                        />
                     </div>
                 </form>
             </div>
+            }
             {registered && <Home registrationSucces={registered}/>}
         </main>
     );

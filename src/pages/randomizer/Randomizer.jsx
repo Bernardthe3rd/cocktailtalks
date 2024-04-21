@@ -13,11 +13,11 @@ const Randomizer = () => {
 
     async function fetchRandomCocktail () {
         toggleLoading(true);
+
         try {
             toggleError(false);
             const response = await axios.get("https://www.thecocktaildb.com/api/json/v1/1/random.php");
             setRandomDrink(response.data.drinks);
-            console.log(response.data.drinks);
             setIngredientsArray (
                 [response.data.drinks[0].strIngredient1
                     ,response.data.drinks[0].strIngredient2

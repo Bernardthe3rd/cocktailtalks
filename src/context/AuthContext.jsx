@@ -16,13 +16,13 @@ function AuthContextProvider({ children }) {
 
     useEffect(() => {
         const storedToken = localStorage.getItem("token");
-        if (storedToken && checkTokenValidity(storedToken)) { //validatie token nog helper van maken?!
-            const fetchUserDataOnInterval = setInterval(() =>{
+        if (storedToken && checkTokenValidity(storedToken)) {
+            // const fetchUserDataOnInterval = setInterval(() =>{
                 void login(storedToken);
-            }, 10000)
-            return function cleanup() {
-                clearInterval(fetchUserDataOnInterval);
-            }
+            // }, 10000)
+            // return function cleanup() {
+            //     clearInterval(fetchUserDataOnInterval);
+            // }
         } else {
             // void logout();
             setAuth({

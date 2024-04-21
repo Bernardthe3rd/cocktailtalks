@@ -5,9 +5,11 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 
 const StarIcon = ({size, style, idCocktail}) => {
     const { user, isAuth } = useContext(AuthContext);
-    const [fillStar, toggleFillStar] = useState("fill");
     const token = localStorage.getItem("token");
+    const [fillStar, toggleFillStar] = useState("fill");
     const [userInfo, setUserInfo] = useState([]);
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
 
     useEffect(() => {
         if (user !== null) {
@@ -37,7 +39,7 @@ const StarIcon = ({size, style, idCocktail}) => {
         const foundItem = userInfo.find((item) => {
             return item.id === newItem.id;
         })
-
+        toggleLoading(true);
         if (foundItem === undefined) {
             try {
                 // Wait for the state update to complete
@@ -54,13 +56,16 @@ const StarIcon = ({size, style, idCocktail}) => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                console.log(updateUserInfo);
-                toggleFillStar("fill")
+                console.log(updateUserInfo)
+                toggleFillStar("fill");
+                toggleLoading(false);
             } catch (e) {
                 console.error(e);
+                toggleError(true);
             }
         } else {
             const updatedArray = userInfo.filter(item => item.id !== foundItem.id)
+            toggleLoading(true);
             try {
                 // Wait for the state update to complete
                 await new Promise(resolve => setTimeout(resolve, 0));
@@ -76,16 +81,20 @@ const StarIcon = ({size, style, idCocktail}) => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                console.log(updateUserInfo);
+                console.log(updateUserInfo)
                 toggleFillStar("regular");
+                toggleLoading(false);
             } catch (e) {
                 console.error(e);
+                toggleError(true);
             }
         }
     }
 
     return (
         <>
+            {loading && <p>Adding your favorite..</p>}
+            {error && <p>Something went wrong with adding this cocktail to your favorites. Please try again later.</p>}
             {isAuth &&
             <Star size={size}
                   weight={fillStar}

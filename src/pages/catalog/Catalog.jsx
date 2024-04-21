@@ -21,7 +21,6 @@ const Catalog = () => {
             try {
                 toggleError(false);
                 const response = await axios.get("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
-                console.log(response);
                 setCocktails(response.data.drinks);
             } catch (e) {
                 console.error(e);
