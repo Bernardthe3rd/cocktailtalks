@@ -15,24 +15,28 @@ const Catalog = () => {
     const firstCocktails = cocktails.slice(0,endingCocktail);
 
     useEffect(() => {
-        // const controller = new AbortController();
+        const controller = new AbortController();
         async function fetchCocktails () {
             toggleLoading(true);
             try {
                 toggleError(false);
-                const response = await axios.get("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
+                const response = await axios.get("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail", {
+                    signal: controller.signal,
+                })
                 setCocktails(response.data.drinks);
             } catch (e) {
-                console.error(e);
-                toggleError(true);
+                if (!controller.signal.aborted) {
+                    console.error(e);
+                    toggleError(true);
+                }
             }
             toggleLoading(false);
         }
         void fetchCocktails();
 
-        // return function cleanup() {
-        //     controller.abort();
-        // }
+        return function cleanup() {
+            controller.abort();
+        }
     }, []);
 
 

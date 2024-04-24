@@ -1,6 +1,6 @@
 //Default imports
 import {Route, Routes} from "react-router-dom";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {AuthContext} from "./context/AuthContext.jsx";
 
 //Styling imports
@@ -22,15 +22,16 @@ import NotFound from "./pages/notfound/NotFound.jsx";
 
 function App() {
     const { isAuth } = useContext(AuthContext);
+    const [registration, setRegistration] = useState(false);
 
   return (
       <>
           <Navbar validateLogin={isAuth}/>
           <Routes>
-              <Route path={"/"} element={<Home/>}/>
+              <Route path={"/"} element={<Home reg={registration}/>}/>
               <Route path={"/catalog"} element={<Catalog/>}/>
               <Route path={"/product/:id"} element={<Product/>}/>
-              <Route path={"/login"} element={<Login/>}/>
+              <Route path={"/login"} element={<Login setReg={setRegistration}/>}/>
               <Route
                   path={"/account"}
                   element={isAuth === true ? <Account/> : <Login/>}

@@ -10,7 +10,7 @@ import {validateEmail} from "../../helpers/validateEmail.js";
 import { useState} from "react";
 
 
-const Home = ({registrationSucces}) => {
+const Home = ({reg}) => {
     const [newsletterEmail, setNewsletterEmail] = useState("");
     const [errorEmail, toggleErrorEmail] = useState(false);
 
@@ -31,8 +31,8 @@ const Home = ({registrationSucces}) => {
     return (
         <>
             <main className="container">
+                {reg && <p className="loading">Your registration has been succesfull. You can now go back to login.</p>}
                 <article className="home__article-upper">
-                    {registrationSucces && <p>Your registration has been succesfull. You can now go back to login.</p>}
                     <div className="home__div-content">
                         <h1>PHENOMENAL COCKTAIL. PHENOMENAL COMMUNITY.</h1>
                         <h3>From anywhere in the world, <br/> For all cocktail fans here at CocktailTalks</h3>

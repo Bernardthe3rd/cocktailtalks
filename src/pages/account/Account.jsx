@@ -7,19 +7,21 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 const Account = () => {
     const { user } = useContext(AuthContext);
 
-    const [userCocktails, setUserCocktails] = useState(JSON.parse(user.info));
+    // const [userCocktails, setUserCocktails] = useState(JSON.parse(user.info));
     const [cocktailInfo, setCocktailInfo] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
+    const [errorNoCocktails, toggleErrorNoCocktails] = useState(false);
 
 
-    useEffect(() => {//hier komt de array met cocktail ids van de gebruiker
+    useEffect(() => {
         const controller = new AbortController();
 
-        if (JSON.parse(user.info).length > 0) {
-            setUserCocktails(JSON.parse(user.info));
+        let userCocktails = []
+        if (user.info) {
+            userCocktails = JSON.parse(user.info);
         } else {
-            setUserCocktails(userCocktails);
+            toggleErrorNoCocktails(true);
         }
 
         const userCocktailsArray = userCocktails.map(cocktail => cocktail.id);
@@ -46,7 +48,7 @@ const Account = () => {
 
         // return function cleanup() {
         //     controller.abort();
-        // } kijken hoe werkend te krijgen gezien hij direct de fetch cancelled..
+        // }
 
     }, []);
 
@@ -59,6 +61,7 @@ const Account = () => {
         <>
             <main className="container">
                 {loading && <p className="loading">Loading...</p>}
+                {errorNoCocktails && <p className="error">Je hebt op dit moment nog geen cocktails in jouw account staan, ga naar de catalog pagina om er een te favorieten!</p>}
                 {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
                 <div className="container__div">
                     <h2>Your favorites</h2>

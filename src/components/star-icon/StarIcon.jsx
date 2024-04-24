@@ -6,31 +6,27 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 const StarIcon = ({size, style, idCocktail}) => {
     const { user, isAuth } = useContext(AuthContext);
     const token = localStorage.getItem("token");
-    const [fillStar, toggleFillStar] = useState("fill");
-    const [userInfo, setUserInfo] = useState([]);
+    const [fillStar, toggleFillStar] = useState("regular");
+    const [userInfo, setUserInfo] = useState(user.info ? JSON.parse(user.info) : []);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 
     useEffect(() => {
-        if (user !== null) {
-            if (JSON.parse(user.info).length > 0) {
-                setUserInfo(JSON.parse(user.info));
-            } else {
-                setUserInfo(userInfo);
-            }
-
-            let actie = userInfo.find((id) => {
-                return id.id === idCocktail;
+        if (isAuth) {
+            let foundCocktail = userInfo.find((idt) => {
+                return idt.id === idCocktail
             })
-            if (actie) {
-                toggleFillStar("fill");
+
+            if (foundCocktail) {
+                toggleFillStar("fill")
             } else {
-                toggleFillStar("regular");
+                toggleFillStar("regular")
             }
         }
-    }, []);
 
+    },[]);
 
+    console.log(userInfo)
     async function favoriteCocktail(idCocktail) {
         const newItem = { id: idCocktail, feedback: { grade: "" , text: ""} };
         // Update state using functional form of setState
@@ -40,6 +36,7 @@ const StarIcon = ({size, style, idCocktail}) => {
             return item.id === newItem.id;
         })
         toggleLoading(true);
+        console.log(foundItem)
         if (foundItem === undefined) {
             try {
                 // Wait for the state update to complete

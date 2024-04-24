@@ -13,7 +13,7 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
     const token = localStorage.getItem("token");
 
     const [textBtn, toggleTextBtn] = useState("");
-    const [grade, setGrade] = useState("");
+    const [grade, setGrade] = useState("0");
     const [feedback, setFeedback] = useState("");
     const [disable, toggleDisable] = useState(false);
     const [userFeedback, setUserFeedback] = useState(JSON.parse(user.info));
@@ -37,7 +37,12 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
         const rightGrade = getGrade.find((grade) =>{
             return grade !== null;
         })
-        setGrade(rightGrade)
+
+        if (rightGrade) {
+            setGrade(rightGrade)
+        } else {
+            setGrade(grade)
+        }
 
         const getFeedback = userFeedback.map((cocktailText) => {
             if (cocktailText.id === id) {
@@ -96,7 +101,6 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
         }
     }
 
-
     return (
         <article className="product-review__card">
             <span className="product-review__img-wrapper">
@@ -109,8 +113,8 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
                             name="grade"
                             style="product-review__input"
                             disabled={disable}
-                            value={grade}
-                            handleChange={(e) => {setGrade(e.target.value)}}
+                            valueGrade={grade}
+                            handleChange={(e) => setGrade(e.target.value)}
                 />
                 {!checkGrade(grade) && <p>Vul aub een getal in tussen de 0 en 10</p>}
                 <label htmlFor="feedback-are" className="product-review__label">
@@ -134,6 +138,7 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
                 <ButtonFunction type="submit"
                                 text={textBtn}
                                 onClick={handleClick}
+                                disableBtn={!checkGrade(grade)}
                 />
             </div>
         </article>

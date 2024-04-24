@@ -13,6 +13,7 @@ function AuthContextProvider({ children }) {
         status: "pending"
     });
     const navigate = useNavigate();
+    const apiKey = "cocktailtalks:JmnVqzgJyhYDbqyQauOT"
 
     useEffect(() => {
         const storedToken = localStorage.getItem("token");
@@ -77,6 +78,7 @@ function AuthContextProvider({ children }) {
         user: auth.user,
         login,
         logout,
+        apiKey,
     };
 
     return (

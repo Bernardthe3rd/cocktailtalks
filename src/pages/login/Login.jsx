@@ -14,19 +14,42 @@ import Home from "../home/Home.jsx";
 // password = hello123
 //test nog een = goodbye@hello.com
 // password = goodbye123
+//meike@vanderkuip.com
+//Puffy2024!
 
-const Login = () => {
-    const { login } = useContext(AuthContext);
+const Login = ({setReg}) => {
+    const { login, apiKey } = useContext(AuthContext);
     const [errorEmail, setErrorEmail] = useState(false);
     const [errorPassword, setErrorPassword] = useState(false);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
-    const [registered, setRegistered] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [disableBtn, toggleDisableBtn] = useState(null);
     const navigate = useNavigate();
-    const apiKey = "cocktailtalks:JmnVqzgJyhYDbqyQauOT"
+
+    //Handle Email and password validations
+    useEffect(() => {
+        if (!validateEmail(email) && email.length > 0) {
+            setErrorEmail(true);
+        } else {
+            setErrorEmail(false);
+        }
+
+        if (password.length < 8 && password.length > 0) {
+            setErrorPassword(true);
+        } else  {
+            setErrorPassword(false);
+        }
+    }, [email,password]);
+
+    useEffect(() => {
+        if (errorEmail || errorPassword) {
+            toggleDisableBtn(true);
+        } else {
+            toggleDisableBtn(false);
+        }
+    }, [errorEmail, errorPassword]);
 
     //Handle login
     async function handleLogin (e) {
@@ -50,38 +73,10 @@ const Login = () => {
         }
     }
 
-    useEffect(() => {
-        if (!validateEmail(email) && email.length > 0) {
-            setErrorEmail(true);
-            console.error("verkeerde email");
-        } else {
-            setErrorEmail(false);
-            console.log("juiste email");
-        }
-
-        if (password.length < 8 && password.length > 0) {
-            setErrorPassword(true);
-            console.error("ww te kort");
-        } else  {
-            setErrorPassword(false);
-            toggleDisableBtn(false);
-            console.log("prima ww");
-        }
-    }, [email,password]);
-
-    useEffect(() => {
-        if (errorEmail || errorPassword) {
-            toggleDisableBtn(true);
-        } else {
-            toggleDisableBtn(false);
-        }
-    }, [errorEmail, errorPassword]);
-
-
     //Handle Registration
     async function handleRegister (e) {
         e.preventDefault()
-        setRegistered(false);
+        setReg(false);
         toggleLoading(true);
         if (!errorEmail && !errorPassword && email.length !== 0 && password.length !== 0) {
             try {
@@ -90,7 +85,7 @@ const Login = () => {
                     username: email,
                     email: email,
                     password: password,
-                    info: "",
+                    info: "", //json.parse error oplossen.
                     authorities: [
                         {
                             authority: "USER"
@@ -104,7 +99,7 @@ const Login = () => {
                 })
                 console.log(response);
                 console.log("Gebruiker is succesvol geregistreerd");
-                setRegistered(true);
+                setReg(true);
                 toggleLoading(false);
             } catch (e) {
                 console.error(e);
@@ -114,9 +109,7 @@ const Login = () => {
             navigate("/");
         }
     }
-    //navigate to een voor login en register
 
-    //later bij authenticatie validate email en password ism helpers
     return (
         <main className="container">
             {loading && <p className="loading">Loading...</p>}
@@ -155,7 +148,6 @@ const Login = () => {
                 </form>
             </div>
             }
-            {registered && <Home registrationSucces={registered}/>}
         </main>
     );
 };
