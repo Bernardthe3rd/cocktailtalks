@@ -99,6 +99,7 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
         } catch (e) {
             console.error(e);
         }
+        window.location.reload();
     }
 
     return (
@@ -113,7 +114,7 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
                             name="grade"
                             style="product-review__input"
                             disabled={disable}
-                            valueGrade={grade}
+                            valueField={grade}
                             handleChange={(e) => setGrade(e.target.value)}
                 />
                 {!checkGrade(grade) && <p>Vul aub een getal in tussen de 0 en 10</p>}

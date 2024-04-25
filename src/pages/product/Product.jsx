@@ -13,11 +13,14 @@ const Product = () => {
     const [ingredientsArray, setIngredientsArray] = useState([]);
 
     useEffect(() => {
+        const controller = new AbortController();
         async function fetchCocktails () {
             toggleLoading(true);
             try {
                 toggleError(false);
-                const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+                const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`, {
+                    signal: controller.signal,
+                })
                 setCocktailInfo(response.data.drinks);
                 setIngredientsArray (
                     [response.data.drinks[0].strIngredient1
@@ -42,6 +45,13 @@ const Product = () => {
             toggleLoading(false);
         }
         void fetchCocktails();
+
+        return function cleanup() {
+            if (controller.signal.aborted) {
+                controller.abort();
+            }
+        }
+
     }, [id]);
 
     return (

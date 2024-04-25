@@ -7,7 +7,7 @@ import InputField from "../../components/input-field/InputField.jsx";
 
 import {validateEmail} from "../../helpers/validateEmail.js";
 
-import { useState} from "react";
+import {useState} from "react";
 
 
 const Home = ({reg}) => {
@@ -49,7 +49,7 @@ const Home = ({reg}) => {
                     <InputField name="email newsletter"
                                 type="text"
                                 placeholder="Email"
-                                value={newsletterEmail}
+                                valueField={newsletterEmail}
                                 handleChange={(e) => setNewsletterEmail(e.target.value)}
                     />
                     {errorEmail && <p>Unfortunately the subscribing went wrong. Please fill in a valid email-address and try again.</p>}

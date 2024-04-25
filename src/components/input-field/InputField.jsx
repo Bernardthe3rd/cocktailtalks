@@ -1,6 +1,6 @@
 import "./input-field.css"
 
-const InputField = ({name, label, placeholder, id, type, handleChange, style, valueGrade, disabled}) => {
+const InputField = ({name, label, placeholder, id, type, handleChange, style, valueField, disabled}) => {
     return (
         <div className={style ? "" : "label"}>
             <label htmlFor={id}>{label}</label>
@@ -10,7 +10,7 @@ const InputField = ({name, label, placeholder, id, type, handleChange, style, va
                    id={id}
                    name={name}
                    onChange={handleChange}
-                   value={valueGrade}
+                   value={valueField}
                    disabled={disabled}
             />
         </div>

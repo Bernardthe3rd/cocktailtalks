@@ -8,6 +8,10 @@
     background-color: var(--btn-clr-secondary);
 }
 
+.button-function:disabled {
+    opacity: 0.5;
+}
+
 .button-function:hover,
 .button-push:hover {
     cursor: pointer;

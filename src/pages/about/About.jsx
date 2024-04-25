@@ -1,10 +1,43 @@
 import homeimg from "/src/assets/imgHomepage.jpg";
 import "./about.css"
 import ButtonLink from "../../components/button-link/ButtonLink.jsx";
+import InputField from "../../components/input-field/InputField.jsx";
+import ButtonFunction from "../../components/button-function/ButtonFunction.jsx";
+import {useEffect, useState} from "react";
+import {validateEmail} from "../../helpers/validateEmail.js";
 
 const About = () => {
+    const [disableBtn, toggleDisableBtn] = useState(false);
+    const [contactEmail, setContactEmail] = useState("");
+    const [subject, setSubject] = useState("");
+    const [message, setMessage] = useState("");
+    const [sendSucces, setSendSucces] = useState(false);
+
+    useEffect(() => {
+        if (validateEmail(contactEmail)) {
+            toggleDisableBtn(false)
+        } else {
+            toggleDisableBtn(true);
+        }
+    }, [contactEmail]);
+
+    function handleSubmit (e) {
+        e.preventDefault()
+        console.log(
+            `email: ${contactEmail}\n
+            subject: ${subject}\n
+            message: ${message}\n`
+        )
+        setContactEmail("");
+        setSubject("");
+        setMessage("");
+        setSendSucces(true);
+        window.scrollTo(0, 0);
+    }
+
     return (
         <main className="container">
+            {sendSucces && <p className="succes">The contact form has been send succesfully.</p>}
             <div className="about__div-container">
                 <div className="about__div-box">
                     <h3>Our story - How CocktailTalk started</h3>
@@ -29,6 +62,39 @@ const About = () => {
                     <img src={homeimg} alt="cocktail glasses"/>
                     <img src={homeimg} alt="cocktail glasses"/>
                 </span>
+            </div>
+            <div className="container__div">
+                <h3>Get in touch!</h3>
+                <form className="about__form" onSubmit={handleSubmit}>
+                    <InputField type="text"
+                                label="Email:"
+                                name="email"
+                                id="field-email-contact"
+                                placeholder="email"
+                                valueField={contactEmail}
+                                handleChange={(e) => setContactEmail(e.target.value)}
+                    />
+                    <InputField type="text"
+                                label="Subject:"
+                                name="subject"
+                                id="field-subject"
+                                placeholder="subject"
+                                valueField={subject}
+                                handleChange={(e) => setSubject(e.target.value)}
+                    />
+                    <label htmlFor="about-textarea" className="product-review__label">
+                        Where do you want to talk about?
+                        <textarea name="about-text"
+                                  id="about-textarea"
+                                  cols="50" rows="10"
+                                  placeholder="Write your text here"
+                                  className="about__textarea"
+                                  value={message}
+                                  onChange={(e) => setMessage(e.target.value)}
+                        />
+                    </label>
+                    <ButtonFunction type="submit" text="send" disableBtn={disableBtn} />
+                </form>
             </div>
         </main>
     );

@@ -7,7 +7,7 @@ const StarIcon = ({size, style, idCocktail}) => {
     const { user, isAuth } = useContext(AuthContext);
     const token = localStorage.getItem("token");
     const [fillStar, toggleFillStar] = useState("regular");
-    const [userInfo, setUserInfo] = useState(user.info ? JSON.parse(user.info) : []);
+    const [userInfo, setUserInfo] = useState(user ? JSON.parse(user.info) : []);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 
@@ -23,10 +23,9 @@ const StarIcon = ({size, style, idCocktail}) => {
                 toggleFillStar("regular")
             }
         }
-
     },[]);
 
-    console.log(userInfo)
+
     async function favoriteCocktail(idCocktail) {
         const newItem = { id: idCocktail, feedback: { grade: "" , text: ""} };
         // Update state using functional form of setState
@@ -36,7 +35,7 @@ const StarIcon = ({size, style, idCocktail}) => {
             return item.id === newItem.id;
         })
         toggleLoading(true);
-        console.log(foundItem)
+
         if (foundItem === undefined) {
             try {
                 // Wait for the state update to complete
@@ -86,6 +85,7 @@ const StarIcon = ({size, style, idCocktail}) => {
                 toggleError(true);
             }
         }
+        window.location.reload();
     }
 
     return (

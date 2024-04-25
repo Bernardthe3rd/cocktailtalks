@@ -16,6 +16,7 @@ const Catalog = () => {
 
     useEffect(() => {
         const controller = new AbortController();
+
         async function fetchCocktails () {
             toggleLoading(true);
             try {
@@ -35,10 +36,11 @@ const Catalog = () => {
         void fetchCocktails();
 
         return function cleanup() {
-            controller.abort();
+            if (controller.signal.aborted) {
+                controller.abort();
+            }
         }
     }, []);
-
 
     function showMoreCocktails () {
         setEndingCocktail(endingCocktail+6);
