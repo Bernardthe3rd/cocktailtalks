@@ -37,7 +37,7 @@ const Login = ({setReg}) => {
     }, [email,password]);
 
     useEffect(() => {
-        if (errorEmail || errorPassword) {
+        if (errorEmail || errorPassword || email.length === 0 || password.length === 0) {
             toggleDisableBtn(true);
         } else {
             toggleDisableBtn(false);
@@ -72,16 +72,16 @@ const Login = ({setReg}) => {
     //Handle Registration
     async function handleRegister (e) {
         e.preventDefault()
+        if (!errorEmail && !errorPassword && email.length !== 0 && password.length !== 0) {
         setReg(false);
         toggleLoading(true);
-        if (!errorEmail && !errorPassword && email.length !== 0 && password.length !== 0) {
             try {
                 toggleError(false);
                 const response = await axios.post("https://api.datavortex.nl/cocktailtalks/users", {
                     username: email,
                     email: email,
                     password: password,
-                    info: "", //json.parse error oplossen.
+                    info: "",
                     authorities: [
                         {
                             authority: "USER"
@@ -113,6 +113,8 @@ const Login = ({setReg}) => {
             <div className="container__div">
                 <h2>Welcome!</h2>
                 <h3>Ready to explore some cocktails?</h3>
+                <h4>Have an account? Fill in the right details and click log in.</h4>
+                <h4>No account yet? Fill in some new details and clik on register.</h4>
                 <form className="login__form">
                     <InputField label="Email:"
                                 id="field-email"

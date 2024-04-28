@@ -13,16 +13,19 @@ import {useState} from "react";
 const Home = ({reg}) => {
     const [newsletterEmail, setNewsletterEmail] = useState("");
     const [errorEmail, toggleErrorEmail] = useState(false);
+    const [subscribeSucces, toggleSubscribeSucces] = useState(false);
 
     function handleSubmit (e) {
         e.preventDefault();
         if (validateEmail(newsletterEmail)) {
             console.log(newsletterEmail);
             toggleErrorEmail(false);
+            toggleSubscribeSucces(true);
             setNewsletterEmail("");
         } else {
             console.log(newsletterEmail);
             toggleErrorEmail(true);
+            toggleSubscribeSucces(false);
             setNewsletterEmail("");
         }
     }
@@ -31,7 +34,7 @@ const Home = ({reg}) => {
     return (
         <>
             <main className="container">
-                {reg && <p className="loading">Your registration has been succesfull. You can now go back to login.</p>}
+                {reg && <p className="loading">Your registration has been successful. You can now go back to login.</p>}
                 <article className="home__article-upper">
                     <div className="home__div-content">
                         <h1>PHENOMENAL COCKTAIL. PHENOMENAL COMMUNITY.</h1>
@@ -52,6 +55,7 @@ const Home = ({reg}) => {
                                 valueField={newsletterEmail}
                                 handleChange={(e) => setNewsletterEmail(e.target.value)}
                     />
+                    {subscribeSucces && <p>Thank you for subscribing. Some wonderful news is heading your way!</p>}
                     {errorEmail && <p>Unfortunately the subscribing went wrong. Please fill in a valid email-address and try again.</p>}
                     <ButtonFunction type="button"
                                     text="subscribe"

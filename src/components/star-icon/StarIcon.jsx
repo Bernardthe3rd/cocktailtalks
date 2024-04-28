@@ -7,7 +7,7 @@ const StarIcon = ({size, style, idCocktail}) => {
     const { user, isAuth } = useContext(AuthContext);
     const token = localStorage.getItem("token");
     const [fillStar, toggleFillStar] = useState("regular");
-    const [userInfo, setUserInfo] = useState(user ? JSON.parse(user.info) : []);
+    const [userInfo, setUserInfo] = useState(user?.info ? JSON.parse(user.info) : []);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 

@@ -57,11 +57,9 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
         })
         setFeedback(rightText);
 
-
     }, [disable]);
 
     async function handleClick () {
-        toggleDisable(!disable);
 
         const dataToUpdate = {
             id: id,
@@ -99,6 +97,7 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
         } catch (e) {
             console.error(e);
         }
+        toggleDisable(!disable);
         window.location.reload();
     }
 

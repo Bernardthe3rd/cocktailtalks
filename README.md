@@ -18,6 +18,8 @@ Vanuit die gedachte is CocktailTalks ontstaan. Hierbij een greep uit de vragen m
 ## Eindresultaat.
 Hierbij een screenshot van een gevulde account pagina met feedback.
 
+![Eindresultaat](src/assets/screenshot_account_page.png)
+
 ## Benodigdheden.
 Om deze applicatie te gebruiken zijn de volgende zaken nodig.
 1. Link naar github repository: https://github.com/Bernardthe3rd/cocktailtalks (mocht je hem willen opslaan als link)
