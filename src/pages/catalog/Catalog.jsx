@@ -66,6 +66,7 @@ const Catalog = () => {
                     </ul>
                     <ButtonFunction type="button"
                                     text="load more"
+                                    style="button-function"
                                     onClick={showMoreCocktails}
                     />
                 </div>

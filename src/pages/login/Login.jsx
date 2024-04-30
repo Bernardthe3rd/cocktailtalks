@@ -3,12 +3,14 @@ import ButtonFunction from "../../components/button-function/ButtonFunction.jsx"
 import InputField from "../../components/input-field/InputField.jsx";
 import axios from "axios";
 import {useContext, useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import {validateEmail} from "../../helpers/validateEmail.js";
+import {useNavigate} from "react-router-dom";
 
 //meike@vanderkuip.com
 //Puffy2024!
+//hello4@hello.com
+//hello789
 
 const Login = ({setReg}) => {
     const { login, apiKey } = useContext(AuthContext);
@@ -20,6 +22,12 @@ const Login = ({setReg}) => {
     const [password, setPassword] = useState("");
     const [disableBtn, toggleDisableBtn] = useState(true);
     const navigate = useNavigate();
+
+    const [showLogin, toggleShowLogin] = useState(true);
+    const [showRegister, toggleShowRegister] = useState(false);
+    const [styleLogin, setStyleLogin] = useState("button-function__login-active");
+    const [styleRegister, setStyleRegister] = useState("button-function__login-default");
+
 
     //Handle Email and password validations
     useEffect(() => {
@@ -106,6 +114,20 @@ const Login = ({setReg}) => {
         }
     }
 
+    function handleShowLogin () {
+        toggleShowLogin(true);
+        toggleShowRegister(false);
+        setStyleLogin("button-function__login-active");
+        setStyleRegister("button-function__login-default")
+    }
+
+    function handleShowRegister () {
+        toggleShowRegister(true);
+        toggleShowLogin(false);
+        setStyleLogin("button-function__login-default")
+        setStyleRegister("button-function__login-active")
+    }
+
     return (
         <main className="container">
             {loading && <p className="loading">Loading...</p>}
@@ -113,10 +135,12 @@ const Login = ({setReg}) => {
             <div className="container__div">
                 <h2>Welcome!</h2>
                 <h3>Ready to explore some cocktails?</h3>
-                <h4>Have an account? Fill in the right details and click log in.</h4>
-                <h4>No account yet? Fill in some new details and clik on register.</h4>
                 <form className="login__form">
-                    <InputField label="Email:"
+                    <div className="login__div">
+                        <ButtonFunction type="button" text="login" style={styleLogin} onClick={handleShowLogin}/>
+                        <ButtonFunction type="button" text="register" style={styleRegister} onClick={handleShowRegister} />
+                    </div>
+                    <InputField label={showRegister ? "New Email:" : "Email:"}
                                 id="field-email"
                                 name="email"
                                 type="text"
@@ -124,7 +148,7 @@ const Login = ({setReg}) => {
                                 handleChange={(e) => setEmail(e.target.value)}
                     />
                     {errorEmail &&  <p>Fill in a valid email address.</p>}
-                    <InputField label="Password:"
+                    <InputField label={showRegister ? "New Password:" : "Password:"}
                                 id="field-password"
                                 name="password"
                                 type="password"
@@ -132,19 +156,25 @@ const Login = ({setReg}) => {
                                 handleChange={(e) => setPassword(e.target.value)}
                     />
                     {errorPassword && <p>Your password was to short, must be over 8 characters.</p>}
-                    <a href="mailto:benjaminmeijer1@gmail.com">Forgot password?</a>
+                    {showLogin && <a href="mailto:benjaminmeijer1@gmail.com">Forgot password?</a>}
                 </form>
-                <div className="login__div">
+                <div>
+                    {showLogin &&
                     <ButtonFunction type="submit"
                                     text="log in"
+                                    style="button-function"
                                     disableBtn={disableBtn}
                                     onClick={handleLogin}
                     />
+                    }
+                    {showRegister &&
                     <ButtonFunction type="submit"
                                     text="register"
+                                    style="button-function"
                                     disableBtn={disableBtn}
                                     onClick={handleRegister}
                     />
+                    }
                 </div>
             </div>
             }

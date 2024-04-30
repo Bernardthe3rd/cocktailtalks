@@ -137,6 +137,7 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
                 />
                 <ButtonFunction type="submit"
                                 text={textBtn}
+                                style="button-function"
                                 onClick={handleClick}
                                 disableBtn={!checkGrade(grade)}
                 />

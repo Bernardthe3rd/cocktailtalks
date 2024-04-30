@@ -59,6 +59,7 @@ const Home = ({reg}) => {
                     {errorEmail && <p>Unfortunately the subscribing went wrong. Please fill in a valid email-address and try again.</p>}
                     <ButtonFunction type="button"
                                     text="subscribe"
+                                    style="button-function"
                                     onClick={handleSubmit}
                     />
                 </article>

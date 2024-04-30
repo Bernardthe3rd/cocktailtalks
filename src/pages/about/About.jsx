@@ -3,10 +3,12 @@ import "./about.css"
 import ButtonLink from "../../components/button-link/ButtonLink.jsx";
 import InputField from "../../components/input-field/InputField.jsx";
 import ButtonFunction from "../../components/button-function/ButtonFunction.jsx";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {validateEmail} from "../../helpers/validateEmail.js";
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 const About = () => {
+    const {isAuth} = useContext(AuthContext);
     const [disableBtn, toggleDisableBtn] = useState(false);
     const [contactEmail, setContactEmail] = useState("");
     const [subject, setSubject] = useState("");
@@ -55,7 +57,7 @@ const About = () => {
                         <p>Because here at CocktailTalks we welcome every cocktail enthousiast and love to share our passion, ideas and feedback.</p>
                         <p>Are you ready, really ready to explore so many cocktails you every dreamed of?</p>
                         <p>Got excited yet? Click on the button below and come join our CocktailTastic Community!</p>
-                        <ButtonLink path="/login" text="join us"/>
+                        <ButtonLink path={isAuth ? "/account" : "/login"} text="join us"/>
                     </article>
                 </div>
                 <span className="about__img-wrapper">
@@ -93,7 +95,11 @@ const About = () => {
                                   onChange={(e) => setMessage(e.target.value)}
                         />
                     </label>
-                    <ButtonFunction type="submit" text="send" disableBtn={disableBtn} />
+                    <ButtonFunction type="submit"
+                                    text="send"
+                                    style="button-function"
+                                    disableBtn={disableBtn}
+                    />
                 </form>
             </div>
         </main>

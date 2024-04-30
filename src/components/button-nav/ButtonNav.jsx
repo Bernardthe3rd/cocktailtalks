@@ -4,7 +4,7 @@ import "./button-nav.css"
 const ButtonNav = ({path, text}) => {
     return (
         <li>
-            <NavLink to={path} className={({isActive}) => isActive ? "button-nav-active" : "button-nav-default"}>
+            <NavLink to={path} className={({isActive}) => isActive ? "button-nav-active" : "button-nav-default"} >
                 {text}
             </NavLink>
         </li>
