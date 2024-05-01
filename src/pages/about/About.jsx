@@ -1,4 +1,4 @@
-import homeimg from "/src/assets/imgHomepage.jpg";
+import aboutImg from "/src/assets/img_home.jpg";
 import "./about.css"
 import ButtonLink from "../../components/button-link/ButtonLink.jsx";
 import InputField from "../../components/input-field/InputField.jsx";
@@ -62,8 +62,8 @@ const About = () => {
                     </article>
                 </div>
                 <span className="about__img-wrapper">
-                    <img src={homeimg} alt="cocktail glasses"/>
-                    <img src={homeimg} alt="cocktail glasses"/>
+                    <img src={aboutImg} alt="cocktail glasses"/>
+                    <img src={aboutImg} alt="cocktail glasses"/>
                 </span>
             </div>
             <div className="container__div">

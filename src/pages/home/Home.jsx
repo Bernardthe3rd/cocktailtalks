@@ -1,4 +1,4 @@
-import homeimg from "/src/assets/imgHomepage.jpg";
+import homeImg from "/src/assets/img_home.jpg";
 import "./home.css"
 
 import ButtonLink from "../../components/button-link/ButtonLink.jsx";
@@ -45,7 +45,7 @@ const Home = ({reg}) => {
                         />
                     </div>
                     <span className="home__img-wrapper">
-                        <img src={homeimg} alt="cocktail glasses"/>
+                        <img src={homeImg} alt="cocktail glasses"/>
                     </span>
                 </article>
                 <article className="home__article-bottom">

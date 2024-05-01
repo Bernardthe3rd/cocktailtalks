@@ -1,4 +1,4 @@
-import logo from "../../assets/Logo.png";
+import logo from "../../assets/logo.png";
 import "./navbar.css"
 import ButtonNav from "../button-nav/ButtonNav.jsx";
 import {Martini} from "@phosphor-icons/react";
