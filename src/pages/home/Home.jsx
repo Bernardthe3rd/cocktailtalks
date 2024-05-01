@@ -15,6 +15,7 @@ const Home = ({reg}) => {
     const [errorEmail, toggleErrorEmail] = useState(false);
     const [subscribeSucces, toggleSubscribeSucces] = useState(false);
 
+    //onClick function to save email from newsletter subscription.
     function handleSubmit (e) {
         e.preventDefault();
         if (validateEmail(newsletterEmail)) {

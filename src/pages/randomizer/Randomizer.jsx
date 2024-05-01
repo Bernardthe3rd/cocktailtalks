@@ -11,6 +11,7 @@ const Randomizer = () => {
     const [error, toggleError] = useState(false);
     const [ingredientsArray, setIngredientsArray] = useState([]);
 
+    //onClick fetch a random cocktail and show some information about it.
     async function fetchRandomCocktail () {
         toggleLoading(true);
 
@@ -44,7 +45,7 @@ const Randomizer = () => {
     return (
         <>
             <main className="container">
-                {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
+                {error ? <p className="error">Something went wrong fetching a random cocktail, please return home by clicking the logo and try again later.</p> :
                 <div className="container__div">
                     <h2>Push to get inspired!</h2>
                     <ButtonFunction type="button" text="PUSH" style="button-push" onClick={fetchRandomCocktail}/>

@@ -13,6 +13,7 @@ const Catalog = () => {
 
     const firstCocktails = cocktails.slice(0,endingCocktail);
 
+    //Automatically fetch the first six cocktails on mount.
     useEffect(() => {
         const controller = new AbortController();
 
@@ -41,6 +42,7 @@ const Catalog = () => {
         }
     }, []);
 
+    //by Onclick fetch six more cocktails.
     function showMoreCocktails () {
         setEndingCocktail(endingCocktail+6);
     }
@@ -50,7 +52,7 @@ const Catalog = () => {
         <>
             <main className="container">
                 {loading && <p className="loading">Loading...</p>}
-                {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
+                {error ? <p className="error">Something went wrong fetching the data, please return home by clicking to logo and try again later.</p> :
                 <div className="container__div">
                     <h2>All the cocktails in the world</h2>
                     <ul className="products">

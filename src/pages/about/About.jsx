@@ -23,6 +23,7 @@ const About = () => {
         }
     }, [contactEmail]);
 
+    //function to save the details from the contact form.
     function handleSubmit (e) {
         e.preventDefault()
         console.log(

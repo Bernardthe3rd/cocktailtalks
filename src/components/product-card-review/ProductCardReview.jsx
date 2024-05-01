@@ -12,11 +12,11 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
     const { user } = useContext(AuthContext);
     const token = localStorage.getItem("token");
 
+    const [userFeedback, setUserFeedback] = useState(JSON.parse(user.info));
     const [textBtn, toggleTextBtn] = useState("");
     const [grade, setGrade] = useState("0");
     const [feedback, setFeedback] = useState("");
     const [disable, toggleDisable] = useState(false);
-    const [userFeedback, setUserFeedback] = useState(JSON.parse(user.info));
 
 
     useEffect(() => {
@@ -26,9 +26,9 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
             toggleTextBtn("save");
         }
 
-        const getGrade = userFeedback.map((cocktailfeed) => {
-            if (cocktailfeed.id === id) {
-                return cocktailfeed.feedback.grade;
+        const getGrade = userFeedback.map((cocktailGrade) => {
+            if (cocktailGrade.id === id) {
+                return cocktailGrade.feedback.grade;
             } else {
                 return null;
             }
@@ -59,8 +59,9 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
 
     }, [disable]);
 
-    async function handleClick () {
 
+    // async function to save feedback from the user in userInfo
+    async function handleClick () {
         const dataToUpdate = {
             id: id,
             feedback: {
@@ -116,7 +117,7 @@ const ProductCardReview = ({source, alt, id, nameProduct}) => {
                             valueField={grade}
                             handleChange={(e) => setGrade(e.target.value)}
                 />
-                {!checkGrade(grade) && <p>Vul aub een getal in tussen de 0 en 10</p>}
+                {!checkGrade(grade) && <p>Please fill in a number between 0 and 10</p>}
                 <label htmlFor="feedback-are" className="product-review__label">
                     Feedback for {nameProduct}:
                     <textarea name="feedback"

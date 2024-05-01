@@ -14,14 +14,16 @@ import {useNavigate} from "react-router-dom";
 
 const Login = ({setReg}) => {
     const { login, apiKey } = useContext(AuthContext);
+    const navigate = useNavigate();
+
     const [errorEmail, setErrorEmail] = useState(false);
     const [errorPassword, setErrorPassword] = useState(false);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
+    const [disableBtn, toggleDisableBtn] = useState(true);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [disableBtn, toggleDisableBtn] = useState(true);
-    const navigate = useNavigate();
 
     const [showLogin, toggleShowLogin] = useState(true);
     const [showRegister, toggleShowRegister] = useState(false);
@@ -29,7 +31,7 @@ const Login = ({setReg}) => {
     const [styleRegister, setStyleRegister] = useState("button-function__login-default");
 
 
-    //Handle Email and password validations
+    //Handle Email and password validations.
     useEffect(() => {
         if (!validateEmail(email) && email.length > 0) {
             setErrorEmail(true);
@@ -44,6 +46,7 @@ const Login = ({setReg}) => {
         }
     }, [email,password]);
 
+    //Keep buttons disabled if above validations are not valid.
     useEffect(() => {
         if (errorEmail || errorPassword || email.length === 0 || password.length === 0) {
             toggleDisableBtn(true);
@@ -53,7 +56,7 @@ const Login = ({setReg}) => {
     }, [errorEmail, errorPassword]);
 
 
-    //Handle login
+    //Handle login onClick the login button.
     async function handleLogin (e) {
         e.preventDefault();
         if (!errorEmail && !errorPassword && email.length !== 0 && password.length !== 0) {
@@ -77,7 +80,7 @@ const Login = ({setReg}) => {
         }
     }
 
-    //Handle Registration
+    //Handle Registration onClick the register button.
     async function handleRegister (e) {
         e.preventDefault()
         if (!errorEmail && !errorPassword && email.length !== 0 && password.length !== 0) {
@@ -114,6 +117,7 @@ const Login = ({setReg}) => {
         }
     }
 
+    //onClick to show the right items for login.
     function handleShowLogin () {
         toggleShowLogin(true);
         toggleShowRegister(false);
@@ -121,6 +125,7 @@ const Login = ({setReg}) => {
         setStyleRegister("button-function__login-default")
     }
 
+    //onClick to show the right items for register.
     function handleShowRegister () {
         toggleShowRegister(true);
         toggleShowLogin(false);
@@ -131,7 +136,7 @@ const Login = ({setReg}) => {
     return (
         <main className="container">
             {loading && <p className="loading">Loading...</p>}
-            {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
+            {error ? <p className="error">You filled in the wrong details, please click on the logo to return home and try again.</p> :
             <div className="container__div">
                 <h2>Welcome!</h2>
                 <h3>Ready to explore some cocktails?</h3>

@@ -25,7 +25,7 @@ const StarIcon = ({size, style, idCocktail}) => {
         }
     },[]);
 
-
+    //function onClick to add a cocktail as favorite to userInfo
     async function favoriteCocktail(idCocktail) {
         const newItem = { id: idCocktail, feedback: { grade: "" , text: ""} };
         // Update state using functional form of setState

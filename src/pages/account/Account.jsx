@@ -12,7 +12,7 @@ const Account = () => {
     const [error, toggleError] = useState(false);
     const [errorNoCocktails, toggleErrorNoCocktails] = useState(false);
 
-
+    //Automatically fetch the favorite cocktails from the user on mount.
     useEffect(() => {
         const controller = new AbortController();
 
@@ -65,7 +65,7 @@ const Account = () => {
             <main className="container">
                 {loading && <p className="loading">Loading...</p>}
                 {errorNoCocktails && <p className="error">Je hebt op dit moment nog geen cocktails in jouw account staan, ga naar de catalog pagina om er een te favorieten!</p>}
-                {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
+                {error ? <p className="error">Something went wrong fetching the cocktails, click on the logo to return home and try again later.</p> :
                 <div className="container__div">
                     <h2>Your favorites</h2>
                     {cocktailInfoForUser.map((cocktail) => {

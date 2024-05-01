@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="footer__div">
                 <p> Made by Berny</p>
                 <Link to="/about" className="footer__link">contact us</Link>
-                {isAuth && <ButtonFunction type="submit" text="logout" style="button-function" onClick={logout} />}
+                {isAuth && <ButtonFunction type="submit" text="log out" style="button-function" onClick={logout} />}
             </div>
         </footer>
     );

@@ -12,6 +12,7 @@ const Product = () => {
     const [error, toggleError] = useState(false);
     const [ingredientsArray, setIngredientsArray] = useState([]);
 
+    //Automatically fetch the right information from the selected product in the catalog page on mount.
     useEffect(() => {
         const controller = new AbortController();
         async function fetchCocktails () {
@@ -57,7 +58,7 @@ const Product = () => {
     return (
         <>
             {loading && <p className="loading">Loading...</p>}
-            {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
+            {error ? <p className="error">Something went wrong fetching the right cocktail for you, please return home by clicking the logo and try again later.</p> :
             <main className="container">
                     {cocktailInfo.map((cocktail) => {
                         return <div key={cocktail.idDrink} className="container__div">

@@ -1,6 +1,7 @@
 import ButtonLink from "../../components/button-link/ButtonLink.jsx";
 
 const NotFound = () => {
+
     return (
         <main className="container">
             <div className="container__div">
