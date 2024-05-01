@@ -1,3 +1,4 @@
+/*Start styling upper about page*/
 .about__div-container {
     padding: 50px;
     background-color: var(--background-clr-first);
@@ -11,7 +12,7 @@
 
 }
 
-.about__div-box {
+.about__div-content-box {
     max-width: 800px;
 
     display: flex;
@@ -42,7 +43,9 @@
     display: flex;
     flex-direction: column;
 }
+/*End styling upper page*/
 
+/*Start styling contact form*/
 .about__form {
     padding-block: 20px;
 
@@ -60,6 +63,7 @@
     padding: 25px 25px;
     min-width: 800px;
 }
+/*End styling contact form*/
 
 @media screen and (max-width: 1200px) {
     .about__div-container {

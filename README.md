@@ -14,7 +14,7 @@ En naar mijn mening bestaat er nog geen mooie oplossing waarbij je alle antwoord
 Vanuit die gedachte is CocktailTalks ontstaan. Hierbij een greep uit de vragen met daarbij een functionaliteit die een vraag beantwoord:
 1. Als je niet zo goed weet welke cocktail je nu eens zou moeten proberen, dan bied de Randomizer pagina de oplossing. Deze genereert met een druk op de knop een leuk voorstel.
 2. Benieuwd naar welke cocktails er eigenlijk zijn. Daarvoor is de cataloguspagina, deze pagina biedt een overzicht naar een groot aanbod in cocktails.
-3. Wil je toch je favoriete cocktails bijhouden en hierover feedback bijschrijven. Klik dan op het sterretje bij je gekozen cocktail en die wordt dan toegevoegd aan je account. Op je account pagina kan je vervolgens feedback schrijven en opslaan.
+3. Wil je toch je favoriete cocktails bijhouden en hierover feedback schrijven. Klik dan op het sterretje bij je gekozen cocktail, deze wordt dan toegevoegd aan je account. Op je account pagina kan je vervolgens feedback schrijven en opslaan.
 
 ## Eindresultaat
 #### Hierbij een screenshot van de Randomizer pagina (nadat er op de Push button is geklikt):
@@ -33,16 +33,19 @@ Vanuit die gedachte is CocktailTalks ontstaan. Hierbij een greep uit de vragen m
 
 ## Benodigdheden.
 Om deze applicatie te gebruiken zijn de volgende zaken nodig. 
-- Github project: https://github.com/Bernardthe3rd/cocktailtalks
-- Basis URI voor API requests: https://api.datavortex.nl/cocktailtalks
+- Handige links:
+  - Github project: https://github.com/Bernardthe3rd/cocktailtalks
+  - Cocktail API = https://www.thecocktaildb.com/api.php
+  - Novi backend = https://novi.datavortex.nl
+  - Basis URI voor API requests: https://api.datavortex.nl/cocktailtalks
+  - Node.js = https://nodejs.org/en/download
 - API key = cocktailtalks:JmnVqzgJyhYDbqyQauOT 
-- Node.js 
-- Runtime enviroment: Google Chrome 
+- Google Chrome als runtime environment. 
 - Gebruikte (npm) dependencies:
    1. _**Axios**_, zorgt ervoor dat je diverse requests richting de cocktail API kan doen. Denk aan GET, PUT en POST. 
    2. _**react-router-dom**_, zorgt er in deze applicatie voor dat routing toegepast kan worden. M.a.w. dat het navigeren door de applicatie op een logische manier gebeurd.
-   3. _**jwt-decode**_, gebruik je om de originele token van een gebruiker te decoderen. Om deze vervolgens te gebruiken om bijvoorbeeld gebruikersinfo op te halen in een GET request.
-   4. _**@phosphor-icons/react**_, is een icon package. De ster icon komt hiervandaan en nog een ander icoon, als je die kan vinden!
+   3. _**jwt-decode**_, gebruik je om de originele token van een gebruiker te decoderen. Om deze vervolgens te gebruiken om bijvoorbeeld gebruikersinfo op te halen via een GET request.
+   4. _**@phosphor-icons/react**_, is een icon package. De ster icon komt hiervandaan en nog een ander icon, als je die kan vinden!
 - Inloggegevens van al bestaande accounts:
    1. username/email = benjaminmeijer1@gmail.com , password: BenjaminMeijer
    2. username/email = hello@hello.com , password: hello123
@@ -63,24 +66,31 @@ npm -v
 ```
 Als hier een versienummer, bijvoorbeeld 6.4.1, uitkomt dan is NPM aanwezig. (Dit kan ook een versienummer hoger zijn)
 
-**_Mocht een van beide niet aanwezig zijn dan is node niet (juist) geïnstalleerd. Zoek node.js in je browser op en download node.js._**
+**_Mocht een van beide niet aanwezig zijn dan is node niet (juist) geïnstalleerd. Volg dan de node.js URL bij benodigdheden en download/installeer node.js voor je apparaat._**
 
 ## Applicatie starten
-Zijn bovenstaande stappen gelukt, installeer dan alle dependencies door het volgende commando in de terminal te runnen:
+Als bovenstaande stappen zijn gelukt, installeer dan alle dependencies door het volgende commando in de terminal te runnen:
 ```shell 
 npm install
 ```
 Wanneer dit klaar is, kan je in de zojuist toegevoegde node_modules map controleren of de dependencies uit het vorige hoofdstuk geïnstalleerd zijn.
-Als dat allemaal klopt, kan je de applicatie starten door het volgende commando in de terminal te runnen:
+
+Mocht er een dependencie missen uit bovenstaande lijst, dan kan je deze installeren door het volgende commando in de terminal te runnen. 
+Een voorbeeld hiervan is, `npm i react-router-dom`, maar iedere dependencie kan op de plek van de naam neergezet worden:
+```shell 
+npm i naamvandedependencie 
+```
+
+Als alle dependencies er zijn, kan je de applicatie starten door het volgende commando in de terminal te runnen:
 ```shell
 npm run dev
 ```
 
 Open dan je runtime environment, bij voorkeur google chrome, en ga dan naar de url die in de terminal achter het kopje local verschenen is.
-Die zal er ongeveer zo uit zien: `https://localhost:5173/` , het nummer, dat hier 5173 is, kan variëren.
+De url zal er ongeveer zo uit zien: `https://localhost:5173/` , het nummer, dat hier 5173 is, kan variëren.
 
 ### _Geniet van de applicatie!_
 
 ## Applicatie sluiten
-Mocht je klaar zijn met de applicatie sluit dan simpelweg je runtime environment en sluit het tabblad van de terminal
-waarin je `npm run dev` had getypt. Je IDE zal misschien vragen of je zeker weet dat je de applicatie wilt sluiten en kies je voor ja. In webstorm klik je dan op 'terminate'. 
+Mocht je klaar zijn met de applicatie, sluit dan je runtime environment en het tabblad van de terminal
+waarin je `npm run dev` had getypt. Je IDE zal misschien vragen of je zeker weet dat je de applicatie wilt sluiten en dan kies je voor ja. In webstorm klik je dan op 'terminate'. 

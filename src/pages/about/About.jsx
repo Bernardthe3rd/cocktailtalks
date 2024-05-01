@@ -42,7 +42,7 @@ const About = () => {
         <main className="container">
             {sendSucces && <p className="succes">The contact form has been send succesfully.</p>}
             <div className="about__div-container">
-                <div className="about__div-box">
+                <div className="about__div-content-box">
                     <h3>Our story - How CocktailTalk started</h3>
                     <article className="about__article">
                         <h4>Welcome to CocktaisTalks</h4>

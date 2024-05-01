@@ -43,15 +43,14 @@ const Randomizer = () => {
     }
 
     return (
-        <>
-            <main className="container">
-                {error ? <p className="error">Something went wrong fetching a random cocktail, please return home by clicking the logo and try again later.</p> :
-                <div className="container__div">
-                    <h2>Push to get inspired!</h2>
-                    <ButtonFunction type="button" text="PUSH" style="button-push" onClick={fetchRandomCocktail}/>
-                    {loading && <p className="loading">Loading...</p>}
-                    {randomDrink.map((drink) => {
-                        return <ProductCardBig
+        <main className="container">
+            {error ? <p className="error">Something went wrong fetching a random cocktail, please return home by clicking the logo and try again later.</p> :
+            <div className="container__div">
+                <h2>Push to get inspired!</h2>
+                <ButtonFunction type="button" text="PUSH" style="button-push" onClick={fetchRandomCocktail}/>
+                {loading && <p className="loading">Loading...</p>}
+                {randomDrink.map((drink) => {
+                    return <ProductCardBig
                             key={drink.idDrink}
                             id={drink.idDrink}
                             source={drink.strDrinkThumb}
@@ -60,13 +59,11 @@ const Randomizer = () => {
                             glass={drink.strGlass}
                             preparing={drink.strInstructions}
                             ingredients={ingredientsArray}
-                        />
-                    })}
-                </div>
-                }
-            </main>
-
-        </>
+                    />
+                })}
+            </div>
+            }
+        </main>
     );
 };
 

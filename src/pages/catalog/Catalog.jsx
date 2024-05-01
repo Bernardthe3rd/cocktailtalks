@@ -49,33 +49,30 @@ const Catalog = () => {
 
 
     return (
-        <>
-            <main className="container">
-                {loading && <p className="loading">Loading...</p>}
-                {error ? <p className="error">Something went wrong fetching the data, please return home by clicking to logo and try again later.</p> :
-                <div className="container__div">
-                    <h2>All the cocktails in the world</h2>
-                    <ul className="products">
-                        {firstCocktails.map((cocktail) => {
-                            return <ProductCardSmall
+        <main className="container">
+            {loading && <p className="loading">Loading...</p>}
+            {error ? <p className="error">Something went wrong fetching the data, please return home by clicking to logo and try again later.</p> :
+            <section className="container__div">
+                <h2>All the cocktails in the world</h2>
+                <ul className="products">
+                    {firstCocktails.map((cocktail) => {
+                        return <ProductCardSmall
                                 key={cocktail.idDrink}
                                 name={cocktail.strDrink}
                                 source={cocktail.strDrinkThumb}
                                 alt="thumbnail cocktail"
                                 id={cocktail.idDrink}
-                            />
-                        })}
-                    </ul>
-                    <ButtonFunction type="button"
-                                    text="load more"
-                                    style="button-function"
-                                    onClick={showMoreCocktails}
-                    />
-                </div>
+                        />
+                    })}
+                </ul>
+                <ButtonFunction type="button"
+                                text="load more"
+                                style="button-function"
+                                onClick={showMoreCocktails}
+                />
+            </section>
                 }
-            </main>
-
-        </>
+        </main>
     );
 };
 

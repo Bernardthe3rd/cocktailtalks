@@ -140,7 +140,7 @@ const Login = ({setReg}) => {
             <div className="container__div">
                 <h2>Welcome!</h2>
                 <h3>Ready to explore some cocktails?</h3>
-                <form className="login__form">
+                <section className="login__section">
                     <div className="login__div">
                         <ButtonFunction type="button" text="login" style={styleLogin} onClick={handleShowLogin}/>
                         <ButtonFunction type="button" text="register" style={styleRegister} onClick={handleShowRegister} />
@@ -162,8 +162,8 @@ const Login = ({setReg}) => {
                     />
                     {errorPassword && <p>Your password was to short, must be over 8 characters.</p>}
                     {showLogin && <a href="mailto:benjaminmeijer1@gmail.com">Forgot password?</a>}
-                </form>
-                <div>
+                </section>
+                <section>
                     {showLogin &&
                     <ButtonFunction type="submit"
                                     text="log in"
@@ -180,7 +180,7 @@ const Login = ({setReg}) => {
                                     onClick={handleRegister}
                     />
                     }
-                </div>
+                </section>
             </div>
             }
         </main>

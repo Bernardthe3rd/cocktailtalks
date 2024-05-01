@@ -56,10 +56,10 @@ const Product = () => {
     }, [id]);
 
     return (
-        <>
+        <main>
             {loading && <p className="loading">Loading...</p>}
-            {error ? <p className="error">Something went wrong fetching the right cocktail for you, please return home by clicking the logo and try again later.</p> :
-            <main className="container">
+            {error ? <p className="error">Something went wrong fetching the right cocktail for you, please return to the catalog page via the navigation and try again.</p> :
+            <section className="container">
                     {cocktailInfo.map((cocktail) => {
                         return <div key={cocktail.idDrink} className="container__div">
                             <h2>{cocktail.strDrink}</h2>
@@ -73,9 +73,9 @@ const Product = () => {
                             />
                         </div>
                     })}
-            </main>
+            </section>
             }
-        </>
+        </main>
     );
 };
 

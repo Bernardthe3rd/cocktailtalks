@@ -33,39 +33,37 @@ const Home = ({reg}) => {
 
 
     return (
-        <>
-            <main className="container">
-                {reg && <p className="loading">Your registration has been successful. You can now go back to login.</p>}
-                <article className="home__article-upper">
-                    <div className="home__div-content">
-                        <h1>PHENOMENAL COCKTAIL. PHENOMENAL COMMUNITY.</h1>
-                        <h3>From anywhere in the world, <br/> For all cocktail fans here at CocktailTalks</h3>
-                        <ButtonLink path="/about"
-                                    text="about"
-                        />
-                    </div>
-                    <span className="home__img-wrapper">
-                        <img src={homeImg} alt="cocktail glasses"/>
-                    </span>
-                </article>
-                <article className="home__article-bottom">
-                    <h2>Want to be notified about the latest updates?</h2>
-                    <InputField name="email newsletter"
-                                type="text"
-                                placeholder="Email"
-                                valueField={newsletterEmail}
-                                handleChange={(e) => setNewsletterEmail(e.target.value)}
+        <main className="container">
+            {reg && <p className="loading">Your registration has been successful. You can now go back to login.</p>}
+            <article className="home__article-upper">
+                <div className="home__div-content">
+                    <h1>PHENOMENAL COCKTAIL. PHENOMENAL COMMUNITY.</h1>
+                    <h3>From anywhere in the world, <br/> For all cocktail fans here at CocktailTalks</h3>
+                    <ButtonLink path="/about"
+                                text="about"
                     />
-                    {subscribeSucces && <p>Thank you for subscribing. Some wonderful news is heading your way!</p>}
-                    {errorEmail && <p>Unfortunately the subscribing went wrong. Please fill in a valid email-address and try again.</p>}
-                    <ButtonFunction type="button"
-                                    text="subscribe"
-                                    style="button-function"
-                                    onClick={handleSubmit}
-                    />
-                </article>
-            </main>
-        </>
+                </div>
+                <span className="home__img-wrapper">
+                    <img src={homeImg} alt="cocktail glasses"/>
+                </span>
+            </article>
+            <article className="home__article-bottom">
+                <h2>Want to be notified about the latest updates?</h2>
+                <InputField name="email newsletter"
+                            type="text"
+                            placeholder="Email"
+                            valueField={newsletterEmail}
+                            handleChange={(e) => setNewsletterEmail(e.target.value)}
+                />
+                {subscribeSucces && <p>Thank you for subscribing. Some wonderful news is heading your way!</p>}
+                {errorEmail && <p>Unfortunately the subscribing went wrong. Please fill in a valid email-address and try again.</p>}
+                <ButtonFunction type="button"
+                                text="subscribe"
+                                style="button-function"
+                                onClick={handleSubmit}
+                />
+            </article>
+        </main>
     );
 }
 export default Home;

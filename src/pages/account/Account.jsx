@@ -61,27 +61,24 @@ const Account = () => {
 
 
     return (
-        <>
-            <main className="container">
-                {loading && <p className="loading">Loading...</p>}
-                {errorNoCocktails && <p className="error">Je hebt op dit moment nog geen cocktails in jouw account staan, ga naar de catalog pagina om er een te favorieten!</p>}
-                {error ? <p className="error">Something went wrong fetching the cocktails, click on the logo to return home and try again later.</p> :
-                <div className="container__div">
-                    <h2>Your favorites</h2>
-                    {cocktailInfoForUser.map((cocktail) => {
-                        return <ProductCardReview
+        <main className="container">
+            {loading && <p className="loading">Loading...</p>}
+            {errorNoCocktails && <p className="error">Je hebt op dit moment nog geen cocktails in jouw account staan, ga naar de catalog pagina om er een te favorieten!</p>}
+            {error ? <p className="error">Something went wrong fetching the cocktails, click on the logo to return home and try again later.</p> :
+            <div className="container__div">
+                <h2>Your favorites</h2>
+                {cocktailInfoForUser.map((cocktail) => {
+                    return <ProductCardReview
                             key={cocktail.idDrink}
                             id={cocktail.idDrink}
                             source={cocktail.strDrinkThumb}
                             alt="thumbnail cocktail"
                             nameProduct={cocktail.strDrink}
-                        />
-
-                    })}
-                </div>
-                }
-            </main>
-        </>
+                    />
+                })}
+            </div>
+            }
+        </main>
     );
 };
 
