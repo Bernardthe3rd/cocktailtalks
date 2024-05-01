@@ -4,31 +4,28 @@ import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
 
 const StarIcon = ({size, style, idCocktail}) => {
-    const { user, isAuth } = useContext(AuthContext)
-    const [fillStar, toggleFillStar] = useState("fill");
+    const { user, isAuth } = useContext(AuthContext);
     const token = localStorage.getItem("token");
-    const [userInfo, setUserInfo] = useState([])
+    const [fillStar, toggleFillStar] = useState("regular");
+    const [userInfo, setUserInfo] = useState(user?.info ? JSON.parse(user.info) : []);
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
 
     useEffect(() => {
-        if (user !== null) {
-            if (JSON.parse(user.info).length > 0) {
-                setUserInfo(JSON.parse(user.info))
-            } else {
-                setUserInfo(userInfo)
-            }
-
-            let actie = userInfo.find((id) => {
-                return id.id === idCocktail
+        if (isAuth) {
+            let foundCocktail = userInfo.find((idt) => {
+                return idt.id === idCocktail
             })
-            if (actie) {
+
+            if (foundCocktail) {
                 toggleFillStar("fill")
             } else {
                 toggleFillStar("regular")
             }
         }
-    }, []);
+    },[]);
 
-
+    //function onClick to add a cocktail as favorite to userInfo
     async function favoriteCocktail(idCocktail) {
         const newItem = { id: idCocktail, feedback: { grade: "" , text: ""} };
         // Update state using functional form of setState
@@ -37,6 +34,7 @@ const StarIcon = ({size, style, idCocktail}) => {
         const foundItem = userInfo.find((item) => {
             return item.id === newItem.id;
         })
+        toggleLoading(true);
 
         if (foundItem === undefined) {
             try {
@@ -54,13 +52,16 @@ const StarIcon = ({size, style, idCocktail}) => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                console.log(updateUserInfo);
-                toggleFillStar("fill")
+                console.log(updateUserInfo)
+                toggleFillStar("fill");
+                toggleLoading(false);
             } catch (e) {
                 console.error(e);
+                toggleError(true);
             }
         } else {
             const updatedArray = userInfo.filter(item => item.id !== foundItem.id)
+            toggleLoading(true);
             try {
                 // Wait for the state update to complete
                 await new Promise(resolve => setTimeout(resolve, 0));
@@ -76,18 +77,29 @@ const StarIcon = ({size, style, idCocktail}) => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                console.log(updateUserInfo);
-                toggleFillStar("regular")
+                console.log(updateUserInfo)
+                toggleFillStar("regular");
+                toggleLoading(false);
             } catch (e) {
                 console.error(e);
+                toggleError(true);
             }
         }
+        window.location.reload();
     }
 
     return (
         <>
+            {loading && <p>Adding your favorite..</p>}
+            {error && <p>Something went wrong with adding this cocktail to your favorites. Please try again later.</p>}
             {isAuth &&
-            <Star size={size} weight={fillStar} className={style} color="#FFB986" alt="star icon" onClick={() => favoriteCocktail(idCocktail)}/>
+            <Star size={size}
+                  weight={fillStar}
+                  alt="star icon"
+                  color="#FFB986"
+                  className={style}
+                  onClick={() => favoriteCocktail(idCocktail)}
+            />
             }
         </>
     );

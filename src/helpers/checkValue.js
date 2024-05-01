@@ -1,8 +1,8 @@
 
 export function checkValue(value) {
     if (value === null) {
-        return ""
+        return "";
     } else {
-        return value
+        return value;
     }
 }

@@ -1,8 +1,12 @@
 import "./button-function.css"
 
-const ButtonFunction = ({type , text, onClick}) => {
+const ButtonFunction = ({type , text, style, onClick, disableBtn}) => {
     return (
-        <button type={type} onClick={onClick} className={text.includes("PUSH") ? "button-push" : "button-function"}>
+        <button type={type}
+                onClick={onClick}
+                className={style}
+                disabled={disableBtn}
+        >
             {text}
         </button>
     );

@@ -1,26 +1,109 @@
-import homeimg from "/src/assets/imgHomepage.jpg";
+import aboutImg from "/src/assets/img_home.jpg";
 import "./about.css"
 import ButtonLink from "../../components/button-link/ButtonLink.jsx";
+import InputField from "../../components/input-field/InputField.jsx";
+import ButtonFunction from "../../components/button-function/ButtonFunction.jsx";
+import {useContext, useEffect, useState} from "react";
+import {validateEmail} from "../../helpers/validateEmail.js";
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 const About = () => {
+    const {isAuth} = useContext(AuthContext);
+    const [disableBtn, toggleDisableBtn] = useState(false);
+    const [contactEmail, setContactEmail] = useState("");
+    const [subject, setSubject] = useState("");
+    const [message, setMessage] = useState("");
+    const [sendSucces, setSendSucces] = useState(false);
+
+    useEffect(() => {
+        if (validateEmail(contactEmail)) {
+            toggleDisableBtn(false)
+        } else {
+            toggleDisableBtn(true);
+        }
+    }, [contactEmail]);
+
+    //function to save the details from the contact form.
+    function handleSubmit (e) {
+        e.preventDefault()
+        console.log(
+            `email: ${contactEmail}\n
+            subject: ${subject}\n
+            message: ${message}\n`
+        )
+        setContactEmail("");
+        setSubject("");
+        setMessage("");
+        setSendSucces(true);
+        window.scrollTo(0, 0);
+    }
+
     return (
-        <>
-            <main className="container">
-                <div className="about__div-container">
-                    <div className="about__div-box">
-                        <h3>Our story - How CocktailTalk started</h3>
-                        <article className="about__article">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet atque aut consequuntur deserunt dolor doloremque dolores doloribus ducimus eaque eius eos error esse fugiat fugit hic iste magni mollitia optio possimus quasi quis quo, quod sequi suscipit tenetur ullam veritatis vero voluptates voluptatibus? Corporis deleniti est fugiat hic id illo odit quia! Aliquid autem consequatur corporis dolores est illo magnam maiores maxime mollitia? Ad aperiam cum dolor dolores est harum hic, laborum laudantium libero natus nulla obcaecati quisquam saepe similique ut vel vero? Ab adipisci aspernatur deleniti dolorem ea enim ex, expedita facere iste iusto necessitatibus nemo nesciunt nihil, nulla odio porro quaerat quas qui repellat repellendus sint velit veritatis voluptates. Ad adipisci enim, eum fuga qui quod sed temporibus ullam! Adipisci aliquid dolorem enim expedita iste nostrum sit soluta sunt. A adipisci aliquid animi distinctio doloribus dolorum eos et ex expedita harum, in ipsam laboriosam laborum libero magnam minus nam neque nihil nostrum nulla odio odit porro praesentium provident quas quibusdam quis reiciendis sit suscipit tempora totam ut veniam vero voluptate voluptatem voluptatibus voluptatum? Ab aspernatur dolores nam placeat quidem quo ratione recusandae reiciendis saepe voluptatum. Autem obcaecati, perspiciatis praesentium suscipit temporibus voluptatibus! Aliquam aperiam architecto blanditiis, debitis dolore earum est expedita facere fugit impedit iste laboriosam maxime, odio perferendis quas rem saepe sequi tempore veritatis voluptate? Nulla, sapiente, ullam. Accusamus aliquam aperiam beatae corporis, ducimus error eveniet ex illo inventore ipsum iste iusto laudantium maiores necessitatibus non, nostrum nulla obcaecati odit perferendis, repellat sapiente sint unde voluptatum?</p>
-                            <ButtonLink path="/login" text="join us"/>
-                        </article>
-                    </div>
-                    <span className="about__img-wrapper">
-                        <img src={homeimg} alt="cocktail glasses"/>
-                        <img src={homeimg} alt="cocktail glasses"/>
-                    </span>
+        <main className="container">
+            {sendSucces && <p className="succes">The contact form has been send succesfully.</p>}
+            <div className="about__div-container">
+                <div className="about__div-content-box">
+                    <h3>Our story - How CocktailTalk started</h3>
+                    <article className="about__article">
+                        <h4>Welcome to CocktaisTalks</h4>
+                        <p>Here's a little story about a young guy who loves Cocktails but always had the same questions everytime he wanted one.</p>
+                        <h4>Do you also have the same questions as:</h4>
+                        <ul>
+                            <li>I would like to try a new cocktail, but which one?</li>
+                            <li>How do I make a certain cocktail and what kind of ingredients do I need?</li>
+                            <li>Which cocktails did I even had in the past?</li>
+                            <li>And did I even liked them?</li>
+                        </ul>
+                        <p>Sounds familiair? Then stop hesitating and join our community! </p>
+                        <p>Because here at CocktailTalks we welcome every cocktail enthousiast and love to share our passion, ideas and feedback.</p>
+                        <p>Are you ready, really ready to explore so many cocktails you every dreamed of?</p>
+                        <p>Got excited yet? Click on the button below and come join our CocktailTastic Community!</p>
+                        <ButtonLink path={isAuth ? "/account" : "/login"} text="join us"/>
+                    </article>
                 </div>
-            </main>
-        </>
+                <span className="about__img-wrapper">
+                    <img src={aboutImg} alt="cocktail glasses"/>
+                    <img src={aboutImg} alt="cocktail glasses"/>
+                </span>
+            </div>
+            <div className="container__div">
+                <h3>Get in touch!</h3>
+                <form className="about__form" onSubmit={handleSubmit}>
+                    <InputField type="text"
+                                label="Email:"
+                                name="email"
+                                id="field-email-contact"
+                                placeholder="email"
+                                valueField={contactEmail}
+                                handleChange={(e) => setContactEmail(e.target.value)}
+                    />
+                    <InputField type="text"
+                                label="Subject:"
+                                name="subject"
+                                id="field-subject"
+                                placeholder="subject"
+                                valueField={subject}
+                                handleChange={(e) => setSubject(e.target.value)}
+                    />
+                    <label htmlFor="about-textarea" className="product-review__label">
+                        Where do you want to talk about?
+                        <textarea name="about-text"
+                                  id="about-textarea"
+                                  cols="50" rows="10"
+                                  placeholder="Write your text here"
+                                  className="about__textarea"
+                                  value={message}
+                                  onChange={(e) => setMessage(e.target.value)}
+                        />
+                    </label>
+                    <ButtonFunction type="submit"
+                                    text="send"
+                                    style="button-function"
+                                    disableBtn={disableBtn}
+                    />
+                </form>
+            </div>
+        </main>
     );
 };
 

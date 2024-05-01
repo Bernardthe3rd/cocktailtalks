@@ -1,7 +1,8 @@
+/*Start styling upper about page*/
 .about__div-container {
     padding: 50px;
     background-color: var(--background-clr-first);
-    border: 1px solid green;
+    border: 2px solid black;
 
     display: flex;
     flex-direction: row;
@@ -11,7 +12,7 @@
 
 }
 
-.about__div-box {
+.about__div-content-box {
     max-width: 800px;
 
     display: flex;
@@ -29,7 +30,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    row-gap: 100px;
+    row-gap: 30px;
+}
+
+.about__article > ul {
+    list-style-type: square;
+    padding-inline: 40px;
 }
 
 .about__img-wrapper {
@@ -37,16 +43,47 @@
     display: flex;
     flex-direction: column;
 }
+/*End styling upper page*/
+
+/*Start styling contact form*/
+.about__form {
+    padding-block: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.about__textarea {
+    border: none;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0, rgba(27, 31, 35, 0.15) 0 0 0 1px;
+    padding: 25px 25px;
+    min-width: 800px;
+}
+/*End styling contact form*/
 
 @media screen and (max-width: 1200px) {
-    .about--div__container {
+    .about__div-container {
         flex-direction: column;
     }
 
-    .about--imgwrapper {
+    .about__img-wrapper {
         max-width: 400px;
         flex-direction: row;
         justify-content: center;
         align-items: center;
+    }
+
+    .about__textarea {
+        min-width: 600px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .about__textarea {
+        max-width: 400px;
     }
 }

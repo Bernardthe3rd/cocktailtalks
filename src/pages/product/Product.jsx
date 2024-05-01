@@ -6,18 +6,22 @@ import axios from "axios";
 
 const Product = () => {
     let { id } = useParams();
-    const [cocktailInfo, setCocktailInfo] = useState([])
+
+    const [cocktailInfo, setCocktailInfo] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
     const [ingredientsArray, setIngredientsArray] = useState([]);
 
+    //Automatically fetch the right information from the selected product in the catalog page on mount.
     useEffect(() => {
+        const controller = new AbortController();
         async function fetchCocktails () {
             toggleLoading(true);
             try {
                 toggleError(false);
-                const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
-                console.log(response.data.drinks);
+                const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`, {
+                    signal: controller.signal,
+                })
                 setCocktailInfo(response.data.drinks);
                 setIngredientsArray (
                     [response.data.drinks[0].strIngredient1
@@ -36,19 +40,26 @@ const Product = () => {
                         ,response.data.drinks[0].strIngredient14
                         ,response.data.drinks[0].strIngredient15])
             } catch (e) {
-                console.error(e)
+                console.error(e);
                 toggleError(true);
             }
             toggleLoading(false);
         }
         void fetchCocktails();
+
+        return function cleanup() {
+            if (controller.signal.aborted) {
+                controller.abort();
+            }
+        }
+
     }, [id]);
 
     return (
-        <>
+        <main>
             {loading && <p className="loading">Loading...</p>}
-            {error ? <p className="error">Er is iets misgegaan, klik op het logo om naar Home te gaan en kom later terug.</p> :
-            <main className="container">
+            {error ? <p className="error">Something went wrong fetching the right cocktail for you, please return to the catalog page via the navigation and try again.</p> :
+            <section className="container">
                     {cocktailInfo.map((cocktail) => {
                         return <div key={cocktail.idDrink} className="container__div">
                             <h2>{cocktail.strDrink}</h2>
@@ -62,9 +73,9 @@ const Product = () => {
                             />
                         </div>
                     })}
-            </main>
+            </section>
             }
-        </>
+        </main>
     );
 };
 

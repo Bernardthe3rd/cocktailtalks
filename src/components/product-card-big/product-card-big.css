@@ -47,10 +47,8 @@
     list-style-type: decimal;
 }
 
-
-
 @media screen and (max-width: 1200px) {
-    .product-card__big {
+    .product-big__card {
         height: auto;
         flex-direction: column;
         padding-block: 40px;
